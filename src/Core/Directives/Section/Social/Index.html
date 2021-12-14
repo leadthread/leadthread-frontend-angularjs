@@ -1,0 +1,24 @@
+<h3>Share on Social Media!</h3>
+<div
+	class="a2a_kit a2a_kit_size_96 a2a_default_style a2a_init"
+	data-a2a-url="{{socialUrl}}"
+	data-a2a-title="{{socialMsg}}"
+>
+	<a class="a2a_button_facebook"></a>
+	<a class="a2a_button_facebook_messenger"></a>
+	<a class="a2a_button_twitter"></a>
+	<a class="a2a_button_google_plus"></a>
+	<a class="a2a_button_linkedin"></a>
+	<a
+		class="a2a_dd"
+		ng-click="showFullA2AMenu($event)"
+		href="https://www.addtoany.com/share"
+	></a>
+</div>
+
+<div class="btn-group-flex">
+	<div class="btn btn-success btn-next-step" ng-click="nextPage()">
+		Next <i class="icon-chevron-right"></i>
+	</div>
+</div>
+<div page-lock="lock"></div>

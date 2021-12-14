@@ -1,0 +1,153 @@
+<div
+	class="page"
+	ng-repeat="(index, page) in site.pages | orderBy:['order']"
+	ng-if="page.name === selectedPage.name"
+>
+	<!-- {{page.type}} {{page.name}} {{page.order}} -->
+	<div
+		class="section flex"
+		ng-repeat="section in page.sections | orderBy:['order']"
+	>
+		<!-- {{section.type}} {{section.name}} {{section.order}} -->
+		<div ng-style="getSectionStyle(section)" class="flex-grow-1">
+			<div
+				ng-switch
+				on="section.type"
+				name="{{section.name}}"
+				ng-if="isSectionEnabled(section)"
+				scroll-to-when="scroll_now && scrollTo === section.name"
+			>
+				<section-button
+					ng-switch-when="mailto"
+					model="section"
+					options="options"
+				></section-button>
+				<section-button
+					ng-switch-when="register"
+					model="section"
+					options="options"
+				></section-button>
+				<section-button
+					ng-switch-when="sms"
+					model="section"
+					options="options"
+				></section-button>
+				<section-button
+					ng-switch-when="tel"
+					model="section"
+					options="options"
+				></section-button>
+				<section-button
+					ng-switch-when="url"
+					model="section"
+					options="options"
+				></section-button>
+				<section-button
+					ng-switch-when="nav"
+					model="section"
+					options="options"
+					first="index === 0"
+					last="index === site.pages.length - 1"
+					ng-if="site.type != 'referral-thread' && page.type != 'intro'"
+				></section-button>
+
+				<!-- COLLECT AND SHARE -->
+				<section-share
+					ng-switch-when="share"
+					model="section"
+					options="options"
+					ng-if="options.contact.id"
+				></section-share>
+				<div
+					ng-switch-when="collect"
+					section-collect="section"
+					options="options"
+					ng-if="options.contact.id"
+				></div>
+
+				<!-- REGISTER IF CONTACT IS NOT PROVIDED -->
+				<div
+					ng-switch-when="share"
+					section-register="section"
+					options="options"
+					ng-if="!options.contact.id"
+				></div>
+				<div
+					ng-switch-when="collect"
+					section-register="section"
+					options="options"
+					ng-if="!options.contact.id"
+				></div>
+
+				<div
+					ng-switch-when="spacer"
+					section-spacer="section"
+					options="options"
+				></div>
+				<div ng-switch-when="image" section-image="section"></div>
+				<section-incentive-preview
+					ng-switch-when="incentivepreview"
+					model="section"
+					options="options"
+				></section-incentive-preview>
+				<div ng-switch-when="pdf" section-pdf="section"></div>
+				<div
+					ng-switch-when="smspreview"
+					section-sms-preview="section"
+				></div>
+				<div
+					ng-switch-when="social"
+					section-social="section"
+					options="options"
+				></div>
+				<div
+					ng-switch-when="socialpreview"
+					section-social-preview="section"
+				></div>
+				<div
+					ng-switch-when="story"
+					section-story="section"
+					options="options"
+				></div>
+				<div
+					ng-switch-when="testimonial"
+					section-testimonial="section"
+					options="options"
+				></div>
+				<div ng-switch-when="text" section-text="section"></div>
+				<div
+					ng-switch-when="video"
+					section-video="section"
+					options="options"
+				></div>
+
+				<div ng-switch-default>
+					Unknown section type '{{section.type}}'
+				</div>
+			</div>
+			<div
+				ng-if="site.type == 'referral-thread' && page.type == 'intro' && section.type == 'nav' && !options.preview"
+				section-static-forward="section"
+				options="options"
+			></div>
+			<div
+				ng-if="canEdit && editing"
+				ng-click="editSection(section)"
+				class="editor-toggle-overlay"
+				ng-class="{active: editSectionId === section.id}"
+			></div>
+		</div>
+		<div
+			site-page-section-editor="selectedSection"
+			ng-if="canEdit && editing && windowWidth <= 768 && selectedSection.id === section.id"
+		></div>
+	</div>
+	<div
+		ng-if="page.sections && page.sections.length === 0"
+		style="padding: 1rem; text-align: center"
+	>
+		No Page data.
+	</div>
+</div>
+
+<div page-lock="lock" position="absolute"></div>

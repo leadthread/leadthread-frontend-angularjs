@@ -1,0 +1,70 @@
+[site-page-section-editor] {
+	position: relative;
+
+	#box {
+		padding: 0;
+		padding-top: @spacing;
+		textarea,
+		input,
+		select {
+			font-size: 1em;
+			padding: 5px;
+		}
+
+		input,
+		select {
+			height: 3rem;
+		}
+
+		.panel-body {
+			padding: 0;
+		}
+
+		#content,
+		#delete {
+			margin-right: @spacing;
+			margin-left: @spacing;
+			margin-bottom: @spacing;
+		}
+
+		#style {
+			margin-left: @spacing;
+			display: flex;
+			flex-wrap: wrap;
+
+			label {
+			}
+		}
+
+		#style > * {
+			flex-grow: 1;
+			margin-right: @spacing;
+			margin-bottom: @spacing;
+		}
+
+		#control {
+			display: flex;
+			margin-right: @spacing;
+			margin-left: @spacing;
+			margin-bottom: @spacing;
+		}
+
+		#control .btn {
+			margin-right: @spacing;
+			font-size: 32px;
+			line-height: 0;
+		}
+
+		#control .btn:last-child {
+			margin-right: 0;
+		}
+
+		#control > * {
+			flex-grow: 1;
+		}
+
+		#delete {
+			width: 100%;
+		}
+	}
+}

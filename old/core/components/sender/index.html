@@ -1,0 +1,45 @@
+<!-- Add a new Customer/Referral to send button -->
+<div contact-selector="contacts" collect-company="collectCompany" on-new-contact="options.onNewContact" type="{{type}}"></div>
+
+<!-- Ready to be sent list -->
+<div ng-if="getContactsToSend().length > 0" ng-disabled="sending">
+	<ul class="list-group">
+		<label class="label label-default">
+			<i class="icon-close"></i> Not Sent ({{getContactsToSend().length}})
+		</label>
+		<li class="list-group-item" ng-repeat="item in getContactsToSend() track by item.phone.valueOf()" ng-class="{'pending': !item.ready}">
+			<span ng-show="item.first_name">{{item.first_name}}</span>
+			<span ng-show="item.last_name">{{item.last_name}}</span>
+
+			<a ng-click="markAsSent($index)" class="btn btn-primary pull-right" ng-href="{{item.link.href}}" ng-show="item.ready && item.link.href">Send Invite <i class="icon-send" ></i></a>
+<!-- 
+			<a class="btn btn-primary pull-right" ng-click="send($index)" ng-show="item.ready">Send <i class="icon-send"></i></a>
+ -->
+			<div class="pull-right" loader white="false" ng-show="!item.ready || !item.link.href"></div>
+			<div class="clearfix"></div>
+		</li>
+	</ul>
+</div>
+
+<!-- Copy and paste a link -->
+<div class="copy-link" ng-show="type == 'Customer'">
+	<span class="label label-primary">sharable link, for mobile use only</span>
+	<input type="text" id="campaignlink" class="form-control" placeholder="Link" readonly ng-model="linkcpy">
+</div>
+
+<!-- Sent list -->
+<div ng-if="getContactsToNotSend().length > 0">
+	<label class="label label-primary">
+		<i class="icon-check"></i> Sent ({{getContactsToNotSend().length}})
+	</label>
+	<ul class="list-group">
+		<li class="list-group-item" ng-repeat="item in getContactsToNotSend() track by item.phone.valueOf() | orderBy:['-timestamp']" ng-class="{'pending': !item.ready}">
+			<span ng-show="item.first_name">{{item.first_name}}</span>
+			<span ng-show="item.last_name">{{item.last_name}}</span>
+			<span class="timestamp" ng-show="item.ready && item.timestamp !== undefined">{{item.timestamp | readableDate}}</span>
+
+			<div class="pull-right" loader white="false" ng-show="!item.ready"></div>
+			<div class="clearfix"></div>
+		</li>
+	</ul>
+</div>

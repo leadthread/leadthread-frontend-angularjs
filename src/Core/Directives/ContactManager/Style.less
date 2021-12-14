@@ -1,0 +1,106 @@
+contact-lists,
+contacts {
+	margin-bottom: @spacing;
+	display: block;
+
+	table {
+		width: 100%;
+
+		&.list-group {
+			margin-bottom: 0;
+		}
+
+		tr.list-group-item {
+			display: table-row;
+			&.hover:hover {
+				color: white;
+				background-color: @brand-primary;
+				cursor: pointer;
+				a {
+					color: white;
+					&:hover {
+						color: white;
+					}
+				}
+			}
+		}
+
+		td,
+		th {
+			line-height: 28px;
+			padding: @spacing / 2;
+			&.select {
+				width: 1px;
+				text-align: center;
+				& > div {
+					display: flex;
+					justify-content: center;
+				}
+			}
+			&.contacts {
+				width: 1px;
+			}
+		}
+	}
+
+	.controls {
+		margin-bottom: @spacing / 2;
+		flex-wrap: wrap;
+		margin: (@spacing / -4);
+		& > * {
+			flex-grow: 1;
+			margin: @spacing / 4;
+			flex-basis: 31%;
+			&.form-control {
+				flex-basis: 65%;
+			}
+			&.search {
+				flex-basis: 95%;
+			}
+			& > * {
+				width: 100%;
+			}
+		}
+	}
+
+	.pagination-controls {
+		text-align: center;
+	}
+
+	.controls select.form-control {
+		margin-bottom: 0;
+		width: 100%;
+	}
+
+	input[type="checkbox"] {
+		height: 18px;
+		width: 18px;
+		margin: 0;
+	}
+}
+
+@media (min-width: @screen-sm-min) {
+	contacts,
+	contact-lists {
+		.pagination-controls {
+			text-align: left;
+		}
+		.controls {
+			flex-wrap: no-wrap;
+			& > * {
+				flex-grow: 0;
+				flex-basis: 20px;
+				&.form-control {
+					flex-basis: 50px;
+				}
+				&.search {
+					flex-basis: 184px;
+					flex-grow: 1;
+				}
+				& > * {
+					width: 100%;
+				}
+			}
+		}
+	}
+}

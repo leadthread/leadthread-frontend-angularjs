@@ -1,0 +1,284 @@
+<div id="report">
+	<div id="inner">
+		<div class="tabs">
+			<uib-tabset active="report.activeTab">
+				<uib-tab
+					index="$index"
+					ng-repeat="tab in tabs"
+					ng-click="report.activeTab = $index"
+				>
+					<uib-tab-heading
+						>{{tab.name}}<span ng-show="windowWidth>=992">
+							Report</span
+						></uib-tab-heading
+					>
+				</uib-tab>
+			</uib-tabset>
+			<br />
+		</div>
+		<div class="flex controls">
+			<div class="filters">
+				<uib-accordion>
+					<div
+						uib-accordion-group
+						class="panel-default"
+						heading="{{0}} selected"
+						is-open="report.filtersOpen"
+					>
+						<uib-accordion-heading>
+							<i
+								class="icon-chevron-right"
+								ng-show="!report.filtersOpen"
+							></i>
+							<i
+								class="icon-chevron-down"
+								ng-show="report.filtersOpen"
+							></i>
+							Filters
+						</uib-accordion-heading>
+						<div class="row">
+							<div
+								ng-repeat="control in controls | orderBy:['order', 'name']"
+								ng-if="control.enabled"
+								ng-switch="control.type"
+								class="col-sm-3"
+							>
+								<div ng-switch-when="boolean">
+									<label
+										>{{report.fixColumnName(control.id)}}</label
+									>
+									<select
+										class="form-control"
+										ng-model="selected[control.id]"
+									>
+										<option ng-value="">All</option>
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+									</select>
+								</div>
+								<div ng-switch-when="campaign_type">
+									<label
+										>{{report.fixColumnName(control.id)}}</label
+									>
+									<select
+										class="form-control"
+										ng-options="t.value as t.key for t in control.options"
+										ng-model="selected[control.id]"
+									>
+										<option value="">All Types</option>
+									</select>
+								</div>
+								<div ng-switch-when="date">
+									<label>Date</label><br />
+									<div class="input-group">
+										<input
+											type="text"
+											class="form-control"
+											uib-datepicker-popup
+											ng-model="selected[control.id]"
+											is-open="control.opened"
+											datepicker-options="control.options"
+											datepicker-popup-template-url="overrides/angular-bootstrap/template/datepickerPopup/popup.html"
+											datepicker-template-url="overrides/angular-bootstrap/template/datepicker/datepicker.html"
+											close-text="Close"
+										/>
+										<span class="input-group-btn">
+											<button
+												type="button"
+												class="btn btn-primary"
+												ng-click="control.toggle()"
+											>
+												<i class="icon-calendar"></i>
+											</button>
+										</span>
+									</div>
+								</div>
+								<div ng-switch-when="user">
+									<label>User</label>
+									<select
+										class="form-control"
+										ng-options="user.id as user for user in users | orderBy:['first_name']"
+										ng-model="selected[control.id]"
+									>
+										<option value="">All Users</option>
+									</select>
+								</div>
+								<div ng-switch-when="campaign">
+									<label>Campaign</label>
+									<select
+										class="form-control"
+										ng-options="campaign.id as campaign for campaign in campaigns | orderBy:['name']"
+										ng-model="selected[control.id]"
+									>
+										<option value="">All Campaigns</option>
+									</select>
+								</div>
+								<div ng-switch-when="campaignType">
+									<label>Campaign Type</label>
+									<select
+										class="form-control"
+										ng-options="type.kebab as type.name for type in campaignTypes"
+										ng-model="selected[control.id]"
+									></select>
+								</div>
+								<div ng-switch-default>
+									Unknown control type: {{control.type}}
+								</div>
+							</div>
+							<div
+								class="actions col-sm-3"
+								ng-show="windowWidth<992"
+							>
+								<label>Actions</label><br />
+								<div style="display: inline-block">
+									<div class="btn-group" uib-dropdown>
+										<a
+											id="split-button"
+											type="button"
+											class="btn btn-primary"
+											ng-href="{{report.buildReportUrl('xls')}}"
+											><i class="icon-download"></i>
+											Excel</a
+										>
+										<a
+											type="button"
+											class="btn btn-primary"
+											uib-dropdown-toggle
+										>
+											<span class="caret"></span>
+											<span class="sr-only"></span>
+										</a>
+										<ul
+											class="dropdown-menu"
+											uib-dropdown-menu
+											role="menu"
+											aria-labelledby="split-button"
+										>
+											<li role="menuitem">
+												<a
+													ng-href="{{report.buildReportUrl('xls')}}"
+													><i
+														class="icon-download"
+													></i>
+													Excel</a
+												>
+											</li>
+											<li role="menuitem">
+												<a
+													ng-href="{{report.buildReportUrl('csv')}}"
+													><i
+														class="icon-download"
+													></i>
+													CSV</a
+												>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div style="display: inline-block">
+									<div
+										class="btn btn-danger"
+										ng-click="report.reset()"
+									>
+										Reset
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+
+			<div class="actions" ng-show="windowWidth>=992">
+				<div style="display: inline-block">
+					<div class="btn-group" uib-dropdown>
+						<a
+							id="split-button"
+							type="button"
+							class="btn btn-primary"
+							ng-href="{{report.buildReportUrl('xls')}}"
+							><i class="icon-download"></i> Excel</a
+						>
+						<a
+							type="button"
+							class="btn btn-primary"
+							uib-dropdown-toggle
+						>
+							<span class="caret"></span>
+							<span class="sr-only"></span>
+						</a>
+						<ul
+							class="dropdown-menu"
+							uib-dropdown-menu
+							role="menu"
+							aria-labelledby="split-button"
+						>
+							<li role="menuitem">
+								<a ng-href="{{report.buildReportUrl('xls')}}"
+									><i class="icon-download"></i> Excel</a
+								>
+							</li>
+							<li role="menuitem">
+								<a ng-href="{{report.buildReportUrl('csv')}}"
+									><i class="icon-download"></i> CSV</a
+								>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div style="display: inline-block">
+					<div class="btn btn-danger" ng-click="report.reset()">
+						Reset
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="data">
+			<span ng-show="report.data.length === 0">No Data</span>
+			<span ng-show="report.data === null" style="display: inline-block"
+				><span loader></span
+			></span>
+			<table ng-show="report.data.length > 0" class="report">
+				<tr class="head">
+					<th
+						ng-repeat="column in report.columns"
+						ng-if="report.isCellVisible(column)"
+					>
+						{{report.fixColumnName(column)|titleCase}}
+					</th>
+				</tr>
+				<tr
+					class="term"
+					dir-paginate="record in report.data | itemsPerPage: perPage"
+					pagination-id="'report'"
+				>
+					<td
+						ng-repeat="column in report.columns"
+						ng-if="report.isCellVisible(column)"
+						ng-click="report.doCellAction(column, record)"
+						ng-class="{'clickable':report.hasCellAction(column, record)}"
+					>
+						{{report.getCellValue(column, record)}}
+					</td>
+				</tr>
+				<tr class="sum" ng-if="report.showSums">
+					<th
+						ng-repeat="column in report.columns"
+						ng-if="report.isCellVisible(column)"
+					>
+						{{report.getSumOfColumn(column)}}
+					</th>
+				</tr>
+			</table>
+
+			<span ng-show="report.data.length">{{report.data.length}} rows</span
+			><br />
+			<dir-pagination-controls
+				pagination-id="'report'"
+			></dir-pagination-controls>
+
+			<ui-view></ui-view>
+		</div>
+		<ui-view></ui-view>
+	</div>
+</div>

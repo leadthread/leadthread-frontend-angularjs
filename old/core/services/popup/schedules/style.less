@@ -1,0 +1,36 @@
+.popup .contacts {
+	.search {
+		margin-bottom: @spacing/2;
+	}
+	table.list-group {
+		width: 100%;
+		margin-bottom: 0;
+		
+		input[type=checkbox] {
+			height: 18px;
+			width: 18px;
+			margin: 0;
+		}
+
+		tr.list-group-item {
+			display: table-row;
+			&:hover {
+				background-color: @brand-primary;
+				color:white;
+				cursor: pointer;
+			}
+			td, th {
+				line-height: 28px;
+				padding: 7px;
+				&.select {
+					width: 1px;
+					text-align: center;
+					& > div {
+						display: flex;
+						justify-content: center;
+					}
+				}
+			}
+		}
+	}
+}

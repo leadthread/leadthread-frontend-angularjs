@@ -1,0 +1,47 @@
+[video-embed] {
+	.video-wrapper{
+		width: 100%;
+		background: black;
+		height: 240px;
+
+		&.well{
+			background: @gray-lighter;
+			height: 100px;
+			.progress {
+				background-color: @gray-light;
+			}
+		}
+
+		& > div {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.loading-flex {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			[loader] {
+				padding:0;
+			}
+
+			.check {
+				width:50px;
+				height:50px;
+				& > .icon-ok {
+					line-height: 50px;
+					font-size: 40px;
+					color: @brand-success;
+				}
+			}
+		}
+
+		.progress {
+			width: 200px;
+			margin-bottom: 0;
+			background-color: rgba(255, 255, 255, 0.2);
+		}
+	}
+}

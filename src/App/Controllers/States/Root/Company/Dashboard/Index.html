@@ -1,0 +1,95 @@
+<div id="dashboard">
+	<div id="inner">
+		<div id="report">
+			<!-- Threads -->
+			<div class="campaignContainer">
+				<label>Select a Thread to Send or View</label>
+				<div id="campaigns" class="flex">
+					<select
+						class="form-control flex-grow-1"
+						ng-options="c as c for c in campaigns | orderBy:['name']"
+						ng-model="campaign"
+					>
+						<option value="">All Threads</option>
+					</select>
+					<div
+						class="btn btn-primary campBtn"
+						ui-sref="^.send({type: 'campaign', campaignId: campaign.id})"
+					>
+						<i class="icon-send"></i> Send
+					</div>
+				</div>
+			</div>
+			<div
+				class="reviewScoresContainer"
+				ng-if="company.glassdoor_url || company.indeed_url"
+			>
+				<label>Your Review Scores at a Glance!</label>
+				<div class="reviewScores">
+					<a
+						href="{{company.glassdoor_url}}"
+						title="{{reviewScores.Glassdoor[0].quantity}} total reviews"
+						ng-if="company.glassdoor_url && reviewScores.Glassdoor.length > 0"
+						target="_blank"
+					>
+						<div class="individualReviewScore">
+							<aside>{{reviewScores.Glassdoor[0].name}}</aside>
+							<span>{{reviewScores.Glassdoor[0].score}}</span>
+							<!-- <span title="Day 1 Score">{{company.latest_review_scores[1]['score']}}</span> / <span title="30 Day Score">2.4</span> / <span title="60 Day Score">3.6</span> -->
+						</div>
+					</a>
+					<a
+						href="{{company.indeed_url}}"
+						title="{{reviewScores.Indeed[0].quantity}} total reviews"
+						ng-if="company.indeed_url && reviewScores.Indeed.length > 0"
+						target="_blank"
+					>
+						<div class="individualReviewScore">
+							<aside>{{reviewScores.Indeed[0].name}}</aside>
+							<span>{{reviewScores.Indeed[0].score}}</span>
+							<!-- <span title="Day 1 Score">1.2</span> / <span title="30 Day Score">3.2</span> / <span title="60 Day Score">4.0</span> -->
+						</div>
+					</a>
+				</div>
+			</div>
+			<!-- <hr> -->
+			<!-- Metrics -->
+			<br />
+			<div id="metrics" class="flex" style="clear: both">
+				<div class="title flex-grow-1">
+					<b
+						>Overview for {{campaign ? campaign.name : 'All
+						Threads'}} (Lifetime)</b
+					>
+				</div>
+				<div
+					class="metric"
+					ng-repeat="metric in metrics|orderBy:[(windowWidth < 992 ? 'mobile_order' : 'order')]"
+					style="background-color: {{metric.color}}"
+					ng-click="gotoReportForMetric(metric)"
+				>
+					<div id="row1" class="flex">
+						<div id="col1">
+							<div class="icon">
+								<i class="{{metric.icon}}"></i>
+							</div>
+						</div>
+						<div id="col2">
+							<div class="value">
+								{{metric.value !== null ? metric.value : '...'}}
+							</div>
+							<div class="name">{{metric.name}}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="chart-wrapper" ng-show="showChart">
+				<div class="title flex-grow-1">
+					<b>Chart (60 Days)</b>
+				</div>
+				<canvas id="chart" style="width: 100%; height: 600px"></canvas>
+			</div>
+		</div>
+	</div>
+</div>

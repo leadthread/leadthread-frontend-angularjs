@@ -1,0 +1,13 @@
+<div class="story-media" ng-switch="media.type">
+	<div ng-switch-when="video" video-embed="media.video" on-played="onPlayed" on-paused="onPaused" on-ended="onEnded" ng-style="companyStyle"></div>
+	<img ng-switch-when="image" ng-src="/files/{{media.file.fingerprint}}/thumb/480" style="width: 100%;" ng-style="companyStyle"/>
+	<pdf-viewer ng-switch-when="pdf" pdf="'/files/'+model.file.fingerprint+'/view'"></pdf-viewer>
+</div>
+<div class="holder" ng-if="story.caption">
+	<div class="story-caption" >
+		<blockquote>
+			<p>"{{story.caption}}"<p>
+			<footer><i>{{options.contact.first_name}} {{options.contact.last_name}}</i></footer>
+		</blockquote>
+	</div>
+</div>

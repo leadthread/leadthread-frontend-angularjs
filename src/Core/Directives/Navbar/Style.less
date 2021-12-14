@@ -1,0 +1,356 @@
+navbar-directive {
+	@loaderAnimTime: 0.3s;
+
+	height: 118px;
+	width: 100%;
+
+	position: relative;
+
+	#page-title {
+		margin-top: 50px;
+		z-index: 4;
+		position: relative;
+	}
+
+	.btn:focus {
+		color: gray;
+	}
+
+	#nav-bar {
+		position: fixed;
+		width: 100%;
+		z-index: 1001;
+
+		.btn,
+		.panel {
+			border-radius: 0;
+		}
+
+		.company-selector-wrapper {
+			flex-grow: 1;
+			&.ng-hide-remove {
+				animation: 0.2s slideInLeft ease;
+			}
+			&.ng-hide-add {
+				// animation:2s slideOutRight ease;
+			}
+		}
+
+		.company-selector {
+			margin-bottom: 0px;
+			padding-left: @spacing;
+			padding-right: @spacing;
+			min-width: 200px;
+			text-align: left;
+			line-height: 50px;
+			height: 50px;
+			font-size: 1.5em;
+			overflow-x: hidden;
+			background-color: #fff;
+			border: none;
+			width: 100%;
+		}
+
+		#bar {
+			top: 0px;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-items: stretch;
+			position: relative;
+			background: white;
+
+			.menu-title {
+				.company-selector {
+					color: white;
+					background: @brand-primary;
+				}
+			}
+
+			.btn-logo {
+				background-color: white;
+				display: none;
+				img {
+					margin: @spacing @spacing / 2 @spacing @spacing / 2;
+					padding: 1px 0;
+					max-width: 36px;
+					width: 100%;
+					height: auto;
+				}
+			}
+
+			.btn-menu {
+				border: 0;
+			}
+
+			.btn-menu {
+				//color: @color1;
+				flex-shrink: 1;
+				position: relative;
+				z-index: 1002;
+				background-color: @brand-primary;
+				color: white;
+				width: 50px;
+				display: block;
+				padding: 0px;
+				margin-bottom: 0px;
+				line-height: 50px !important;
+				height: 50px;
+				&.btn-menu-closed {
+					background-color: @brand-primary;
+				}
+				span {
+					color: white;
+					font-size: 1.5em;
+					line-height: inherit;
+					&.ng-hide-add {
+						animation: @loaderAnimTime fadeOut ease;
+					}
+					&.ng-hide-remove {
+						animation: @loaderAnimTime fadeIn ease;
+					}
+				}
+			}
+		}
+
+		#menu {
+			position: fixed;
+
+			//border-top: 3px solid white;
+			width: 100%;
+
+			/* Firefox */
+			height: ~"-moz-calc(100vh - 50px)";
+			/* WebKit */
+			height: ~"-webkit-calc(100vh - 50px)";
+			/* Opera */
+			height: ~"-o-calc(100vh - 50px)";
+			/* Standard */
+			height: ~"calc(100vh - 50px)";
+
+			background-color: rgba(0, 0, 0, 0.6);
+
+			&.ng-hide-add {
+				animation: 0.2s fadeOut ease;
+				li {
+					animation: 0.2s slideOutLeft ease;
+				}
+			}
+			&.ng-hide-remove {
+				animation: 0.2s fadeIn ease;
+				li {
+					animation: 0.2s slideInLeft ease;
+				}
+			}
+
+			h2 {
+				margin: 0px;
+			}
+
+			.menu-list {
+				height: ~"calc(100vh - 50px)"; // <- What you should do
+				overflow-y: auto;
+				padding-left: 0px;
+				max-width: 480px;
+				margin-bottom: 0;
+				padding-bottom: 69px; //height of safari bottom bar
+				width: 100%;
+
+				li {
+					list-style: none;
+					.line {
+						width: 100%;
+						display: flex;
+
+						button {
+							width: 50px;
+							height: 50px !important;
+							display: block;
+							padding: 0px;
+							border: 0px;
+							margin-bottom: 0px;
+							background: @gray-lighter;
+							position: relative;
+							z-index: 70;
+							&:focus {
+								outline: 0;
+							}
+							i {
+								font-size: 1.5em;
+								line-height: 1.5em;
+							}
+
+							.badge-wrapper {
+								position: absolute;
+								top: 4px;
+								left: 17px;
+								width: 40px;
+								z-index: 20;
+								.badge-danger {
+									background-color: @brand-danger;
+								}
+							}
+						}
+
+						a.nav-text {
+							flex-grow: 19;
+							display: block;
+							margin-bottom: 0px;
+							color: #6f828f;
+
+							&:hover,
+							&:focus {
+								text-decoration: none;
+							}
+
+							&:focus {
+								// background-color: white;
+							}
+
+							font-size: 1.25em;
+							padding: 0;
+							line-height: 50px;
+							margin-bottom: 0px;
+							padding: 0;
+							padding-left: @spacing;
+							padding-right: @spacing;
+							background-color: white;
+							text-align: left;
+							height: 100%;
+							border: 0;
+							box-shadow: none;
+						}
+
+						&:hover {
+							button,
+							a {
+								background-color: @brand-primary;
+								color: white;
+							}
+						}
+					}
+
+					.sub.menu-list {
+						padding-bottom: 0;
+						height: auto;
+						.line {
+							a.nav-text {
+								background: darken(white, 10%);
+							}
+							button {
+								background: darken(@gray-lighter, 10%);
+							}
+							&:hover {
+								button,
+								a {
+									background-color: @brand-primary;
+									color: white;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/*=========================================
+	=            Loading indicator            =
+	=========================================*/
+
+	[loader] {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 0;
+		z-index: 99;
+
+		&.ng-hide-add {
+			animation: @loaderAnimTime fadeOut ease;
+		}
+		&.ng-hide-remove {
+			animation: @loaderAnimTime fadeIn ease;
+		}
+	}
+
+	/*=====  End of Loading indicator  ======*/
+}
+
+/*=========================================
+=             Desktop Navbar              =
+=========================================*/
+
+@media (min-width: @screen-md-min) {
+	navbar-directive {
+		height: 50px;
+
+		#page-title {
+			position: fixed;
+			margin-left: 50px;
+			width: ~"calc(100% - 50px)";
+			margin-top: 0;
+			z-index: 9;
+		}
+
+		#nav-bar {
+			width: auto;
+			border-right: 1px solid #ddd;
+			z-index: 55;
+
+			.company-selector {
+				height: 66px;
+				line-height: 66px;
+			}
+
+			#bar > .btn-logo {
+				display: block;
+				background: white;
+				z-index: 99;
+				height: 66px;
+				width: 50px;
+			}
+
+			#bar > .btn-menu {
+				display: none;
+			}
+
+			#menu {
+				display: block !important;
+				//width: 320px;
+				position: relative;
+				background-color: rgba(255, 255, 255, 1);
+
+				-webkit-animation-name: inherit;
+				animation-name: inherit;
+
+				.menu-list {
+					height: ~"calc(100vh - 66px)";
+				}
+
+				.menu-list > li > button.btn {
+					z-index: 88;
+				}
+
+				.nav-text {
+					min-width: 320px;
+					max-width: 480px;
+					//z-index: 99;
+					&.ng-hide-remove {
+						animation: 0.2s slideInLeft ease;
+					}
+				}
+
+				.menu-desktop-bar {
+					z-index: 66;
+					background-color: @gray-lighter;
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 50px;
+					height: 100%;
+				}
+			}
+		}
+	}
+}

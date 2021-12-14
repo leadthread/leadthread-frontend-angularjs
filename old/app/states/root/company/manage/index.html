@@ -1,0 +1,40 @@
+<div id="manage">
+	<div class="user-list">
+		<button ng-click="addUser()" class="btn btn-success btn-add-user"><i class="icon icon-plus"></i> Add User</button>
+		<div class="user-card" ng-class="clicked ? 'clicked' : ''" ng-repeat="user in users | orderBy: 'first_name' track by user.id">
+			<p ng-init="clicked = false" class="user-heading"  ng-click="clicked = !clicked" >{{user.first_name}} {{user.last_name}}</p>
+			<div class="user-content" ng-show="clicked">
+				<div class="input-label">
+					<label class="label label-primary">First Name</label>
+					<input class="form-control" type="text" ng-model="user.first_name" />
+				</div>
+				
+				<div class="input-label">
+					<label class="label label-primary">Last Name</label>
+					<input class="form-control" type="text" ng-model="user.last_name" />
+				</div>
+				
+				<div class="input-label">
+					<label class="label label-primary">Phone</label>
+					<input class="form-control" type="text" ng-model="user.phone" />
+				</div>
+				
+				<div class="input-label">
+					<label class="label label-primary">Email</label>
+					<input class="form-control" type="text" value="{{user.email}}" readonly />
+				</div>
+				
+				<div class="input-label">
+					<label class="label label-primary">Role</label>
+					<select ng-disabled="user.id == userId" class="form-control" ng-model="user.role" ng-change="updateRole(user)">
+						<option value="User">User</option>
+						<option value="Admin">Admin</option>
+					</select>
+				</div>
+
+				<button ng-show="user.id != userId" class="btn btn-danger" ng-click="deleteUser(user)">Delete</button>
+			</div>
+		</div>
+	</div>
+	
+</div>

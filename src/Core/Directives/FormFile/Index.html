@@ -1,0 +1,116 @@
+<div ng-if="uploader" class="uploader">
+	<!-- NOT UPLOADING -->
+	<div ng-show="!uploader.isUploading">
+		<div ng-switch="type">
+			<!-- image -->
+			<div ng-switch-when="image">
+				<div
+					class="btn btn-primary uploader-clicker"
+					ng-click="clickUploader($event)"
+				>
+					<i class="icon-paperclip"></i>
+					Attach Image
+				</div>
+				<div
+					ng-show="model"
+					class="btn btn-danger"
+					ng-click="cancelFile()"
+				>
+					<i class="icon icon-remove"></i> Remove
+				</div>
+				<input
+					class="hidden-input"
+					accept="image/*"
+					type="file"
+					nv-file-select=""
+					uploader="uploader"
+				/>
+			</div>
+
+			<!-- video -->
+			<div ng-switch-when="video">
+				<!-- div class="btn btn-primary uploader-clicker" ng-click="clickUploader($event)" >
+					<i class="icon-paperclip"></i>
+					Attach Video
+				</div -->
+				<div
+					ng-show="model"
+					class="btn btn-danger"
+					ng-click="cancelFile()"
+				>
+					<i class="icon icon-remove"></i> Remove
+				</div>
+				<input
+					class="hidden-input"
+					accept="video/*"
+					type="file"
+					nv-file-select=""
+					uploader="uploader"
+				/>
+			</div>
+
+			<!-- pdf -->
+			<div ng-switch-when="pdf">
+				<div
+					class="btn btn-primary uploader-clicker"
+					ng-click="clickUploader($event)"
+				>
+					<i class="icon-paperclip"></i>
+					Attach PDF
+				</div>
+				<div
+					ng-show="model"
+					class="btn btn-danger"
+					ng-click="cancelFile()"
+				>
+					<i class="icon icon-remove"></i> Remove
+				</div>
+				<input
+					class="hidden-input"
+					accept="application/pdf"
+					type="file"
+					nv-file-select=""
+					uploader="uploader"
+				/>
+			</div>
+
+			<!-- default -->
+			<div ng-switch-default>
+				<div
+					class="btn btn-primary uploader-clicker"
+					ng-click="clickUploader($event)"
+				>
+					<i class="icon-paperclip"></i>
+					Attach File
+				</div>
+				<div
+					ng-show="model"
+					class="btn btn-danger"
+					ng-click="cancelFile()"
+				>
+					<i class="icon icon-remove"></i> Remove
+				</div>
+				<input
+					class="hidden-input"
+					type="file"
+					nv-file-select=""
+					uploader="uploader"
+				/>
+			</div>
+		</div>
+
+		<div ng-repeat="item in uploader.queue">
+			Name: <span ng-bind="item.file.name"></span><br />
+			<button class="btn btn-primary" ng-click="item.upload()">
+				Upload
+			</button>
+		</div>
+	</div>
+
+	<!-- UPLOADING -->
+	<div ng-show="uploader.isUploading">
+		<uib-progressbar class="active" value="progress" type="success"
+			>Uploading {{progress}}%</uib-progressbar
+		>
+	</div>
+</div>

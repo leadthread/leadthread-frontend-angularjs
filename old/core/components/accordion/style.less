@@ -1,0 +1,134 @@
+#accordion{
+	border-radius: 0px;
+
+	margin-top: @spacing;
+	
+	// accordion panel headers
+	h4 a span {
+		color: @gray;
+	}
+
+
+
+	.panel, .panel-heading {
+		border: 0px;
+		border-radius: 0px;
+		span.badge {
+			background-color: @brand-primary;
+			color: white;
+		}
+
+		a:hover, a:focus {
+			text-decoration: none;
+			outline: 0;
+		}
+
+		.text-muted {
+			span {
+				color: white;
+			}
+
+			span.badge {
+				background-color: @brand-primary;
+				color: white;
+			}
+		}
+	}
+
+	.panel-open{
+		h4 a span {
+			color: @brand-primary;
+		}
+	}
+
+	// qeustion text
+	h5 {
+		color: @gray;
+	}
+
+	// section titles
+	.sec-head {
+		margin-top: 0px;
+		color: @brand-primary;
+		font-size: 1.15em;
+		padding-top: @spacing;
+		border-top: 1px solid @gray-lighter;
+		&:hover {
+			color: @text-color;
+			cursor: pointer;
+		}
+	}
+
+	.sec-text {
+
+	}
+
+	// prompt specific spacing
+	button.btn-prompt {
+		margin-bottom: 14px;
+	}
+
+	// more prompt stuff
+	.clicked.cuebox {
+		background-color: lighten(@gray-light, 10%);
+	}
+
+	.prompt-holder {
+		margin-bottom: @spacing;
+	}
+
+	.cuebox {
+		.cue {
+			margin: 0px;
+		}
+
+		.prompt {
+			word-wrap: break-word;
+			width: ~"calc(100% - 56px)";
+			flex-grow: 2;
+			padding: 7px;
+			padding-bottom: 0px;
+			padding-top: 0px;
+			text-align: center;
+		}
+
+		padding: 0px;
+		padding-bottom: @spacing;
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	// well
+	.well {
+		overflow: auto;
+	}
+
+	// p,label {
+	// 	color: @gray-lighter !important;
+	// }
+	// span {
+	// 	color: @gray-light !important;
+	// }
+	
+	// .text-muted {
+	// 	color: lighten(@gray-light, 30%) !important;
+	// }
+
+	// .panel {
+	// 	border: none;
+	// }
+
+	// .btn, button {
+	// 	overflow: hidden;
+	// 	text-overflow: ellipsis;
+	// 	margin-bottom: 14px;
+	// }
+
+
+	
+
+
+	// }
+}

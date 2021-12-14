@@ -1,0 +1,16 @@
+<!-- Reset State -->
+<div id="reset" ui-view>
+	<form novalidate ng-submit="reset()">
+		<input
+			ng-model="$parent.credentials.email"
+			class="col-xs-12 form-control email"
+			type="email"
+			placeholder="E-Mail"
+			required
+		/>
+		<button class="btn btn-primary col-xs-12" type="submit">
+			Send Reset Link
+		</button>
+	</form>
+	<a class="col-xs-12" ui-sref="^.login">Log In</a>
+</div>

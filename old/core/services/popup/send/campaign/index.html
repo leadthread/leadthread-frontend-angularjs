@@ -1,0 +1,40 @@
+<div class="send">
+	<form name="popupForm" ng-submit="okPrimary(popupForm.$valid)" autocomplete="off" novalidate>
+		<!-- HEADER -->
+		<div class="modal-header">
+		    <span class="modal-title">Send Campaign</span>
+		</div>
+
+		<!-- BODY -->
+		<div class="modal-body">
+			<div ng-show="loading">
+				<div loader="Loading..."></div>
+			</div>
+			<div ng-show="!loading">
+				<p>You are about to send the <b>{{options.playlist.name}}</b> campaign to {{options.count}} contacts.</p>
+				<div class="flex align-items-flex-end" style="margin-bottom: 7px;">
+					<div class="flex-grow-1">
+						<label>Campaign Text Message</label>
+					</div>
+				</div>
+				<textarea limit-to="280" class="message form-control" rows="3" ng-model="options.campaign.contact_text_message"></textarea>
+				<p style="text-align: right">{{options.campaign.contact_text_message.length}}/280</p>
+			</div>
+		</div>
+
+		<!-- FOOTER -->
+		<div class="modal-footer">
+		    <button type="button" class="btn btn-default pull-left" ng-click="cancel()">
+		    	<i class="icon-close"></i>
+		    </button>
+
+		    <div class="pull-right">
+			    <button type="submit" ng-disabled="popupForm.$invalid" class="btn btn-primary">
+					<i class="icon-send"></i> Send
+				</button>
+			</div>
+
+			<div class="clearfix"></div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,24 @@
+#root #company #create {
+	#campaign-crud {
+		flex-wrap: wrap; 
+		h3 {
+			color: @text-color;
+		}
+		.campaign-group.flex-item {
+			flex-basis: 320px;
+			flex-grow: 1;
+			max-width: 640px;
+			padding: @spacing;
+			.campaign-name {
+				height: 18px;
+				overflow: hidden;
+				display: inline-block;
+				max-width: 75%;
+				line-height: 24px;
+			}
+		}
+	}
+}
+
+@media (min-width: @screen-md-min) {
+}

@@ -1,0 +1,75 @@
+#notification {
+	width: 90%;
+	position: fixed;
+	top: 50px;
+	left: 5%;
+	right: 5%;
+	z-index: 9999;
+
+	.notif {
+		padding: 10px 20px;
+		opacity: 1;
+		margin-top: 3px;
+		margin-left: 0px auto;
+		margin-right: 0px auto;
+		background-color: rgba(255, 128, 64, 1);
+		&.error{
+			background-color: fade(@brand-danger,90%);
+		}
+		&.success{
+			background-color: fade(@brand-success,90%);
+		}
+		&.warning{
+			background-color: fade(@brand-warning,90%);
+		}
+		border-radius: 5px;
+		p {
+			white-space: pre-line;
+			text-align: left;
+		}
+		h4 {
+			margin-bottom: 0;
+		}
+		h4,p {
+			color: #FFF;
+		}
+		width: 100%;
+		
+		// &.ng-enter{
+		// 	transition:1s linear all;
+		// 	opacity: 0;
+		// 	&.ng-enter-active{
+		// 		opacity:0.9;
+		// 	}
+		// }
+	}
+
+	.notif.ng-move,
+	.notif.ng-enter,
+	.notif.ng-leave {
+	  transition:all linear 0.25s;
+	}
+
+	.notif.ng-leave.ng-leave-active,
+	.notif.ng-move,
+	.notif.ng-enter {
+	  opacity:0;
+	  max-height:0;
+	}
+
+	.notif.ng-leave,
+	.notif.ng-move.ng-move-active,
+	.notif.ng-enter.ng-enter-active {
+	  opacity:1;
+	  max-height:75px;
+	}
+}
+
+@media (min-width: @screen-sm-min) {
+	#notification {
+		left: inherit;
+		right: 4rem;
+		top: 8rem;
+		width: 320px;
+	}
+}

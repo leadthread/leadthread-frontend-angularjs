@@ -1,0 +1,17 @@
+<div id="index">
+	<div id="filters" ng-show="role === 'Admin'">
+		<div class="col-sm-12"><h2>Filters</h2></div>
+		<div class="rep-selector filter col-sm-4 col-md-4 col-lg-4" >
+			<label>User</label>
+			<select class="form-control" ng-options="u.id as u.first_name+' '+u.last_name for u in users | orderBy:'first_name'" ng-model="opts.user_id">
+				<!-- <option value="">All</option> -->
+			</select>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="col-xs-12" ng-if="opts.user_id">
+		<contact-manager user-id="opts.user_id" per-page="8" selected-contacts="selected" ></contact-manager>
+	</div>	
+	<ui-view></ui-view>
+	<div page-lock="lock"></div>
+</div>

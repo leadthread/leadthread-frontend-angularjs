@@ -1,0 +1,33 @@
+[placeholder-insert] {
+	.flex {
+		align-items: center;
+		& > * {
+			padding-left:@spacing/2;
+			flex-shrink: 1;
+			i.glyphicon {
+				color: @brand-primary;
+				display: block;
+				&:hover {
+					color: @text-color;
+					cursor: pointer;
+				}
+			}
+
+			&:first-child {
+				padding-left: 0;
+			}
+		}
+	}
+}
+
+@media (min-width: @screen-sm-min) {
+	[placeholder-insert] {
+		.flex {
+			& > * {
+				&:first-child {
+					padding-left: @spacing/2;
+				}
+			}
+		}
+	}
+}

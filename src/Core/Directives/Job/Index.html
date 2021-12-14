@@ -1,0 +1,12 @@
+<div class="job" ng-repeat="job in jobs()">
+	<b class="status">{{job.status|titleCase}}: </b
+	><span class="name">{{job.name}}</span><br />
+	<uib-progressbar
+		class="{{getClass(job)}}"
+		animate="false"
+		value="getValue(job)"
+		type="{{getType(job)}}"
+		max="1"
+		>{{getHumanPercentage(job)}}</uib-progressbar
+	>
+</div>

@@ -1,0 +1,249 @@
+// Yaptive Variables
+@footer-height: 60px;
+@spacing: 14px;
+
+// no select (useful for buttons and other clickables)
+.noselect {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* Internet Explorer/Edge */
+	user-select: none;           /* Non-prefixed version, currently not supported by any browser */
+}
+
+// anchors 
+a:focus {
+	outline: 0;
+}
+
+// flex
+.flex {
+	display: -webkit-flex; /* Safari */
+	display: flex;
+	&.flex-wrap {
+		flex-wrap: wrap;
+	}
+	&.align-items-flex-end {
+		align-items: flex-end;
+	}
+	&.align-items-flex-start {
+		align-items: flex-start;
+	}
+	&.align-items-center {
+		align-items: center;
+	}
+	.flex-grow-1, .flex-grow {
+		-webkit-flex-grow: 1;
+		flex-grow: 1;
+	}
+	.flex-shrink-1, .flex-shrink {
+		-webkit-flex-shrink: 1;
+		flex-shrink: 1;
+	}
+	.flex-grow-2{
+		-webkit-flex-grow: 2;
+		flex-grow: 2;
+	}
+	.flex-shrink-2 {
+		-webkit-flex-shrink: 2;
+		flex-shrink: 2;
+	}
+	.flex-grow-3{
+		-webkit-flex-grow: 3;
+		flex-grow: 3;
+	}
+	.flex-shrink-3{
+		-webkit-flex-shrink: 3;
+		flex-shrink: 3;
+	}
+}
+
+.alert {
+	margin-bottom: 14px;
+}
+
+// progress bars
+.progress {
+	.progress-bar > span {
+		margin:0 @spacing/2;
+	}
+}
+
+// wells
+.well {
+	padding: @spacing;
+	margin-bottom: @spacing;
+}
+
+// form styles
+.form-control {
+	margin-bottom: @spacing/2;
+	height: 43px;
+	padding: 10px;
+}
+
+.input-group {
+	.form-control {
+		height: auto;
+	}
+}
+
+// BUTTONS
+.btn-xs {
+    padding: 1px 7px;
+}
+
+// DISABLED BUTTONS
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+	background: #ddd;
+    border-color: #ccc;
+    color: #aaa;
+    opacity: 0.4;
+    transition: 0.5s ease all;
+}
+
+// DROPDOWN FIXES
+.dropdown-header {
+	color: @gray;
+}
+.dropdown-menu {
+	.divider {
+		background-color: @gray-light;
+	}
+}
+.uib-datepicker-popup.dropdown-menu {
+	z-index: 10000;
+}
+
+// MODAL FIXES
+body.modal-open {
+	position: fixed;
+	width: 100%;
+}
+.modal-content {
+	overflow: auto;
+	margin-bottom: 54px;
+	& > .panel {
+		margin-bottom: 0;
+		.form-control {
+			margin-bottom: @spacing;
+		}
+	}
+}
+.modal-dialog {
+	margin:0;
+}
+
+.hidden-input {
+	position:absolute;
+	visibility: hidden;
+	top:0px;
+	left:0px;
+	width: 0px;
+	height: 0px;
+}
+
+// Red badges
+.badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #ffffff;
+    line-height: 1;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-align: center;
+    background-color: #60accc;
+    border-radius: 10px;
+    background: @brand-danger;
+}
+
+// Pagination
+.pagination {
+	margin: @spacing 0;
+}
+
+// UI SELECT
+.ui-select-match {
+	margin-bottom: 0px;
+	span.btn.btn-default {
+		background-color: white !important;
+		color: @gray !important;
+		border-color: @gray-light;
+		margin-bottom: 0px !important;
+	}
+}
+.ui-select-bootstrap .ui-select-search-hidden {
+	display: none !important;
+}
+
+@media (min-width: @screen-sm-min) {
+	.modal-content {
+		max-height: auto;
+		overflow: auto;
+	}
+	.modal-dialog {
+		margin: 30px auto;
+	}
+}
+@media (min-width: @screen-md-min) {
+	.phone {
+		// Make it look like a cell phone
+		border-top: 70px solid black;
+		border-left: 14px solid black;
+		border-right: 14px solid black; 
+		border-radius: 21px;
+		border-bottom: 98px solid black;
+		background: white;
+	}
+}
+
+// Bootstrap Tabs
+.nav-tabs {
+	border-bottom: 1px solid @text-color;
+	& > li {
+		margin-right:3px;
+		& > a {
+			background-color: @gray-lighter;
+			margin-right: 0;
+			border-bottom: 1px solid @text-color;
+			padding: @spacing/2;
+			&:hover, &:focus {
+				border-bottom: 1px solid @text-color;
+				background-color: @brand-primary;
+				color:white;
+			}
+		}
+		&.active {
+			& > a, & > a:hover, & > a:focus {
+				border: 1px solid @text-color;
+    			border-bottom-color: transparent;
+			}
+		}
+	}
+}
+@media (min-width: @screen-sm-min) {
+	.nav-tabs {
+		& > li {
+			margin-right:@spacing/2;
+			& > a {
+				padding: 10px @spacing;
+			}
+		}
+	}
+}
+
+// Bootstrap datepicker
+input[uib-datepicker-popup] {
+	min-width: 160px;
+}
+
+// Timepicker
+.uib-timepicker {
+	input.form-control {
+		margin-bottom: 0;
+	}
+}

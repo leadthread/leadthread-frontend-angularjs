@@ -1,0 +1,64 @@
+<div class="popup">
+	<form name="popupForm" ng-submit="ok(popupForm.$valid)" autocomplete="off" novalidate>
+		<!-- HEADER -->
+		<div id="header" class="modal-header">
+			<div class="modal-title flex">
+				<span id="prompt" class="flex-grow-1" ng-if="options.prompt">{{::options.prompt}}</span>
+			</div>
+		</div>
+		
+		<!-- BODY -->
+		<div class="modal-body">
+			<div class="show-copy-paste-helper" ng-show="showCopyPasteHelper()">
+				<div class="well">
+					<div class="text">Copy & paste your referral's information from your contacts app.</div>
+				</div>
+			</div>
+			<div ng-switch="options.type">
+				<div ng-switch-when="form" class="form flex">
+					<form-layout form="popupForm" options="options.form"></form-layout>
+				</div>
+				<div ng-switch-when="delay" class="text-center">
+					<div id="loader" loader></div>
+				</div>
+				<div ng-switch-when="while" class="text-center">
+					<div id="loader" loader></div>
+				</div>
+				<div ng-switch-when="decide">
+					<p id="text" ng-if="options.text" ng-bind-html="options.text"></p>
+				</div>
+				<div ng-switch-when="info">
+					<p id="text" ng-if="options.text" ng-bind-html="options.text"></p>
+				</div>
+				<div ng-switch-default>
+					Unknown input type "{{options.type}}"
+				</div>
+			</div>
+		</div>
+
+		<!-- FOOTER -->
+		<div class="modal-footer" ng-show="options.type !== 'delay' && options.type !== 'while'">
+			<!-- Regular Buttons -->
+			<div ng-if="options.type !== 'delay' && options.type !== 'while' && options.type !== 'decide'">
+				<div class="btn btn-default pull-left" ng-if="options.type !== 'info'" ng-click="cancel()">
+					<i class="icon-close"></i>
+				</div>
+				<button type="submit" ng-disabled="popupForm.$invalid" class="btn btn-success pull-right" >
+					{{ options.buttonText ? options.buttonText : "Done"}} <i class="icon-check"></i>
+				</button>
+				<div class="clearfix"></div>
+			</div>
+
+			<!-- Decide Buttons -->
+			<div ng-if="options.type === 'decide'">
+				<div class="btn btn-danger pull-left" ng-if="options.type !== 'info'" ng-click="cancel()">
+					No <i class="icon-close"></i>
+				</div>
+				<button type="submit" ng-disabled="popupForm.$invalid" class="btn btn-success pull-right" >
+					Yes <i class="icon-check"></i>
+				</button>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</form>
+</div>

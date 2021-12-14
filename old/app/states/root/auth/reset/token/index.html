@@ -1,0 +1,11 @@
+<!-- Reset Token State -->
+<div id="token">
+	<form novalidate ng-submit="reset()">
+		<input ng-model="$parent.credentials.email" class="col-xs-12 form-control email" type="hidden" placeholder="E-Mail" required/>
+		<input ng-model="$parent.credentials.token" class="col-xs-12 form-control token" type="hidden" placeholder="Token" required/>
+		<input ng-model="$parent.credentials.password" class="col-xs-12 form-control password" type="password" placeholder="Password" required/>
+		<input ng-model="$parent.credentials.password_confirmation" class="col-xs-12 form-control password confirm" type="password" placeholder="Confirm" required/>
+        <button class="btn btn-primary col-xs-12" type="submit">Reset Password</button>
+    </form>
+	<a class="col-xs-12" ui-sref="^.^.login">Log In</a>
+</div>

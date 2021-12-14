@@ -1,0 +1,51 @@
+<div class="social-preview">
+	<div class="post post-preview">
+		<div class="img-holder">
+			<p class="prof-pic icon-user"></p>
+		</div>
+
+		<div class="content">
+			<div class="poster">
+				<div class="header">
+					<p class="name"><b>John Doe <span>@johnDoe</span></b></p>
+					<p class="timestamp">{{date | date:"MMM d 'at' h:mm a"}}</p>
+				</div>
+			</div>
+			<p>{{parse(model.text)}} <a href="javascript:;">http://bit.ly/2efqYiU</a></p>
+			<div class="buttons">
+				<p><i class="icon-retweet"></i></p>
+				<p><i class="icon-heart-o"></i></p>
+				<p><i class="icon-send"></i></p>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="post" ng-repeat="n in [42, 42, 43, 43] track by $index">
+		<div class="img-holder">
+			<p class="prof-pic icon-user"></p>
+		</div>
+
+		<div class="content">
+			<div class="poster">
+				<div class="header">
+					<p class="name"><b>John Doe</b></p>
+					<p class="timestamp">{{date - (($index+1) * 1500000) | date:"MMM d 'at' h:mm a"}}</p>
+				</div>
+			</div>
+			<p class="blurry-text">&#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0;&#x25A0; &#x25A0;&#x25A0;&#x25A0;</p>
+			<div class="buttons">
+				<p><i class="icon-retweet"></i></p>
+				<p><i class="icon-heart-o"></i></p>
+				<p><i class="icon-send"></i></p>
+			</div>
+		</div>
+
+	</div>
+	
+	<div class="navi">
+		<p><i class="icon-home"></i></p>
+		<p><i class="icon-bell"></i></p>
+		<p><i class="icon-user"></i></p>
+	</div>
+</div>

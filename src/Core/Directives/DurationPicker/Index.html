@@ -1,0 +1,25 @@
+<div class="input-group">
+	<input
+		type="text"
+		class="form-control"
+		ng-model="value"
+		style="min-width: 8rem"
+	/>
+	<div class="input-group-btn" uib-dropdown>
+		<button
+			type="button"
+			uib-dropdown-toggle
+			class="btn btn-default dropdown-toggle"
+			data-toggle="dropdown"
+		>
+			{{interval|titleCase}}
+			<span ng-show="as !== interval">({{ngModel}} {{as}}) </span
+			><span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu>
+			<li ng-repeat="i in intervals" ng-click="intervalSelect(i)">
+				<a href>{{i|titleCase}}</a>
+			</li>
+		</ul>
+	</div>
+</div>

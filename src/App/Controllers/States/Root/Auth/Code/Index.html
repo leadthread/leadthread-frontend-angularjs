@@ -1,0 +1,21 @@
+<div id="code">
+	<p>Please enter your referral code.</p>
+	<form>
+		<input
+			class="col-xs-12 form-control"
+			type="text"
+			ng-model="code"
+			placeholder="Six-Digit Code"
+			ng-change="checkCode(code)"
+		/>
+		<button
+			class="btn btn-primary col-xs-12"
+			type="submit"
+			ui-sref="^.register"
+			ng-disabled="!valid"
+		>
+			Submit Code
+		</button>
+	</form>
+	<a ui-sref="^.login">Already have an account? Log In</a>
+</div>

@@ -1,0 +1,151 @@
+#root #company #dashboard {
+	#report > hr {
+		margin-top: 14px;
+		margin-bottom: 14px;
+		border-color: #b4bcc2;
+	}
+	#report > .campaignContainer {
+		width: 45%; 
+		float: left;
+		.campBtn {
+			height: 2.89em;
+			margin-left: 7px;
+		}
+		// #campaigns {
+		// 	select {
+		// 		-moz-appearance: none !important;
+		// 		background: transparent url('data:image/gif;base64,R0lGODlhBgAGAKEDAFVVVX9/f9TU1CgmNyH5BAEKAAMALAAAAAAGAAYAAAIODA4hCDKWxlhNvmCnGwUAOw==') right center no-repeat !important;
+		// 		background-position-x: right;
+		// 		background-position-y: center;
+		// 		background-position: calc(100% - 2px) center !important;
+		// 	}
+		// }
+	}
+	
+	#report > .reviewScoresContainer {
+		// width: 240px; 
+		float: right;
+	}
+	#report > .reviewScoresContainer {
+		.reviewScores {
+			padding: 1rem;
+			// background-color: #37f016;
+			overflow: hidden;
+			min-width: 10px;
+			display: flex;
+		}
+		.reviewScores > a {
+			flex-grow: 1;
+			margin-right: 7px;
+			min-width: 100px;
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+		.individualReviewScore {
+			// float: left; 
+			text-align: center; 
+			padding: 5px;
+			width: 100%;
+			color: #fff;
+			background-color: #2ECC71;
+			&:hover {
+				background-color: #2f6f14;
+				color: #fff;
+				& > a {
+					text-decoration: none !important;
+				}
+			}
+		}
+	}
+	#report > #metrics {
+		flex-wrap: wrap;
+		margin-right: -@spacing/2;
+		.title {
+			width: 100%;
+			text-align: left;
+			margin-bottom: @spacing/2;
+		}
+		.metric {
+			background-color: @gray-light;
+			flex-basis: 140px;
+			flex-grow: 1;
+			margin-bottom: @spacing/2;
+			margin-right: @spacing/2;
+			padding: @spacing/2 @spacing;
+			color: white;
+			&:hover {
+				opacity: 0.9;
+				cursor: pointer;
+			}
+			#row1 {
+				align-items: center;
+				#col1 {
+					margin-right: 14px;
+					.icon {
+						font-size: 1.8em;
+					}
+				}
+				#col2 {
+					flex-grow: 1;
+					text-align: left;
+					.value {
+						font-size: 1.8em;
+					}
+					.name {
+						flex-grow: 1;
+						font-size: 13px;
+					}
+				}
+			}
+		}
+	}
+}
+
+// adds better styling to the select dropdown only on firefox as chrome already has it looking great
+@-moz-document url-prefix() {
+    #campaigns {
+		select {
+			-moz-appearance: none !important;
+			background: transparent url('data:image/gif;base64,R0lGODlhBgAGAKEDAFVVVX9/f9TU1CgmNyH5BAEKAAMALAAAAAAGAAYAAAIODA4hCDKWxlhNvmCnGwUAOw==') right center no-repeat !important;
+			background-position-x: right;
+			background-position-y: center;
+			background-position: calc(100% - 1px) center !important;
+		}
+	}
+}
+
+@media (min-width: @screen-md-min) {
+	#root #company #dashboard {
+		#report > #campaigns {
+			select {
+				max-width: 400px;
+			}
+		}
+		#report > #metrics {
+			.title {
+				width: 100%;
+				text-align: left;
+			}
+			.metric {
+				#row1 {
+					height: 80px;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: @screen-md-min) {
+	#root #company #dashboard {
+		#report > .campaignContainer {
+			width: 100%;
+			float: none;
+		}
+		#report > .reviewScoresContainer {
+			width: 100%;
+			float: none;
+			margin: 10px 0 0 0;
+		}
+	}
+}

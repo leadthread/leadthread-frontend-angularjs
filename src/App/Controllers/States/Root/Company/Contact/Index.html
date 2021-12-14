@@ -1,0 +1,99 @@
+<div id="contact">
+	<!-- Name and Company -->
+	<!-- <h1>{{contact.first_name}} {{contact.last_name}}</h1> -->
+	<div class="handler">
+		<!-- Messages -->
+		<div class="group col-md-6 col-lg-4">
+			<h2>Messages</h2>
+			<div class="chat">
+				<message-history contact="contact"></message-history>
+			</div>
+		</div>
+
+		<div class="group col-md-6 col-lg-4">
+			<!-- Contact Info -->
+			<h2>Info</h2>
+			<div class="contact-info">
+				<div ng-show="!!contact.email" class="info form-control">
+					<label class="label label-primary">Email</label>
+					<p>{{contact.email}}</p>
+				</div>
+				<div ng-show="!!contact.phone" class="info form-control">
+					<label class="label label-primary">Phone</label>
+					<p>{{contact.phone}}</p>
+				</div>
+			</div>
+
+			<!-- Contact Actions -->
+			<div class="contact-btns">
+				<div ng-show="isMobile()">
+					<a ng-href="tel:{{contact.phone}}" class="btn btn-primary"
+						><i class="icon-phone"></i> Call</a
+					>
+					<!-- <a ng-href="sms:{{contact.phone}}" class="btn btn-primary"><i class="icon-comments"></i> Text</a> -->
+				</div>
+				<div ng-if="contact.email">
+					<a
+						ng-href="mailto:{{contact.email}}"
+						class="btn btn-primary"
+						><i class="icon-envelope"></i> Email</a
+					>
+				</div>
+				<button
+					ng-click="sendCampaignTo()"
+					class="btn btn-primary send-campaign-btn"
+				>
+					<i class="icon-send"></i> Send Campaign
+				</button>
+			</div>
+
+			<!-- Referral Info -->
+			<div ng-if="referrals.length > 0" class="panel panel-default">
+				<div class="panel-heading">Referrals Provided:</div>
+				<div class="panel-body referral-list">
+					<p ng-click="seeReferral(r)" ng-repeat="r in referrals">
+						{{r.first_name}} {{r.last_name}}
+					</p>
+				</div>
+			</div>
+
+			<!-- Campaign Info -->
+			<div ng-if="campaigns.length > 0" class="panel panel-default">
+				<div class="panel-heading">Campaigns Sent:</div>
+				<div class="panel-body campaigns-sent">
+					<div class="campaign" ng-repeat="c in campaigns">
+						<p>{{c.name}}</p>
+						<button
+							ng-click="sendCampaignTo(c)"
+							class="btn btn-primary"
+						>
+							<i class="icon-refresh"></i> Resend
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Sales Rep Info -->
+			<div ng-if="users.length > 0" class="panel panel-default">
+				<div class="panel-heading">Sales Reps in contact:</div>
+				<div class="panel-body">
+					<p ng-repeat="u in users">
+						{{u.first_name}} {{u.last_name}}
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Notes -->
+		<div class="group col-md-6 col-lg-4">
+			<notes-directive
+				class="contact-notes"
+				user="user"
+				notable-id="userContactJunction.id"
+				notable-type="'App\\Models\\UserContactJunction'"
+			></notes-directive>
+		</div>
+
+		<div class="clearfix"></div>
+	</div>
+</div>

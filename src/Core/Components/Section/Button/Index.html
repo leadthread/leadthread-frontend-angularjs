@@ -1,0 +1,91 @@
+<div
+	ng-click="$ctrl.doUrl($ctrl.model.url)"
+	ng-if="$ctrl.model.type === 'url'"
+	class="btn btn-defaul url"
+	ng-style="$ctrl.getButtonStyle()"
+>
+	<i
+		ng-if="$ctrl.model.button_icon"
+		class="{{$ctrl.getIconClass($ctrl.model.button_icon)}}"
+	></i>
+	{{$ctrl.parse($ctrl.model.text)}}
+</div>
+
+<div
+	ng-click="$ctrl.doRegister()"
+	ng-if="$ctrl.model.type === 'register'"
+	class="btn btn-default register"
+	ng-style="$ctrl.getButtonStyle()"
+>
+	<i
+		ng-if="$ctrl.model.button_icon"
+		class="{{$ctrl.getIconClass($ctrl.model.button_icon)}}"
+	></i>
+	{{$ctrl.parse($ctrl.model.text)}}
+</div>
+
+<a
+	target="_top"
+	ng-click="$ctrl.doCall()"
+	ng-if="$ctrl.model.type === 'tel'"
+	class="btn btn-default call"
+	ng-style="$ctrl.getButtonStyle()"
+>
+	<i
+		ng-if="$ctrl.model.button_icon"
+		class="{{$ctrl.getIconClass($ctrl.model.button_icon)}}"
+	></i>
+	{{$ctrl.parse($ctrl.model.text)}}
+</a>
+
+<a
+	target="_top"
+	ng-click="$ctrl.doSms()"
+	ng-if="$ctrl.model.type === 'sms'"
+	class="btn btn-default sms"
+	ng-style="$ctrl.getButtonStyle()"
+>
+	<i
+		ng-if="$ctrl.model.button_icon"
+		class="{{$ctrl.getIconClass($ctrl.model.button_icon)}}"
+	></i>
+	{{$ctrl.parse($ctrl.model.text)}}
+</a>
+
+<a
+	target="_top"
+	ng-click="$ctrl.doEmail()"
+	ng-if="$ctrl.model.type === 'mailto'"
+	class="btn btn-default email"
+	ng-style="$ctrl.getButtonStyle()"
+>
+	<i
+		ng-if="$ctrl.model.button_icon"
+		class="{{$ctrl.getIconClass($ctrl.model.button_icon)}}"
+	></i>
+	{{$ctrl.parse($ctrl.model.text)}}
+</a>
+
+<div
+	ng-click="$ctrl.goPrev()"
+	ng-if="$ctrl.model.type === 'nav' && !$ctrl.first()"
+	class="btn btn-default nav"
+	ng-style="$ctrl.getButtonStyle()"
+>
+	<i class="icon-chevron-left"></i>
+	Prev
+</div>
+
+<div
+	ng-click="$ctrl.goNext()"
+	ng-if="$ctrl.model.type === 'nav' && !$ctrl.last()"
+	class="btn btn-default nav"
+	ng-style="$ctrl.getButtonStyle()"
+>
+	<i
+		ng-if="$ctrl.model.button_icon"
+		class="{{$ctrl.getIconClass($ctrl.model.button_icon)}}"
+	></i>
+	{{$ctrl.parse($ctrl.model.text) || "Next"}}
+	<i ng-if="!$ctrl.model.button_icon" class="icon-chevron-right"></i>
+</div>

@@ -1,0 +1,49 @@
+[section-testimonial] {
+	text-align: left;
+	padding: @spacing;
+	
+	.btn-group-flex {
+		display: flex;
+		& > * {
+			flex-grow: 1;
+			margin-left: @spacing;
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+	}
+
+	#get-started-buttons {
+		text-align: center;
+
+		.btn-wrapper {
+			padding: @spacing;
+		}
+
+		.btn {
+			// max-width: 350px;
+			display: inline-block;
+			width: 100%;
+			margin-bottom: @spacing;
+			font-size: 1.25em;
+			background: white;
+			border-color: rgb(102, 102, 102);
+			border-width: 1px;
+			color: rgb(102, 102, 102);
+		}
+	}
+
+	#image {
+		img {
+			margin-bottom: @spacing/2;
+		}
+	}
+
+	#video {
+		.finished {
+			font-size: 24px;
+			text-align: center;
+			padding: @spacing;
+		}
+	}
+}

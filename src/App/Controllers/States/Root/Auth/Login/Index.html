@@ -1,0 +1,21 @@
+<!-- Login State -->
+<div id="login">
+	<form novalidate ng-submit="$parent.login()">
+		<input
+			ng-model="$parent.credentials.email"
+			class="col-xs-12 form-control email"
+			type="email"
+			placeholder="E-Mail"
+			required
+		/>
+		<input
+			ng-model="$parent.credentials.password"
+			class="col-xs-12 form-control password"
+			type="password"
+			placeholder="Password"
+			required
+		/>
+		<button class="btn btn-primary col-xs-12" type="submit">Log In</button>
+	</form>
+	<a class="col-xs-12" ui-sref="^.reset">Forgot your password?</a>
+</div>

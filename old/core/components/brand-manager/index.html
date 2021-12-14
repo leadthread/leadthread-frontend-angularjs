@@ -1,0 +1,54 @@
+<div class="flex flex-wrap controls">
+	<select class="flex-grow-1 form-control" style="flex-basis: 300px;" ng-options="b as b.name for b in $ctrl.brands | orderBy:['name']" ng-change="$ctrl.selectBrand($ctrl.brand)" ng-model="$ctrl.brand"></select>
+	<div class="btn btn-primary" ng-click="$ctrl.create()"><i class="icon-plus"></i> New</div>
+	<div ng-if="$ctrl.brand" class="btn btn-default" ng-click="$ctrl.edit($ctrl.brand)"><i class="icon-pencil"></i></div>
+	<div ng-if="$ctrl.brand" class="btn btn-danger" ng-click="$ctrl.destroy($ctrl.brand)"><i class="icon-trash"></i></div>
+</div>
+<div class="flex preview" ng-if="$ctrl.brand.id">
+	<div class="list-group flex-grow-1">
+		<a href="javascript:;" ng-click="$ctrl.edit($ctrl.brand)" class="list-group-item">
+			<h4 class="list-group-item-heading">Company Name</h4>
+			<p class="list-group-item-text">{{$ctrl.brand.name}}</p>
+		</a>
+		<a href="javascript:;" ng-click="$ctrl.edit($ctrl.brand)" class="list-group-item">
+			<h4 class="list-group-item-heading">Domain</h4>
+			<p class="list-group-item-text">
+				<span>https://<b>{{$ctrl.brand.domain || 'app'}}</b>.yaptive.com</span>
+			</p>
+		</a>
+
+		<!-- <a href="javascript:;" ng-click="$ctrl.edit($ctrl.brand)" class="list-group-item">
+			<h4 class="list-group-item-heading">Homepage Url</h4>
+			<p class="list-group-item-text">{{$ctrl.brand.homepage_url || "Not Specified"}}</p>
+		</a> -->
+
+		<a href="javascript:;" ng-click="$ctrl.edit($ctrl.brand)" class="list-group-item">
+			<h4 class="list-group-item-heading">Brand Color</h4>
+			<p class="list-group-item-text">
+				{{$ctrl.brand.color || "Not Specified"}}
+				<p class="list-group-item-color-preview" style="background-color: {{$ctrl.brand.color}}"></p>
+			</p>
+		</a>
+		<a href="javascript:;" ng-click="$ctrl.edit($ctrl.brand)" class="list-group-item">
+			<h4 class="list-group-item-heading">Logo Background Color</h4>
+			<p class="list-group-item-text">
+				{{$ctrl.brand.logo_background_color || "Not Specified"}}
+				<p class="list-group-item-color-preview" style="background-color: {{$ctrl.brand.logo_background_color}}"></p>
+			</p>
+		</a>
+		<a href="javascript:;" ng-click="$ctrl.edit($ctrl.brand)" class="list-group-item">
+			<h4 class="list-group-item-heading">Favicon</h4>
+			<p class="list-group-item-text" style="padding: 14px;">
+				<img ng-show="$ctrl.brand.favicon_id" ng-src="/files/{{$ctrl.brand.favicon.fingerprint}}/stretch/64/64" />
+				<p ng-show="!$ctrl.brand.favicon_id">Not Specified</p>
+			</p>
+		</a>
+		<a href="javascript:;" ng-click="$ctrl.edit($ctrl.brand)" class="list-group-item">
+			<h4 class="list-group-item-heading">Logo</h4>
+			<p class="list-group-item-text" style="padding: 14px; background-color: {{$ctrl.brand.logo_background_color}}">
+				<img ng-show="$ctrl.brand.logo_id" ng-src="/files/{{$ctrl.brand.logo.fingerprint}}/thumb/360" />
+				<p ng-show="!$ctrl.brand.logo_id">Not Specified</p>
+			</p>
+		</a>
+	</div>
+</div>

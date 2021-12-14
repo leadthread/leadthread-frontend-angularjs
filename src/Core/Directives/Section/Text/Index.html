@@ -1,0 +1,8 @@
+<div class="icon-wrapper" ng-if="model.icon">
+	<div class="icon">
+		<i class="icon-{{model.icon}}"></i>
+	</div>
+</div>
+<div class="text flex-grow-1">
+	<span style="white-space: pre-wrap" ng-bind-html="parse(model.text)"></span>
+</div>

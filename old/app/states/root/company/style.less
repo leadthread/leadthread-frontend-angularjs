@@ -1,0 +1,34 @@
+#root #company {
+    display: flex;
+    flex-wrap: wrap;
+
+    #company-content{
+        width:100%;
+        & > [ui-view] {
+            min-height: ~"calc(100vh - (@{footer-height} + 50px + 120px))";
+        }
+    }
+}
+
+@media (min-width: @screen-md-min) {
+    #root #company {
+        #company-sidebar{
+            width:50px;
+            flex-shrink:1;
+        }
+
+        #company-content{
+            margin-top: 66px;
+            width: 1px;
+            flex-grow:1;
+            & > [ui-view] {
+                min-height: ~"calc(100vh - (@{footer-height} + 66px))";
+                .flex;
+                align-items: stretch;
+                & > * {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

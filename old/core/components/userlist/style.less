@@ -1,0 +1,54 @@
+#root #userlist {
+	margin-bottom: 30px;
+	* {
+		margin: 0px;
+		border: 0px;
+		height: 50px;
+	}
+
+	p {
+		line-height: 50px;
+		margin: 0px;
+		color: @gray-light;
+		@media only screen and (max-width: 660px) {
+			font-size: 5vw;
+		}
+	}
+
+	.btn.btn-primary.col-xs-3 {
+		border-left: 3px solid @gray-lighter;
+		border-right: 3px solid @gray-lighter;
+	}
+
+	.campaign {
+		color: @gray-light !important;
+		background-color: rgba(127, 127, 127, 0.3) !important;
+		//border: 2px solid @gray-light;
+		border-left: 0px;
+		border-right: 0px;
+
+	}
+
+	.user {
+		padding: 0px;
+	}
+
+	.title {
+		color: @gray-lighter;
+		background-color: @gray-light;
+	}
+
+	textarea {
+		margin-bottom: 3px;
+		height: 100px;
+		color: @gray-light;
+	}
+
+	.unselected.btn.btn-primary.col-xs-3 {
+		//opacity: 0.3;
+		color: @gray-lighter !important;
+		background-color: @gray-light !important;
+		border-left: 0px solid @gray-lighter;
+		border-right: 0px solid @gray-lighter;
+	}
+}

@@ -1,0 +1,24 @@
+<div class="incentive">
+	<form name="popupForm" ng-submit="ok(popupForm.$valid)" autocomplete="off" novalidate>
+		<!-- HEADER -->
+		<div class="modal-header">
+		    <span class="modal-title">Your Reward</span>
+		</div>
+
+		<!-- BODY -->
+		<div class="modal-body" style="padding: 0">
+			<incentive incentive="options.incentive"></incentive>
+		</div>
+
+		<!-- FOOTER -->
+		<div class="modal-footer">
+			<div class="btn btn-default pull-left" ng-click="cancel()">
+				<i class="icon-chevron-left"></i> Back
+			</div>
+		    <button type="submit" ng-disabled="popupForm.$invalid" class="btn btn-success pull-right" >
+				Share Now <i class="icon-share"></i>
+			</button>
+			<div class="clearfix"></div>
+		</div>
+	</form>
+</div>

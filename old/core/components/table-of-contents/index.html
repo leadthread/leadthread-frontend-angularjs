@@ -1,0 +1,12 @@
+<ul>
+	<li class="group" ng-repeat="(k, v) in items">
+		<div class="text">{{k}}</div>
+		<ul class="">
+			<li class="subgroup " ng-repeat="item in v" ng-show="item.show" ng-class="{active: isActive(item)}" ng-click="selectItem(item)">
+				<span class="icon-exclamation" ng-if="!item.done"></span>
+				<!-- <span class="icon-circle-o" ng-if="!item.done"></span> -->
+				<span class="text">{{item.name}}</span>
+			</li>
+		</ul>
+	</li>
+</ul>

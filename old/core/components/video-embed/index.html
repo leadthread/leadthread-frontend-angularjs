@@ -1,0 +1,35 @@
+<div class="video-wrapper" ng-class="{'well': !loadVideo}">
+	<div ng-show="!model.error" style="width:100%; height:100%">
+		<div ng-show="!model.id">Please add a Video</div>
+		
+		<div class="loading-flex" ng-show="model.encoding_progress < 100 && model.id && !model.video_url">
+			<div loader white="loadVideo"></div>
+			<div>
+				<div>Encoding...</div>
+				<uib-progressbar value="model.encoding_progress" type="primary">{{model.encoding_progress}}%</uib-progressbar>
+			</div>
+		</div>
+
+		<div ng-show="model.encoding_progress === 100 && model.id && model.video_url" style="width:100%; height:100%">
+			<div zen-video-embed ng-if="loadVideo" url="{{model.video_url}}" on-played="onPlayed()" on-paused="onPaused()" on-ended="onEnded()" on-ready="onReady()" on-buffering="onBuffering()" style="width:100%; height:100%"></div>
+			<div class="loading-flex" ng-if="!loadVideo">
+				<div>
+					<div class="check">
+						<i class="icon-check"></i>
+					</div>
+					<div>Done!</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-show="model.error" style="width:100%; height:100%">
+		<div class="loading-flex">
+			<b>
+				An error occurred!
+			</b>
+			<div>
+				{{model.error}}
+			</div>
+		</div>
+	</div>
+</div>

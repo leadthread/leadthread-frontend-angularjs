@@ -1,0 +1,189 @@
+<div class="flex" style="align-items: center;">
+	<div class="flex-grow-1" ng-show="!simple">
+		<h3 ng-if="!isMobile">List: {{activeList.name}}</h3>
+		<label ng-if="isMobile">List: {{activeList.name}}</label>
+	</div>
+	<div class="flex-grow-1" ng-show="simple">
+		<label ng-if="isMobile">Contacts</label>
+	</div>
+	<div class="flex" style="align-items: center;" ng-show="!isMobile">
+		<div class="flex" ng-if="activeList.id > 0">
+			<div class="btn-group" uib-dropdown>
+				<button type="button" class="btn btn-default" uib-dropdown-toggle><i class="icon-cog"></i> Actions</button>
+				<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+					<li role="menuitem"><a href ng-click="listEdit(activeList)">Rename List</a></li>
+					<li role="menuitem"><a href ng-click="listRemove(activeList)">Remove List</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="flex-grow-1" style="padding-left: 7px;" >
+			<span class="btn btn-default">Total Contacts: {{activeList.count}}</span>
+		</div>
+	</div>
+</div>
+
+<!-- Contact controls -->
+<div class="flex controls controls-contacts">
+	<!-- Toggle contact selection -->
+	<div class="btn btn-primary" ng-click="listSelectToggle(activeList)" ng-show="!simple && activeList.count > 0">
+		<span ng-show="activeList.selected"><i class="icon-check-square-o"></i> Deselect All</span>
+		<span ng-show="!activeList.selected"><i class="icon-square-o"></i> Select All</span>
+	</div>
+	
+	<!-- New Contact -->
+	<div class="btn btn-primary" ng-click="contactNew($event, activeList.id)"><span class="icon-plus"></span><span ng-show="simple"> New</span> Contact</div>
+
+	<!-- Import -->
+	<div class="btn-group" uib-dropdown ng-show="!simple">
+		<button type="button" class="btn btn-primary" uib-dropdown-toggle>
+			<i class="icon-upload"></i> Import
+		</button>
+		<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+			<li role="menuitem"><a href ng-click="csvUploadToList(activeList.id)">CSV File</a></li>
+			<li role="menuitem" ng-show="activeList.id > 0"><a href ng-click="listAddContactsFromAllPopup(activeList.id)">Existing Contacts</a></li>
+			<li class="divider"></li>
+			<li role="menuitem"><a href ng-click="csvOpenHelpDialog()"><i class="icon-question-circle"></i> CSV Help</a></li>
+		</ul>
+	</div>	
+
+	<!-- Copy to List -->
+	<span uib-dropdown ng-show="!simple && contactsGetSelectedForActiveList().length>0">
+		<button class="btn btn-primary" uib-dropdown-toggle><i class="icon-copy"></i>  Copy to</button>
+		<ul class="dropdown-menu" uib-dropdown-menu>
+			<li>
+				<a href ng-click="listAddSelectedContacts(null)">New List</a>
+			</li>
+			<li class="divider"></li>
+			<li ng-repeat="list in lists | orderBy:'name'">
+				<a href ng-click="listAddSelectedContacts(list.id)">{{list.name}}</a>
+			</li>
+		</ul>
+	</span>
+
+	<!-- Remove from List -->
+	<div class="btn btn-danger" 
+		ng-show="!simple && activeList.id > 0 && contactsGetSelectedForActiveList().length>0"
+		ng-click="listRemoveSelectedContacts(activeList.id)">
+		<i class="icon-remove"></i> Remove
+	</div>
+
+	<div class="btn-group" ng-if="!simple && activeList.id > 0 && isMobile" uib-dropdown>
+		<button type="button" class="btn btn-default" uib-dropdown-toggle><i class="icon-cog"></i> Actions</button>
+		<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+			<li role="menuitem"><a href ng-click="listEdit(activeList)">Rename List</a></li>
+			<li role="menuitem"><a href ng-click="listRemove(activeList)">Remove List</a></li>
+		</ul>
+	</div>
+
+	<!-- List toggle for simple ui -->
+	<div ng-show="!showlist && simple" class="btn btn-default" ng-click="showlist = true">Existing Contacts</div>
+
+	<!-- Search -->
+	<div ng-show="!simple || showlist" class="search">
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">
+				<i class="icon-search"></i>
+			</span>
+			<input class="form-control" ng-model="qContacts" ng-focus="searching=true" ng-blur="searching=false" placeholder="Find Contacts in Yaptive"/>
+			<span class="input-group-btn" ng-show="qContacts.length > 0" ng-click="qContacts = ''">
+				<div class="btn btn-danger"><i class="icon-remove"></i></div>
+			</span>
+		</div>
+	</div>
+</div>
+
+<!-- Progress bar for csv -->
+<uib-progressbar ng-show="uploader.isUploading" max="'100'" value="progress" type="success"><span style="color:white; white-space:nowrap;">Uploading...</span></uib-progressbar>
+
+<!-- CSV Errors -->
+<div class="alert alert-danger" ng-show="csvErrors.length > 0">
+	<div ng-repeat="e in csvErrors | limitTo: maxCsvErrors">
+		{{e}}
+	</div>
+	<div ng-show="csvErrors.length > maxCsvErrors">
+		<i>{{csvErrors.length-maxCsvErrors}} more errors...</i>
+	</div>
+</div>
+
+<!-- If the contacts are loading -->
+<div ng-show="loading.contacts && (!simple || showlist)">
+	Loading...
+</div>
+
+<!-- If the contacts are done loading -->
+<div ng-show="!loading.contacts && (!simple || showlist)">
+	<!-- If there are no contacts -->
+	<div ng-show="contacts.length === 0">No results. Try adding a <a href="javascript:;" ng-click="contactNew($event)">new contact</a></div>
+
+	<!-- If there are contacts -->
+	<div ng-show="contacts.length > 0">
+		<!-- List of contacts -->
+		<table class="list-group">
+			<tr ng-if="!simple" >
+				<th class="select">Select</th>
+				<th class="name">Name</th>
+				<th ng-if="!isMobile">Phone</th>
+				<th ng-if="!isMobile">Email</th>
+				<th ng-if="!isMobile">Company</th>
+				<th></th>
+				<!-- <th class="actions">Actions</th> -->
+			</tr>
+			<tr ng-if="simple" >
+				<th ng-if="!simple" class="select"></th>
+				<th class="name"></th>
+				<th ng-if="!isMobile"></th>
+				<th ng-if="!isMobile"></th>
+				<th ng-if="!isMobile"></th>
+				<th></th>
+				<!-- <th class="actions">Actions</th> -->
+			</tr>
+			<tr class="list-group-item" ng-class="{simple: simple, complex: !simple}" dir-paginate="c in contacts | filter: qContacts | orderBy:['first_name', 'last_name', 'id'] | itemsPerPage: pagination.contacts.perPage" pagination-id="'contacts'" >
+				<td ng-if="!simple" class="select" ng-click="contactSelectToggle(c)">
+					<div><input type="checkbox" ng-checked="c.selected"></div>
+				</td>
+				<td class="name">{{c.first_name}} {{c.last_name}}<span ng-if="isMobile"><br> {{c.phone.toPretty()}}</span></td>
+				<td ng-if="!isMobile">{{c.phone.toPretty()}}</td>
+				<td ng-if="!isMobile">{{c.email}}</td>
+				<td ng-if="!isMobile">{{c.company}}</td>
+				<td ng-if="!simple" class="options">
+					<div class="btn-group pull-right" uib-dropdown>
+						<a id="split-button" ng-click="contactMoreInfo($event, c)" type="button" class="btn btn-primary" href>More Info</a>
+						<button type="button" class="btn btn-primary" uib-dropdown-toggle>
+							<span class="caret"></span>
+							<span class="sr-only"></span>
+						</button>
+						<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li role="menuitem"><a href ng-click="contactEdit($event, activeList.id, c)">Edit</a></li>
+							<li role="menuitem"><a href ng-click="contactRemove($event, c)">Delete</a></li>
+						</ul>
+					</div>
+				</td>
+				<td ng-if="simple" class="simple options">
+					<div class="btn-group pull-right" uib-dropdown>
+						<a id="split-button" ng-click="contactSelectToggle(c)" type="button" class="btn btn-primary" href><i class="icon-send"></i> Send</a>
+						<button type="button" class="btn btn-primary" uib-dropdown-toggle>
+							<span class="caret"></span>
+							<span class="sr-only"></span>
+						</button>
+						<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li role="menuitem"><a href ng-click="contactMoreInfo($event, c)">More Info</a></li>
+							<li role="menuitem"><a href ng-click="contactEdit($event, activeList.id, c)">Edit</a></li>
+							<li role="menuitem"><a href ng-click="contactRemove($event, c)">Delete</a></li>
+						</ul>
+					</div>
+				</td>
+				<!-- <td class="actions">
+					<div class="btn btn-primary">View</div>
+				</td> -->
+			</tr>
+		</table>
+
+		<div class="pagination-controls">
+			<dir-pagination-controls pagination-id="'contacts'" max-size="pagination.contacts.maxSize"></dir-pagination-controls>
+		</div>
+	</div>
+</div>
+
+
+<input ng-if="uploader" id="csvfile" class="hidden-input" type="file" nv-file-select="" multiple="" uploader="uploader" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+<div class="clearfix"></div>

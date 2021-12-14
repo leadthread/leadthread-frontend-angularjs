@@ -1,0 +1,6 @@
+# Ignore artifacts:
+dist
+.yarn
+node_modules
+old
+img

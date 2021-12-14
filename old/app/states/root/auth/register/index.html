@@ -1,0 +1,23 @@
+<!-- Root State -->
+<div id="register" ng-if="showSite">
+    <brand ng-if="company.brand" brand="company.brand"></brand>
+    <!-- <h3 ng-style="{color:companyColor}">Share with Contacts!</h3> -->
+	<p>To get started let us know who you are.</p>
+	<form class="col-xs-12">
+		<input class="form-control col-xs-12" ng-change="validate()" ng-model="local.fn" type="text" placeholder="First Name">
+		<input class="form-control col-xs-12" ng-change="validate()" ng-model="local.ln" type="text" placeholder="Last Name">
+		<input class="form-control col-xs-12" ng-change="validate()" ng-model="local.pn" type="tel" placeholder="Phone (Mobile)">
+		<input class="form-control col-xs-12" ng-change="validate()" ng-model="local.em" type="email" placeholder="Email (Optional)">
+        <input class="form-control col-xs-12" ng-change="validate()" ng-model="local.cp" type="text" placeholder="Company (Optional)">
+		<!-- <input class="form-control col-xs-12" ng-model="rep.data" ng-change="filterReps(rep.data)" autocomplete="off" type="text" placeholder="Sales Rep (Optional)" uib-typeahead="user as user.name for user in displayReps | limitTo:5"> -->
+		<button ng-click="submit()" ng-disabled="!(canSubmit)" class="btn btn-primary col-xs-12">Next</button>
+	</form>
+</div>
+<div id="campaigns" class="desktop" ng-if="!showSite">
+    <brand ng-if="company.brand" brand="company.brand"></brand>
+    <h3>Thank you for your interest in providing {{company.name}} with referrals</h3>
+    <h4>In order to continue, please visit <strong>{{url.long_url}}</strong> on a mobile device.</h4>
+    <br>
+    <br>
+    <qrcode data="{{url.long_url}}" version="2" error-correction-level="M" size="150"></qrcode>
+</div>

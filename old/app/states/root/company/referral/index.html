@@ -1,0 +1,63 @@
+<div id="referral">
+	<h1 class="referral-name">{{referral.first_name}} {{referral.last_name}}</h1>
+	<div class="page-left">
+		<h2 class="info-title">Info</h2>
+
+		<!-- Referral Contact Info -->
+		<div ng-if="referral.company" class="ref-info panel panel-default">
+			<p class="label label-primary">Company</p>
+			<div class="panel-body">
+				<p>{{referral.company}}</p>
+			</div>
+		</div>
+
+		<div ng-if="referral.email" class="ref-info panel panel-default">
+			<p class="label label-primary">Email</p>
+			<div class="panel-body">
+				<p>{{referral.email}}</p>
+			</div>
+		</div>
+
+		<div class="ref-info panel panel-default">
+			<p class="label label-primary">Phone</p>
+			<div class="panel-body">
+				<p>{{referral.phone}}</p>
+			</div>
+		</div>
+
+		<!-- Contact Buttons -->
+		<div ng-show="isMobile()">
+			<div class="col-xs-12 col-sm-4">
+				<a ng-href="tel:{{referral.phone}}" class="btn btn-primary"><i class="icon-phone"></i> Call</a>
+			</div>
+
+			<div class="col-xs-12 col-sm-4">
+				<a ng-href="sms:{{referral.phone}}" class="btn btn-primary"><i class="icon-send"></i> Text</a>
+			</div>
+		</div>
+		<div ng-if="referral.email" class="col-xs-12 col-sm-4">
+			<a ng-href="mailto:{{referral.email}}" class="btn btn-primary"><i class="icon-envelope"></i> Email</a>
+		</div>
+
+		<!-- Referral Contact Info -->
+		<div class="well col-xs-12">
+			<div class="row details">
+				<label class="col-xs-6 col-sm-5 col-md-4">From Campaign:</label>
+				<p class="col-xs-6 col-sm-7 col-md-8"> {{campaign.name}}</p>
+			</div>
+
+			<div  ng-click="seeCustomers(contact)" class="row details  customer">
+				<label class="col-xs-6 col-sm-5 col-md-4">From Contact:</label>
+				<p class="col-xs-6 col-sm-7 col-md-8"> {{contact.first_name}} {{contact.last_name}}</p>
+			</div>
+
+			<div class="row details">
+				<label class="col-xs-6 col-sm-5 col-md-4">From User:</label>
+				<p class="col-xs-6 col-sm-7 col-md-8"> {{user.first_name}} {{user.last_name}}</p>
+			</div>
+
+		</div>
+	</div>
+
+	<notes-directive class="referral-notes" user="user" notable-id="link.id" notable-type="'App\\Models\\Link'" notes="notes"></notes-directive>
+</div>

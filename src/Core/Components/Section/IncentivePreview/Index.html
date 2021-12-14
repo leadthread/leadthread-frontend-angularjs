@@ -1,0 +1,13 @@
+<div ng-show="$ctrl.validIncentive()">
+	<div class="header">Your Reward</div>
+	<incentive incentive="$ctrl.options.incentive"></incentive>
+	<div class="footer">
+		<button type="submit" class="btn btn-success pull-right">
+			Share Now <i class="icon-share"></i>
+		</button>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<div ng-show="!$ctrl.validIncentive()" style="padding: 14px">
+	<i>Incentive Disabled, please enable to see a preview</i>
+</div>

@@ -1,0 +1,21 @@
+<div class="flex mode mode-select" ng-if="options.mode === 'select'">
+	<select class="flex-item" ng-model="selected" ng-show="models.length>0" ng-options="m as m.{{displayColumn}} for m in models" ng-change="selectFn(selected)"></select>
+</div>
+<div class="mode mode-list" ng-if="options.mode === 'list'">
+	<div class="flex row" ng-class="{'selected': selected === m}" ng-repeat="m in models">
+		<div class="flex-item name" ng-click="selectFn(m)">{{m[displayColumn]}}</div>
+		<div class="flex-item locked" ng-show="m.locked"><i class="icon-lock"></i></div>
+		<div class="flex-item btn btn-danger action-delete" 
+		ng-show="options.actions.delete.enabled && m.id && options.mode === 'list'" 
+		ng-click="deleteFn(m.id)">
+			<i class="icon-trash-o"></i>
+		</div>
+	</div>
+</div>
+<div class="flex">
+	<div class="flex-item btn btn-primary action-prev"  ng-show="options.actions.prev.enabled"                  ng-click="backFn()"><i class="icon-chevron-left"></i></div>
+	<div class="flex-item btn btn-default action-new"   ng-show="options.actions.new.enabled"                   ng-click="newFn()">New</div>
+	<div class="flex-item btn btn-success action-save"  ng-show="options.actions.save.enabled   && selected"    ng-click="saveFn(selected)">Save</div>
+	<div class="flex-item btn btn-danger action-delete" ng-show="options.actions.delete.enabled && selected.id && options.mode !== 'list'" ng-click="deleteFn(selected.id)">Delete</div>
+	<div class="flex-item btn btn-primary action-next"  ng-show="options.actions.next.enabled"                  ng-click="nextFn()"><i class="icon-chevron-left"></i></div>
+</div>

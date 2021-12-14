@@ -1,0 +1,24 @@
+<div class="BoxOuter" ng-click="model.onClick($event)" ng-class="{hover: !!model.onClick}">
+	<div class="Box">
+		<div class="Title">
+			<div>{{model.title}}</div>
+			<div ng-if="model.opened !== undefined">
+				<i class="icon-envelope-o" ng-show="!model.opened" uib-tooltip="Invitation has not been opened." tooltip-placement="left"></i>
+				<i class="icon-envelope-open-o" ng-show="!!model.opened" uib-tooltip="Invitation was opened." tooltip-placement="left"></i>
+			</div>
+		</div>
+		<table class="Table">
+			<tr class="Row Empty" ng-if="model.rows.length === 0"><td class="Column">No Data</td></tr>
+			<tr class="Row {{row.type}}" ng-repeat="row in model.rows" ng-style="{background: row.color}" ng-class="{hover: !!row.onClick}" ng-click="row.onClick($event)">
+				<td class="Column ColumnIcon" ng-if="row.icon"><i class="{{row.icon}}"></i></td>
+				<td class="Column ColumnText" ng-if="row.text" colspan="100">
+					<span>{{row.text}}</span>
+				</td>
+				<td class="Column ColumnData" ng-repeat="column in row.data">
+					<span ng-if="!!column.key && column.key.length > 0"><label>{{column.key}}</label><br></span>
+					<span>{{column.value}}</span>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>

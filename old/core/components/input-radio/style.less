@@ -1,0 +1,59 @@
+// radio button styling
+[input-radio], input-radio{
+	&:hover{
+		cursor: pointer;
+		span {
+			color: @brand-primary;
+		}
+	}
+
+	input[type=radio] {
+		margin-left: 0px;
+		color: @brand-primary;
+		background-color: @brand-primary
+	}
+
+	[type="radio"] {
+		border: 0; 
+		clip: rect(0 0 0 0); 
+		height: 1px; margin: -1px; 
+		overflow: hidden; 
+		padding: 0; 
+		position: absolute; 
+		width: 1px;
+	}
+
+	.radio label {
+		padding-left: 0px;
+	}
+
+	label {
+		display: block;
+		
+	}
+
+	[type="radio"] + span {
+		display: block;
+
+	}
+
+	[type="radio"] + span:before {
+		content: '';
+		display: inline-block;
+		width: 1em;
+		height: 1em;
+		vertical-align: -0.25em;
+		border-radius: 1em;
+		border: 0.025em solid @gray-lighter;
+		box-shadow: 0 0 0 0.05em @gray-lighter;
+		background: @gray-lighter;
+		margin-right: 0.75em;
+		transition: 0.2s ease all;
+	}
+
+	[type="radio"]:checked + span:before {
+		background: @brand-primary;
+		box-shadow: 0 0 0 0.05em @brand-primary;
+		border: 0.025em solid @brand-primary;
+	}
+}

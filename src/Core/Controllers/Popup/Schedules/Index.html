@@ -1,0 +1,104 @@
+<div class="contacts">
+	<form
+		name="popupForm"
+		ng-submit="ok(popupForm.$valid)"
+		autocomplete="off"
+		novalidate
+	>
+		<!-- HEADER -->
+		<div class="modal-header">
+			<span class="modal-title">Playlist Schedule Event</span>
+		</div>
+
+		<!-- BODY -->
+		<div class="modal-body">
+			<label>Campaign</label>
+			<!-- CAMPAIGN PICKER -->
+			<campaign-selector
+				campaigns="options.campaigns"
+				model="options.schedule._campaign"
+			></campaign-selector>
+
+			<div ng-if="type === 'date'">
+				<label>Send on</label>
+				<!-- DATE AND TIME PICKER -->
+				<div class="flex">
+					<datetimepicker
+						ng-model="options.schedule.date_send_at"
+						date-format="yyyy-MM-dd"
+						is-open="datepickers.opened[options.schedule.id]"
+						datepicker-append-to-body="true"
+						datepicker-options="datepickers.options"
+						datepicker-popup-template-url="overrides/angular-bootstrap/template/datepickerPopup/popup.html"
+						datepicker-template-url="overrides/angular-bootstrap/template/datepicker/datepicker.html"
+					>
+					</datetimepicker>
+				</div>
+			</div>
+			<div ng-if="type === 'timer'">
+				<label>Send in</label>
+
+				<div class="flex">
+					<!-- Duration -->
+					<div
+						duration-picker
+						ng-model="options.schedule.timer_days"
+						as="days"
+						min="days"
+						max="years"
+					></div>
+
+					<!-- TIME PICKER -->
+					<div
+						uib-timepicker
+						ng-model="options.schedule._timer_time"
+						show-spinners="false"
+					></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- FOOTER -->
+		<div class="modal-footer">
+			<button
+				type="button"
+				class="btn btn-default pull-left"
+				ng-click="cancel()"
+			>
+				<i class="icon-close"></i>
+			</button>
+			<button
+				type="submit"
+				ng-disabled="popupForm.$invalid"
+				class="btn btn-success pull-right"
+			>
+				Done <i class="icon-check"></i>
+			</button>
+			<div class="clearfix"></div>
+		</div>
+	</form>
+</div>
+<!-- <div ng-switch-when="select" class="control-type-select">
+		<div>
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">
+					<i class="icon-search"></i>
+				</span>
+				<input class="form-control" ng-model="q" ng-focus="searching=true" ng-blur="searching=false" placeholder="Search"/>
+				<span class="input-group-btn" ng-show="q.length > 0" ng-click="q = ''">
+					<div class="btn btn-danger"><i class="icon-remove"></i></div>
+				</span>
+			</div>
+		</div>
+		<table class="list-group">
+			<tr>
+				<th></th>
+				<th ng-repeat="(prop, col) in control.headers">{{col}}</th>
+			</tr>
+			<tr class="list-group-item" ng-repeat="row in control.choices | filter: q" ng-click="row.selected = !row.selected">
+				<td><input ng-checked="row.selected" type="checkbox" /></td>
+				<td ng-repeat="(prop, col) in control.headers">{{row[prop]}}</td>
+			</tr>
+		</table>
+	</div>
+	 -->

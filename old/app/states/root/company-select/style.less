@@ -1,0 +1,191 @@
+#company-select {
+	.company-list {
+		.company {
+			display: flex;
+			& > div {
+				flex-grow: 1;
+				display: flex;
+				align-items: center;
+			}
+			& > a {
+				padding: @spacing/2;
+			}
+			.company-favicon {
+				margin: @spacing/2;
+				width: 28px;
+				img {
+					width: 28px;
+				}
+				.brand-color {
+					width: 28px;
+					height: 28px;
+				}
+			}
+			
+			label.label-primary.label {
+				position: absolute;
+				margin-bottom: 0px;
+				bottom: -8px;
+				left: 0px;
+				color: @brand-primary;
+				background-color: rgba(0,0,0,0);
+				padding: 0 5px 0 0;
+			}
+		}
+	}
+	.name {
+		width: 183px !important;
+	}
+	.yap {
+		background-color: #2ECC71;
+  		border-color: #2ECC71;
+	}
+	.search {
+		background-color: @brand-primary;
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		z-index:5;
+		.flex {
+			padding: @spacing;
+			align-items: center;
+			h3 {
+				font-size: 24px;
+				margin: 0;
+				color: white;
+				text-align: left;
+			}
+		}
+		
+		form {
+			.form-group{
+				.input-group{
+					.input-group-addon{
+						border: none;
+						background-color: white;
+						i {
+							color: @brand-primary
+						}
+					}
+					.form-control{
+						box-shadow: none;
+						border: none;
+					}
+				}
+			}
+			margin-left: @spacing;
+			margin-right: @spacing;
+		}
+	}
+}
+@media only screen and  (min-width: 1102px) {
+	#company-select {
+		.search {
+			h3 {
+				margin: @spacing;
+				text-align: center;
+				font-size: 2em;
+			}
+		}
+		padding: @spacing;
+		position: relative;
+		background-color: white;
+		// background: white url("https://subtlepatterns.com/patterns/geometry.png");
+		animation: 60s linear 0s normal none infinite animate;
+		.company-list {
+			margin-top: 120px;
+			position: relative;
+			width: 100%;
+			min-height: ~'calc(100vh - 230px)';
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: flex-start;
+			align-items: flex-start;
+			align-content: flex-start;
+			.company {
+				border: 1px solid @gray;
+				position: relative;
+				margin: @spacing @spacing @spacing 0;
+				margin-top: @spacing/2;
+				margin-bottom: @spacing/2;
+				width: 100%;
+				max-width: 23.6%;
+				border-radius: 4px;
+				height: 39px;
+				background-color: rgba(255,255,255,.8);
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				&:hover {
+					border-color: @brand-primary;
+					background-color: rgba(255, 255, 255, 0.8);
+					cursor: pointer;
+					.name {
+						color: @brand-primary;
+					}
+				}
+
+				.name {
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+					vertical-align: middle;
+					color: @gray;
+					margin: 0px;
+					width: 100%;
+					text-align: left;
+					background-color: rgba(0,0,0,0);
+					font-size: 20px;
+				}
+
+			}
+		}
+	}
+}
+
+@media (max-width: 1102px) {
+	#company-select {
+		background-color: white;
+		position: relative;
+		width: 100%;
+		padding: @spacing;
+		.company-list {
+			margin-top: 128px;
+			position: relative;
+			width: 100%;
+			min-height: ~'calc(100vh - 230px)';
+			margin-left: auto;
+			margin-right: auto;
+			.company {
+				position: relative;
+				border: 1px solid @gray;
+				border-radius: 4px;
+				height: 39px;
+				display: flex;
+				align-items: center;
+				justify-content: space-around;
+				margin-bottom: @spacing;
+				background-color: white;
+
+				.name {
+					position: relative;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+					vertical-align: middle;
+					color: @gray;
+					margin: 0px;
+					width: 100%;
+					text-align: left;
+					background-color: rgba(0,0,0,0);
+					font-size: 20px;
+				}
+			}
+		}
+	}
+}
+@keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 1000px 0;}
+}

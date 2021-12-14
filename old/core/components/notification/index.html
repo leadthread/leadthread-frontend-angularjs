@@ -1,0 +1,6 @@
+<div id="notification">
+	<div class="notif" ng-repeat="notif in notifications" ng-class="notif.type" ng-click="clear($index)">
+		<h4>{{notif.header}}</h4>
+		<p>{{notif.body}}</p>
+	</div>
+</div>

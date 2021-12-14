@@ -1,0 +1,343 @@
+namespace lt.services {
+	class ApiService implements IApiService {
+		protected level: number;
+		protected method: string;
+		protected resource: string;
+		protected resource_id: number|number[];
+		protected path: string[];
+		protected type: string;
+		protected includeSoftDeleted: boolean;
+		protected params: any;
+		protected version: string;
+		protected existing: {
+			[key: string]: ng.IHttpPromise<any>;
+		}
+
+		static $inject = ["$q", "$cache", "$http", "$httpParamSerializer"];
+		constructor(protected $q: ng.IQService, protected $cache: ICacheService, protected $http: ng.IHttpService, protected $httpParamSerializer: ng.IHttpParamSerializer) {
+			this.existing = {};
+			this.reset();
+		}
+
+		/**
+		 * Resets the chain and starts fresh
+		 */
+		reset() {
+			this.includeSoftDeleted = false;
+			this.level    = 0;
+			this.method   = "GET";
+			this.resource    = null;
+			this.resource_id = null;
+			this.type     = null;
+			this.version = "v1";
+			this.path     = this.getPathRoot();
+
+			return this;
+		};
+
+		/**
+		 * Used for getting all of a specific resource
+		 */
+		index(resource: string, params?: any) {
+			this.resource = resource;
+			this.level++;
+			this.method = "GET";
+			this.path.push(resource);
+			this.type = "index";
+			this.params = params;
+			this.resource_id = null;
+
+			return this;
+		};
+
+		/**
+		 * Used for getting a specific resource by id
+		 */
+		show(resource: string, id: number, params?: any) {
+			if(!id) {
+				throw "ID must be set to a valid number for "+resource;
+			}
+			this.level++;
+			this.method   = "GET";
+			this.resource    = resource;
+			this.resource_id = id;
+			this.params   = params;
+			this.type     = "show";
+			this.path.push(resource + "/" + id);
+
+			return this;
+		};
+
+		/**
+		 * Used for creating a resource
+		 */
+		store(resource: string, params: IModel): this {
+			if (_.isInteger(params.id)) {
+				return this.update(resource, params);
+			}
+
+			this.resource = resource;
+			this.level++;
+			this.method = "POST";
+			this.path.push(resource);
+			this.type = "store";
+			this.params = params;
+			this.resource_id = null;
+
+			return this;
+		};
+
+		/**
+		 * Used for updating a resource
+		 */
+		update(resource: string, params: IModel): this {
+			if (!_.isInteger(params.id)) {
+				return this.store(resource, params);
+			}
+
+			this.resource = resource;
+			this.level++;
+			this.method = "PUT";
+			this.path.push(resource + "/" + params.id);
+			this.type = "update";
+			this.params = params;
+			this.resource_id = params.id;
+
+			return this;
+		};
+
+		/**
+		 * Delete a resource
+		 */
+		destroy(resource: string, id: number): this {
+			if(!id) {
+				throw "ID must be set to a valid number for "+resource;
+			}
+
+			this.level++;
+			this.method   = "DELETE";
+			this.resource    = resource;
+			this.resource_id = id;
+			this.params   = null;
+			this.type     = "destroy";
+			this.path.push(resource + "/" + id);
+
+			return this;
+		};
+
+		/**
+		 * Used for counting a resource
+		 */
+		count(resource: string, params?: any) {
+			this.resource = resource;
+			this.level++;
+			this.method = "GET";
+			this.path.push(resource + "/count");
+			this.type = "count";
+			this.params = params;
+			this.resource_id = null;
+
+			return this;
+		};
+
+		/**
+		 * Adds a flag to include soft deleted records
+		 */
+		withDeleted(include: boolean = true) {
+			this.includeSoftDeleted = include;
+			return this;
+		};
+
+		/**
+		 * Executes the Request and returns a Promise
+		 */
+		exec = (minutes: number, canceler: ng.IDeferred<any> = null): ng.IPromise<IModel|IModel[]|boolean> => {
+			if (!this.type) {
+				return this.$q.reject("No type set");
+			}
+
+			let resource: string;
+			let includeSoftDeleted = this.includeSoftDeleted;
+			let promise;
+			let apiResourceCacheKey = this.getResourceCacheKey(this.resource_id);
+			let apiIndexCacheKey = this.getIndexCacheKey();
+			let apiFullIndexCacheKey = this.getFullIndexCacheKey();
+
+			if (_.isNil(minutes)) {
+				minutes = 5;
+			}
+
+			let request = () => {
+				return this.request(this.method, this.getUrl(), this.params, canceler);
+			}
+
+			//Set and retrieve the cache or do a normal request
+			if (this.type==="show") {
+				promise = this.$cache.remember<any>(apiResourceCacheKey, minutes, request);
+			}  else if (this.type === "index") {
+				resource = this.resource;
+
+				// Try and get stuff from the client side cache first
+				let indexPromise = this.$cache.remember(apiFullIndexCacheKey, minutes, () => {
+					return this.request(this.method, this.getUrl(), this.params, canceler);
+				});
+
+				promise = indexPromise.then((resp: any[]|any) => {
+					var items: Model[] = resp;
+					if(_.isArray(resp)) {
+						items = resp as Model[];
+					} else if(_.isArray(resp.data)) {
+						items = resp.data;
+					}
+
+					_.forEach(items, function(item) {
+						let key = this.getResourceCacheKey(item.id);
+						this.$cache.remember(key, minutes, () => {
+							return item;
+						});
+					})
+					return resp;
+				})
+			} else {
+				promise = this.request(this.method, this.getUrl(), this.params, canceler);
+			}
+
+			//Clear the cache it the request is an update or a destroy
+			if (this.type === "destroy" || this.type === "update") {
+				promise.then((resp) => {
+					this.$cache.forget(apiResourceCacheKey);
+					return resp;
+				});
+			}
+
+			//Clear the index cache when one of these things happen
+			if (this.type === "destroy" || this.type === "store") {
+				let cacheKey = this.resource + "-index";
+				promise.then((resp) => {
+					this.$cache.forgetWhere(cacheKey);
+					return resp;
+				});
+			}
+
+			//Turn back time
+			this.reset();
+
+			//Give em what they want
+			return promise.then((x) => {
+				return x;
+			}, console.error);
+		};
+
+		/**
+		 * Returns the key that should be used for caching with specific resources
+		 */
+		protected getResourceCacheKey(id: number|number[]): string {
+			let x: string = null;
+			x = _.isArray(id) ? id.join("-") : id+"";
+			return this.resource + (x ? "-"+x : "");
+		};
+
+		/**
+		 * Returns the key that should be used for caching with root indexes
+		 */
+		protected getIndexCacheKey(): string {
+			let params = this.getParamsAsStringForCache();
+			let base = this.resource + "-index";
+			let key = base + (params === "" ? "" : "-"+params);
+			return key;
+		};
+
+		/**
+		 * Returns parameters of an object as a string for the cache key
+		 */
+		protected getParamsAsStringForCache(): string {
+			let parts = [];
+			for (let i in this.params) {
+				parts.push(i+"-"+this.params[i]);
+			}
+			parts = _.sortBy(parts);
+			
+			return parts.join("-");
+		};
+
+		/**
+		 * Returns the key that should be used for caching with nested indexes
+		 */
+		protected getFullIndexCacheKey(): string {
+			let str = "";
+			let parts = _.takeRight(this.path, this.path.length-1);
+			if (parts.length > 0) {
+				parts = _.take(parts, parts.length - 1);
+				str += parts.join("/").replace(/\//g, "-");
+			}
+			return (str === "" ? "" : str + "-") + this.getIndexCacheKey();
+		};
+
+		/**
+		 * Makes an HTTP request
+		 */
+		protected request(method: string, route: string, params: any = {}, canceler: ng.IDeferred<any> = null) {
+			let request: ng.IRequestConfig = {
+				method: method, 
+				url: route,
+			};
+
+			if (request.method == "GET") {
+				if (this.includeSoftDeleted) {
+					params._deleted = true;
+				}
+				request.params = params;
+			} else {
+				request.data = params;
+			}
+
+			if (canceler) {
+				request.timeout = canceler.promise;
+			}
+
+			return this.checkDuplicateRequest(request, (request) => {
+				return this.$http(request);
+			});
+		};
+
+		/**
+		 * Checks for any pre-existing api requests and returns the duplicate or a new request
+		 */
+		protected checkDuplicateRequest(request: ng.IRequestConfig, promiseCb: (request: ng.IRequestConfig) => ng.IHttpPromise<any>): ng.IHttpPromise<any> {
+			let p = this.$httpParamSerializer(request.params);
+			let key =  request.url + (p!=="" ? "?"+p : p);
+
+			let existing = this.existing[key];
+			if (existing && request.method == "GET" && !request.timeout) {
+				return existing;
+			} else {
+				let promise = promiseCb(request).finally(() => {
+					delete this.existing[key];
+				});
+
+				if (request.method == "GET" && !request.timeout) {
+					this.existing[key] = promise;
+				}
+
+				return promise;
+			}
+		};
+
+		/**
+		 * Builds the root of the path for URL
+		 */
+		protected getPathRoot() {
+			return ["/api/" + this.version];
+		};
+
+		/**
+		 * Returns the full URL for the request
+		 * @return {string} The request URL
+		 */
+		protected getUrl() {
+			return this.path.join("/");
+		};
+	}
+
+	angular.module("lt.core").service("$api", ApiService);
+}

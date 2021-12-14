@@ -1,0 +1,16 @@
+<div class="page-title">
+	<back-button
+		class="button"
+		icon="true"
+		ng-show="showBackButton()"
+	></back-button>
+	<div class="text"><h3>{{title}}</h3></div>
+	<div class="desktop-loader-wrapper">
+		<div
+			class="desktop-loader"
+			loader
+			white="true"
+			ng-show="isLoading()"
+		></div>
+	</div>
+</div>

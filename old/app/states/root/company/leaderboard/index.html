@@ -1,0 +1,11 @@
+<div id="leaderboard">
+    <div class="flex">
+        <div class="flex-grow-1" ng-repeat="set in sets track by $index">
+            <div class="contact {{$parent.$parent.$index===0 ? 'big' : 'small'}}" ng-repeat="contact in contacts | orderBy:['-points.length', 'first_name']" ng-if="inSet($index, $parent.$index)">
+                <!-- <div class="placement" ng-if="$parent.$parent.$index===0">{{getPlacement($index)}}</div> -->
+                <div class="points">{{contact.points.length}}</div>
+                <div class="name">{{contact}}</div>
+            </div>
+        </div>
+    </div>
+</div>

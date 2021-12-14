@@ -1,0 +1,239 @@
+<div id="console">
+	<a class="btn btn-default" ui-sref="^"
+		><i class="icon-chevron-left"></i> Back to Company Select</a
+	>
+	<h1>Console</h1>
+	<div style="position: relative">
+		<div class="row">
+			<div class="col-sm-6">
+				<label>Company</label>
+				<div class="flex flex-wrap control company-control">
+					<input
+						type="text"
+						class="flex-grow-1 form-control"
+						ng-model="company"
+						placeholder="Search for Company by name"
+						uib-typeahead="company for company in getCompaniesByName($viewValue)"
+						typeahead-loading="searching"
+						typeahead-no-results="noResults"
+						style="width: auto; flex-basis: 300px"
+					/>
+					<div class="btn btn-primary" ng-click="create()">
+						<i class="icon-plus"></i> New
+					</div>
+					<div
+						ng-if="company"
+						class="btn btn-default"
+						ng-click="edit(company)"
+					>
+						<i class="icon-pencil"></i>
+					</div>
+					<div
+						ng-if="company"
+						class="btn btn-primary"
+						ui-sref="root.company.dashboard({companyId: company.id})"
+					>
+						<i class="icon-dashboard"></i> Dashboard
+					</div>
+				</div>
+				<div loader ng-show="searching"></div>
+				<div ng-show="noResults">
+					<i class="icon-remove"></i> No Results Found
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<hr />
+			</div>
+		</div>
+		<div ng-if="company && company.id" class="row">
+			<div class="col-sm-6">
+				<div>
+					<label>Information</label>
+					<div class="list-group flex-grow-1">
+						<a
+							href="javascript:;"
+							ng-click="edit(company)"
+							class="list-group-item"
+						>
+							<h4 class="list-group-item-heading">
+								Account Name
+							</h4>
+							<p class="list-group-item-text">{{company.name}}</p>
+						</a>
+						<a
+							href="javascript:;"
+							ng-click="edit(company)"
+							class="list-group-item"
+						>
+							<h4 class="list-group-item-heading">
+								Account Type
+							</h4>
+							<p class="list-group-item-text">{{company.type}}</p>
+						</a>
+						<a
+							href="javascript:;"
+							ng-click="edit(company)"
+							class="list-group-item"
+						>
+							<h4 class="list-group-item-heading">
+								Account Status
+							</h4>
+							<p class="list-group-item-text">
+								{{company.status}}
+							</p>
+						</a>
+						<a
+							href="javascript:;"
+							ng-click="edit(company)"
+							class="list-group-item"
+						>
+							<h4 class="list-group-item-heading">
+								Number of Employees/Customers
+							</h4>
+							<p class="list-group-item-text">
+								{{company.employees_count}}
+							</p>
+						</a>
+						<a
+							href="javascript:;"
+							ng-click="edit(company)"
+							class="list-group-item"
+						>
+							<h4 class="list-group-item-heading">
+								Glassdoor URL
+							</h4>
+							<p class="list-group-item-text">
+								{{company.glassdoor_url}}
+							</p>
+						</a>
+						<a
+							href="javascript:;"
+							ng-click="edit(company)"
+							class="list-group-item"
+						>
+							<h4 class="list-group-item-heading">Indeed URL</h4>
+							<p class="list-group-item-text">
+								{{company.indeed_url}}
+							</p>
+						</a>
+						<a
+							href="javascript:;"
+							ng-show="company.disabled_at"
+							ng-click="edit(company)"
+							class="list-group-item"
+						>
+							<h4 class="list-group-item-heading">Trial Ends</h4>
+							<p class="list-group-item-text">
+								{{company.disabled_at}}
+							</p>
+						</a>
+						<a
+							href="javascript:;"
+							ng-click="edit(company)"
+							class="list-group-item"
+						>
+							<h4 class="list-group-item-heading">
+								Module Referral
+							</h4>
+							<p class="list-group-item-text">
+								{{company.module_referral? 'Yes' : 'No'}}
+							</p>
+						</a>
+						<a
+							href="javascript:;"
+							ng-click="edit(company)"
+							class="list-group-item"
+						>
+							<h4 class="list-group-item-heading">
+								Module Leaderboard
+							</h4>
+							<p class="list-group-item-text">
+								{{company.module_leaderboard ? 'Yes' : 'No'}}
+							</p>
+						</a>
+						<a
+							href="javascript:;"
+							ng-click="edit(company)"
+							class="list-group-item"
+						>
+							<h4 class="list-group-item-heading">
+								Module Message
+							</h4>
+							<p class="list-group-item-text">
+								{{company.module_message ? 'Yes' : 'No'}}
+							</p>
+						</a>
+						<a
+							href="javascript:;"
+							ng-click="edit(company)"
+							class="list-group-item"
+						>
+							<h4 class="list-group-item-heading">
+								Module Testimonial
+							</h4>
+							<p class="list-group-item-text">
+								{{company.module_testimonial ? 'Yes' : 'No'}}
+							</p>
+						</a>
+						<a
+							href="javascript:;"
+							ng-click="edit(company)"
+							class="list-group-item"
+						>
+							<h4 class="list-group-item-heading">
+								Module Recognition
+							</h4>
+							<p class="list-group-item-text">
+								{{company.module_recognition ? 'Yes' : 'No'}}
+							</p>
+						</a>
+						<a
+							href="javascript:;"
+							ng-click="edit(company)"
+							class="list-group-item"
+						>
+							<h4 class="list-group-item-heading">
+								Module Reach
+							</h4>
+							<p class="list-group-item-text">
+								{{company.module_reach ? 'Yes' : 'No'}}
+							</p>
+						</a>
+						<a
+							href="javascript:;"
+							ng-click="edit(company)"
+							class="list-group-item"
+						>
+							<h4 class="list-group-item-heading">
+								Module Reviews
+							</h4>
+							<p class="list-group-item-text">
+								{{company.module_reviews ? 'Yes' : 'No'}}
+							</p>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<div>
+					<label>Brand</label>
+					<div>
+						<brand-manager
+							ng-if="brands"
+							selected="company.brand_id"
+							brands="brands"
+							on-brand-change="onBrandChange"
+						></brand-manager>
+						<div
+							style="float: left"
+							loader="Loading..."
+							ng-if="!brands"
+						></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div page-lock="lock" position="absolute"></div>
+	</div>
+</div>

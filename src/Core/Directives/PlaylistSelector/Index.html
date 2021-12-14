@@ -1,0 +1,19 @@
+<div class="playlist-selector">
+	<ui-select
+		ng-model="playlist.selected"
+		on-select="assignModel($item)"
+		search-enabled="searchEnabled"
+		skip-focusser="!searchEnabled"
+	>
+		<ui-select-match placeholder="Search for a Playlist">
+			{{$select.selected.name}}
+		</ui-select-match>
+
+		<ui-select-choices
+			repeat="item in playlists | orderBy: '-created_at' | filterOr: {'name': $select.search}"
+			group-by="groupPlaylist"
+		>
+			<div class="playlist-entry">{{item.name}}</div>
+		</ui-select-choices>
+	</ui-select>
+</div>

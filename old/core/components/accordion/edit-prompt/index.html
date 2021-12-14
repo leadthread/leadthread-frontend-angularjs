@@ -1,0 +1,16 @@
+<div class="edit-prompt" >
+	<!-- Img Upload -->
+	<div  ng-if="showbtn" class="left-prompt">
+		<button ng-click="cueUp()" class="btn btn-primary"><i class="icon-chevron-up"></i></button>
+		<p class="cue btn-default btn">{{index}}</p>
+		<button ng-click="cueDown()" class="btn btn-primary"><i class="icon-chevron-down"></i></button>
+	</div>
+	
+	<div class="center-prompt" ng-class="showbtn ? 'well':''">
+		<textarea ng-model="cue.prompt" class="form-control" type="text" placeholder="Enter Prompt"></textarea>
+		<img ng-src="{{cue.image}}">
+		<div form-file="img" type="image"></div>
+		<button ng-click="deleteCue()" ng-if="showbtn" class="btn btn-danger textbtn"><i class="icon-trash-o"></i> Delete</button>
+		<!-- <button ng-click="addCue()" ng-if="!showbtn" class="btn btn-success textbtn"><i class="icon-check"></i> Done</button> -->
+	</div>
+</div>

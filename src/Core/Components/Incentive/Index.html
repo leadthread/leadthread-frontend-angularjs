@@ -1,0 +1,14 @@
+<div class="media">
+	<div ng-show="$ctrl.incentive.media_type === 'App\\Models\\File'">
+		<img ng-src="/files/{{$ctrl.incentive.media.fingerprint}}/thumb/480" />
+	</div>
+	<div ng-show="$ctrl.incentive.media_type === 'App\\Models\\Video'">
+		<div
+			video-embed="$ctrl.incentive.media"
+			ng-if="$ctrl.incentive.media"
+		></div>
+	</div>
+</div>
+<div class="text">
+	<p>{{$ctrl.incentive.text}}</p>
+</div>

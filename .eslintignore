@@ -1,0 +1,5 @@
+dist/
+img/
+old/
+src/**/*.html
+src/**/*.less

@@ -1,0 +1,33 @@
+<div id="message-center">
+	<div class="conversations" ng-show="windowWidth >= 992 || !contact">
+		<div ng-show="loading.contacts">
+			<div loader></div>
+		</div>
+		<div ng-show="!loading.contacts">
+			<div
+				class="contact"
+				ng-repeat="c in contacts track by c.id"
+				ng-class="{'active':isSelectedContact(c)}"
+				ng-click="selectContact(c)"
+			>
+				<h6>
+					{{c.first_name}} {{c.last_name}}
+					<span ng-if="getTotalUnreadMessages(c) > 0" class="badge"
+						>{{getTotalUnreadMessages(c)}}</span
+					>
+				</h6>
+			</div>
+			<div class="contact" ng-show="contacts.length == 0">
+				<h6>Sorry, you have no messages.</h6>
+			</div>
+		</div>
+	</div>
+
+	<div class="thread-history" ng-show="!!contact">
+		<message-history
+			class="message-history"
+			contact="contact"
+			ng-if="!contactSelected()"
+		></message-history>
+	</div>
+</div>

@@ -1,0 +1,10 @@
+<div class="video-wrapper" ng-click="onClickVideoVeil()">
+	<div
+		video-embed="model.video"
+		on-played="onPlayed"
+		on-paused="onPaused"
+		on-ended="onEnded"
+		ng-if="model.video"
+	></div>
+	<!-- <div ng-if="veil" class="video-veil" ng-click="onClickVideoVeil($event)"></div> -->
+</div>

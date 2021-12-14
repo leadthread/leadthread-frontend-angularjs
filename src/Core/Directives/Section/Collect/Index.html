@@ -1,0 +1,41 @@
+<form
+	id="Form"
+	name="collectForm"
+	ng-submit="submit(collectForm.$valid)"
+	autocomplete="off"
+	scroll-to-when="referrals_sent.length > 0 && referrals.length === 0"
+	novalidate
+>
+	<form-layout form="collectForm" options="controls"></form-layout>
+	<button
+		type="submit"
+		ng-disabled="collectForm.$invalid"
+		class="btn btn-success pull-right"
+	>
+		Add <i class="icon-check"></i>
+	</button>
+</form>
+<div class="clearfix"></div>
+<span scroll-to-when="referrals.length"></span>
+<div ng-show="referrals_sent.length + referrals.length">
+	<div ng-style="getSectionStyle(title)" class="flex-grow-1">
+		<div section-text="title"></div>
+	</div>
+	<div ng-style="getSectionStyle(instructions)" class="flex-grow-1">
+		<div section-text="instructions"></div>
+	</div>
+	<!-- <div id="Referrals" class="flex flex-wrap" >
+		<div ng-repeat="referral in referrals" class="referral pending flex-grow-1">
+			<div class="name">{{referral.first_name}} {{referral.last_name}}</div>
+			<div class="action pull-right">
+				<div ng-if="!referral.link" loader=""></div>
+				<button ng-if="referral.link" class="btn btn-primary" ng-click="send(referral)">Send <i class="icon-send"></i></button>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div ng-repeat="referral in referrals_sent" class="referral sent flex-grow-1">
+			<div class="name">{{referral.first_name}} {{referral.last_name}}</div><div class="action pull-right"><button class="btn btn-default disabled">Sent <i class="icon-check"></i></button></div>
+			<div class="clearfix"></div>
+		</div>
+	</div> -->
+</div>

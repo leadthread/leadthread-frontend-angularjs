@@ -1,0 +1,27 @@
+<!-- Root State -->
+<div id="root">
+
+	<!-- child view -->
+	<div class="root-content">
+		<div class="root-view">
+			<div id="target" class="{{target.type}}">
+				<div class="center">
+					<brand ng-if="target.brand" brand="target.brand"></brand>
+					<div style="position: relative">
+						<div ng-if="target.site && target.site.id">
+							<div site="target.site" options="options" page-index="pageIndex" on-new-contact="onNewContact" scroll-to="{{scrollTo}}"></div>
+						</div>
+						<div brand-url="company" ng-if="company.url"></div>
+						<div page-lock="lock" position="absolute"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<versionbar></versionbar>
+		<notification-overlay></notification-overlay>
+		<job-overlay></job-overlay>
+	</div>
+
+	<!-- Footer -->
+	<div footer></div>
+</div>

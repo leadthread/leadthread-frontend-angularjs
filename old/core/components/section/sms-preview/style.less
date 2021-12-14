@@ -1,0 +1,145 @@
+[section-sms-preview] {
+	.text-message {
+		height: ~'calc(100vh - 305px);';
+		min-width: 320px;
+	    min-height: 320px;
+	    max-width: 412px;
+		max-height: 640px;
+		position: relative;
+		* {
+			margin: 0px;
+			padding: 0px;
+			border-width: 0px;
+		}
+
+		.blurry-text {
+			color: transparent;
+			text-shadow: 0 0 6px rgba(255,255,255,1);
+		}
+
+		.sms-header {
+			background-color: @gray;
+			z-index: 5;
+			* {
+				color: #FFF;
+				text-align: left;
+			}
+
+			h3 {
+				margin-bottom: @spacing/4;
+			}
+			position: absolute;
+			top: 0;
+			width: 100%;
+			padding: 5px @spacing/2;
+			// min-width: 320px;
+		}
+
+		.sms-convo {
+			height: ~'calc(100vh - 305px);';
+			max-height: ~'calc(100vh - 433px);';
+			position: absolute;
+			top: 0;
+			.sms-inner {
+				max-height: ~'calc(100vh - 433px);';
+				max-width: 412px;
+				min-width: 320px;
+				min-height: 205px;
+				height: ~'calc(100vh - 420px);';
+				margin-top: 55px;
+				margin-bottom: 60px;
+				overflow-y: auto;
+				padding: @spacing;
+			}
+			.sms {
+				position: relative;
+				color: #FFF;
+				padding: @spacing/2;
+				border-radius: 7px;
+				margin-top: @spacing;
+				margin-bottom: @spacing/2;
+				max-width: 75%;
+				text-align: left;
+				display: inline-block;
+				clear: both;
+				min-width: 24px;
+				a {
+					color: blue;
+				}
+				* {
+					display: inline-block;
+				}
+				.tail {
+					height: 0px;
+					width: 0px;
+					position: absolute;
+					bottom: -14px;
+				}
+			}
+
+
+			.sms-me {
+				float: right;
+				background-color: @brand-primary;
+				margin-right: 0px;
+				margin-left: auto;
+				.tail {
+					right: 0px;
+					width: 0; 
+					height: 0;
+					border-width: 15; 
+					border-top: 15px solid transparent;
+					border-bottom: 15px solid transparent; 
+					
+					border-right:20px solid @brand-primary; 
+				}
+				p {
+				}
+			}
+			
+			.sms-you {
+				float: left;
+				background-color: @gray-light;
+				margin-right: auto;
+				margin-left: 0px;
+				.tail {
+					left: 0px;
+					width: 0; 
+					height: 0; 
+					border-top: 15px solid transparent;
+					border-bottom: 15px solid transparent;
+					
+					border-left: 20px solid @gray-light;
+				}
+				p {
+				}
+			}
+		}
+
+		.sms-footer {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-around;
+			// min-width: 320px;
+			.add-text {
+				position: relative;
+				background-color: @gray-lighter;
+				border-bottom: 1px solid @brand-primary;
+				padding-bottom: 3px;
+				p {
+					color: #aaa;
+					position: relative;
+				}
+				height: 20px;
+				width: 65%;
+				text-align: left;
+			}
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: 60px;
+			background-color: @gray-lighter;
+		}
+	}
+}

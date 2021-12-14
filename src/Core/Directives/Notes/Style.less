@@ -1,0 +1,39 @@
+.notes {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-content: flex-start;
+
+	h2 {
+		width: 100%;
+		padding-bottom: @spacing / 2;
+		border-bottom: 2px solid @gray-light;
+	}
+
+	.note.panel {
+		position: relative;
+		width: 100%;
+		min-width: 250px;
+		h6 {
+			padding: 0px;
+			margin: 0px;
+			color: white;
+		}
+		.panel-heading {
+			label {
+				position: absolute;
+				top: 0px;
+				right: 0px;
+				margin: 0px;
+				border-top-right-radius: 0px;
+				border-bottom-left-radius: 0px;
+			}
+		}
+	}
+
+	.note.btn {
+		margin-bottom: @spacing;
+		width: 100%;
+	}
+}

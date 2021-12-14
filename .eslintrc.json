@@ -1,0 +1,36 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": ["eslint:recommended", "prettier"],
+	"parserOptions": {
+		"ecmaVersion": 13,
+		"sourceType": "module"
+	},
+	"rules": {
+		"indent": [
+			"error",
+			"tab",
+			{ "SwitchCase": 1, "CallExpression": { "arguments": "off" } }
+		],
+		"linebreak-style": ["error", "unix"],
+		"quotes": ["error", "double"],
+		"semi": ["error", "never"],
+		"no-unused-vars": ["off"]
+	},
+	"overrides": [
+		{
+			"files": ["src/**/*.js"],
+			"rules": {}
+		},
+		{
+			"files": ["src/**/*.html"],
+			"rules": {}
+		},
+		{
+			"files": ["src/**/*.less"],
+			"rules": {}
+		}
+	]
+}

@@ -1,0 +1,18 @@
+<div class="message-history">
+	<div class="thread">
+		<div class="thread-body">
+			<div class="message" ng-repeat="m in contact.messages | orderBy: 'created_at'">
+				<div class="inner" ng-class="m.inbound ? 'inbound' : 'outbound'">
+					<div class="date">{{m.created_at | readableDate}}</div>
+					<pre class="bubble">{{m.message}}</pre>
+				</div>
+			</div>
+			
+		</div>
+
+		<div class="thread-draft flex">
+			<textarea class="message-draft flex-grow-1 form-control" placeholder="Type your message..." ng-model="draft" ng-readonly="userSelected()"></textarea>
+			<button class="btn btn-primary" ng-click="sendMessage(draft)">Send</button>
+		</div>
+	</div>
+</div>
