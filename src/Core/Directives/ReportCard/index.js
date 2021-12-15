@@ -1,11 +1,11 @@
 export const key = "reportCard"
 
-export const inject = []
+export const inject = null
 
 export const fn = () => {
 	return {
 		restrict: "A",
-		templateUrl: "components/report-card/index.html",
+		template: require("./index.html"),
 		scope: {
 			model: "=reportCard",
 		},

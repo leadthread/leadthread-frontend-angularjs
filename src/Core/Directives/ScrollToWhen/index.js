@@ -1,7 +1,7 @@
 import $ from "jquery"
 export const key = "scrollToWhen"
 
-export const inject = []
+export const inject = null
 
 export const fn = () => {
 	return {

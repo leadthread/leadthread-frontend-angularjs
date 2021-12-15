@@ -5,7 +5,7 @@ export const inject = ["$placeholder"]
 export const fn = ($placeholder) => {
 	return {
 		restrict: "AE",
-		templateUrl: "components/section/sms-preview/index.html",
+		template: require("./index.html"),
 		scope: {
 			model: "=sectionSmsPreview",
 		},

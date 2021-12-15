@@ -52,5 +52,5 @@ TextInsertService.prototype.insert = function ($el, text) {
 }
 
 export const key = "$textInsert"
-export const inject = []
+export const inject = null
 export const fn = TextInsertService

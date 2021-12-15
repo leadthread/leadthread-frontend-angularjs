@@ -5,7 +5,7 @@ export const inject = ["$placeholder"]
 export const fn = ($placeholder) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/section/spacer/index.html",
+		template: require("./index.html"),
 		scope: {
 			model: "=sectionSpacer",
 		},

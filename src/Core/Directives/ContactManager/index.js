@@ -40,7 +40,7 @@ export const fn = (
 ) => {
 	return {
 		restrict: "E",
-		templateUrl: "components/contact-manager/index.html",
+		template: require("./index.html"),
 		scope: {
 			userId: "=",
 			selectedContacts: "=",
@@ -699,7 +699,7 @@ export const fn = (
 			function csvOpenHelpDialog() {
 				$popup.info(
 					"How to Upload a CSV File",
-					"CSV files require at the very minimum a name and a phone number for each row. You can include extra information such as an email and/or organization name as optional columns. Any column header not present in the following list will be ignored.\n\nREQUIRED\n- \"Name\", \"Full Name\" or \"First Name\" with \"Last Name\".\n- \"Phone\", \"Mobile\" or \"Cell\".\n\nOPTIONAL:\n- \"Email\"\n- \"Company\" or \"Organization\"\n\n(555) 555-5555(666) 666-6666(777) 777-7777</td><td>mscott@hotmail.com</td><td>Dunder Mifflin</td></tr></table>\nIf a duplicate contact is found, the system will not create a duplicate entry but instead it will update the existing contact with the new information provided in the list."
+					'CSV files require at the very minimum a name and a phone number for each row. You can include extra information such as an email and/or organization name as optional columns. Any column header not present in the following list will be ignored.\n\nREQUIRED\n- "Name", "Full Name" or "First Name" with "Last Name".\n- "Phone", "Mobile" or "Cell".\n\nOPTIONAL:\n- "Email"\n- "Company" or "Organization"\n\n(555) 555-5555(666) 666-6666(777) 777-7777</td><td>mscott@hotmail.com</td><td>Dunder Mifflin</td></tr></table>\nIf a duplicate contact is found, the system will not create a duplicate entry but instead it will update the existing contact with the new information provided in the list.'
 				)
 			}
 

@@ -5,7 +5,7 @@ export const inject = ["$notification"]
 export const fn = ($notification) => {
 	return {
 		restrict: "EA",
-		templateUrl: "components/notification/index.html",
+		template: require("./index.html"),
 		link: function ($scope) {
 			var init = function () {
 				defineScope()

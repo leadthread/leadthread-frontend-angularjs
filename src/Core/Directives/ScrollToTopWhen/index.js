@@ -1,6 +1,6 @@
 export const key = "scrollToTopWhen"
 
-export const inject = []
+export const inject = null
 
 export const fn = () => {
 	return {

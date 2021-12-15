@@ -7,11 +7,10 @@ module.exports = {
 		link: "./src/Link/index.js",
 	},
 	output: {
-		filename: "[name].bundle.js",
+		filename: "bundle.[name].js",
 		path: path.resolve(__dirname, "dist"),
 	},
 	externals: {
-		jquery: "jQuery",
 		a2a: "a2a",
 	},
 	resolve: {
@@ -22,5 +21,17 @@ module.exports = {
 			stream: require.resolve("stream-browserify"),
 			buffer: require.resolve("buffer"),
 		},
+	},
+	module: {
+		rules: [
+			{
+				test: /\.html$/i,
+				loader: "html-loader",
+				options: {
+					sources: false,
+					esModule: false,
+				},
+			},
+		],
 	},
 }

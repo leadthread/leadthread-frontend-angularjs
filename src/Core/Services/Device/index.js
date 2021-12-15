@@ -5,6 +5,9 @@ class Device {
 	initialScreenSize
 
 	constructor($window, $timeout, $document) {
+		this.$window = $window
+		this.$timeout = $timeout
+		this.$document = $document
 		this.width = this.$window.innerWidth
 		this.initialScreenSize = screen.height
 		this.defineListeners()
@@ -99,5 +102,5 @@ class Device {
 }
 
 export const key = "$device"
-export const inject = []
+export const inject = null
 export const fn = Device

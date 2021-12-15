@@ -7,7 +7,7 @@ export const inject = ["$api", "$q", "Prompt"]
 export const fn = ($api, $q, Prompt) => {
 	return {
 		restrict: "E",
-		templateUrl: "components/accordion/categories/index.html",
+		template: require("./index.html"),
 		scope: {
 			step: "=",
 			cat: "=",

@@ -1,11 +1,11 @@
 export const key = "loader"
 
-export const inject = []
+export const inject = null
 
 export const fn = () => {
 	return {
 		restrict: "A",
-		templateUrl: "components/loader/index.html",
+		template: require("./index.html"),
 		scope: {
 			text: "@loader",
 			white: "=",

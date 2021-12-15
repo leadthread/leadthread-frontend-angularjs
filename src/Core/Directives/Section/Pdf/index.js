@@ -1,11 +1,11 @@
 export const key = "sectionPdf"
 
-export const inject = []
+export const inject = null
 
 export const fn = () => {
 	return {
 		restrict: "A",
-		templateUrl: "components/section/pdf/index.html",
+		template: require("./index.html"),
 		scope: {
 			model: "=sectionPdf",
 		},

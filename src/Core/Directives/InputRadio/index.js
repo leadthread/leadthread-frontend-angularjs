@@ -5,7 +5,7 @@ export const inject = ["$api"]
 export const fn = ($api) => {
 	return {
 		restrict: "EA",
-		templateUrl: "components/input-radio/index.html",
+		template: require("./index.html"),
 		scope: {
 			model: "=ngModel",
 			change: "=",

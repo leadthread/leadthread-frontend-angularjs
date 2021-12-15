@@ -1,6 +1,7 @@
 // Thrid Party Libraries
-import angular from "angular"
+import jQuery from "jquery"
 import _ from "lodash"
+import angular from "angular"
 import "angular-ui-bootstrap"
 import "angular-file-upload"
 import "@uirouter/angularjs"
@@ -9,6 +10,7 @@ import "ngclipboard"
 import "angular-video-embed"
 import "angular-sanitize"
 import "angular-ui-bootstrap-datetimepicker"
+import Raven from "raven-js"
 import pluginRavenJs from "raven-js/plugins/angular"
 
 // "Core" app imports
@@ -25,10 +27,9 @@ const setupRaven = () => {
 		window["$SENTRY_KEY"] ||
 		"https://f7dd42c4f02342fca4645e6666b55dd9@sentry.io/120107"
 	if (window["$SENTRY_KEY"]) {
-		window["Raven"]
-			.config(window["$SENTRY_KEY"], {
-				release: window["$VERSION"],
-			})
+		Raven.config(window["$SENTRY_KEY"], {
+			release: window["$VERSION"],
+		})
 			.addPlugin(pluginRavenJs)
 			.install()
 	}
@@ -93,37 +94,57 @@ const module = angular.module("lt.core", [
 	// "monospaced.qrcode",
 ])
 
-for (const i in Configs) {
-	const { inject, fn } = Configs[i]
-	module.config([...inject, fn])
+if (Configs) {
+	for (const i in Configs) {
+		const { inject, fn } = Configs[i]
+		const injectable = inject ? [...inject, fn] : fn
+		module.config(injectable)
+	}
 }
 
-for (const i in Constants) {
-	const { key, value } = Constants[i]
-	module.constant(key, value)
+if (Constants) {
+	for (const i in Constants) {
+		const { key, value } = Constants[i]
+		module.constant(key, value)
+	}
 }
 
-for (const i in Controllers) {
-	const { key, inject, fn } = Constants[i]
-	module.controller(key, [...inject, fn])
+if (Controllers) {
+	for (const i in Controllers) {
+		const { key, inject, fn } = Controllers[i]
+		const injectable = inject ? [...inject, fn] : fn
+		module.controller(key, injectable)
+	}
 }
 
-for (const i in Directives) {
-	const { key, inject, fn } = Directives[i]
-	module.directive(key, [...inject, fn])
+if (Directives) {
+	for (const i in Directives) {
+		const { key, inject, fn } = Directives[i]
+		const injectable = inject ? [...inject, fn] : fn
+		module.directive(key, injectable)
+	}
 }
 
-for (const i in Factories) {
-	const { key, inject, fn } = Factories[i]
-	module.factory(key, [...inject, fn])
+if (Factories) {
+	for (const i in Factories) {
+		const { key, inject, fn } = Factories[i]
+		const injectable = inject ? [...inject, fn] : fn
+		module.factory(key, injectable)
+	}
 }
 
-for (const i in Runs) {
-	const { inject, fn } = Runs[i]
-	module.run([...inject, fn])
+if (Runs) {
+	for (const i in Runs) {
+		const { inject, fn } = Runs[i]
+		const injectable = inject ? [...inject, fn] : fn
+		module.run(injectable)
+	}
 }
 
-for (const i in Services) {
-	const { key, inject, fn } = Services[i]
-	module.factory(key, [...inject, fn])
+if (Services) {
+	for (const i in Services) {
+		const { key, inject, fn } = Services[i]
+		const injectable = inject ? [...inject, fn] : fn
+		module.service(key, injectable)
+	}
 }

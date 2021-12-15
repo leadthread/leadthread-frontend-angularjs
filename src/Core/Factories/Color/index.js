@@ -1,7 +1,7 @@
 /* global angular:false, _:false */
 export const key = "$color"
 
-export const inject = []
+export const inject = null
 
 export const fn = () => {
 	var map = function (value, in_min, in_max, out_min, out_max) {

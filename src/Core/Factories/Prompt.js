@@ -1,6 +1,6 @@
 export const key = "Prompt"
 
-export const inject = []
+export const inject = null
 
 export const fn = () => {
 	var Prompt = function (prompt, file_id, image, order) {

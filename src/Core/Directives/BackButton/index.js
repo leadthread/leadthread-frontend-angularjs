@@ -5,7 +5,7 @@ export const inject = ["$window"]
 export const fn = ($window) => {
 	return {
 		restrict: "EA",
-		templateUrl: "components/back-button/index.html",
+		template: require("./index.html"),
 		// transclude: true,
 		scope: {
 			icon: "@",

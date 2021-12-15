@@ -5,7 +5,7 @@ export const inject = ["$device"]
 export const fn = ($device) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/footer/index.html",
+		template: require("./index.html"),
 		scope: {},
 		link: function ($scope) {
 			function init() {

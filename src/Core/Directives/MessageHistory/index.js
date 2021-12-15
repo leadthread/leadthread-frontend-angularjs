@@ -9,7 +9,7 @@ export const inject = ["$http", "$timeout", "$stateParams", "$messages"]
 export const fn = ($http, $timeout, $stateParams, $messages) => {
 	return {
 		restrict: "EA",
-		templateUrl: "components/message-history/index.html",
+		template: require("./index.html"),
 		scope: {
 			contact: "=",
 		},

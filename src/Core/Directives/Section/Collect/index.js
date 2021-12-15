@@ -26,7 +26,7 @@ export const fn = (
 ) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/section/collect/index.html",
+		template: require("./index.html"),
 		scope: {
 			model: "=sectionCollect",
 			options: "=",
@@ -194,8 +194,8 @@ export const fn = (
 
 			function showHowToGetBackPopup() {
 				let url = $device.isApple()
-					? "/img/sms/helper_iphone.png"
-					: "/img/sms/helper_android.png"
+					? "../../../../img/sms/helper_iphone.png"
+					: "../../../../img/sms/helper_android.png"
 				let promise = seenPopup
 					? true
 					: $popup.info(

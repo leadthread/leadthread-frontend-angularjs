@@ -7,7 +7,7 @@ export const inject = ["Person", "$q", "$popup", "$notification", "Tel"]
 export const fn = (Person, $q, $popup, $notification, Tel) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/contact-selector/index.html",
+		template: require("./index.html"),
 		scope: {
 			contacts: "=contactSelector",
 			collectCompany: "=",

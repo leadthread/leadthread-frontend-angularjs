@@ -2,12 +2,12 @@ import _ from "lodash"
 
 export const key = "pageLock"
 
-export const inject = []
+export const inject = null
 
 export const fn = () => {
 	return {
 		restrict: "A",
-		templateUrl: "components/page-lock/index.html",
+		template: require("./index.html"),
 		transclude: true,
 		scope: {
 			lock: "=pageLock",

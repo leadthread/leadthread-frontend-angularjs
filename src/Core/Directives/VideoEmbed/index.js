@@ -7,7 +7,7 @@ export const inject = ["$socket"]
 export const fn = ($socket) => {
 	return {
 		restrict: "EA",
-		templateUrl: "components/video-embed/index.html",
+		template: require("./index.html"),
 		scope: {
 			model: "=videoEmbed",
 			loadVideo: "=?",

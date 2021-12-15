@@ -15,5 +15,5 @@ class AppService {
 }
 
 export const key = "$app"
-export const inject = []
+export const inject = null
 export const fn = AppService

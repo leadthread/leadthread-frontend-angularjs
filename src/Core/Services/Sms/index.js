@@ -170,5 +170,5 @@ class SmsService {
 }
 
 export const key = "$sms"
-export const inject = []
+export const inject = null
 export const fn = SmsService

@@ -47,5 +47,5 @@ PlaceholderService.prototype.parse = function (str, values) {
 }
 
 export const key = "$placeholder"
-export const inject = []
+export const inject = null
 export const fn = PlaceholderService

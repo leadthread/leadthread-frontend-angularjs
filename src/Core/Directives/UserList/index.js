@@ -7,7 +7,7 @@ export const inject = ["$stateParams", "$api"]
 export const fn = ($stateParams, $api) => {
 	return {
 		restrict: "EA",
-		templateUrl: "components/userlist/index.html",
+		template: require("./index.html"),
 		link: function ($scope) {
 			function init() {
 				defineScope()

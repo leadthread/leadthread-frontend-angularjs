@@ -5,7 +5,7 @@ export const inject = ["$http", "$state"]
 export const fn = ($http, $state) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/page-title/index.html",
+		template: require("./index.html"),
 		scope: {
 			title: "@pageTitle",
 		},

@@ -25,7 +25,7 @@ export const fn = (
 ) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/section/register/index.html",
+		template: require("./index.html"),
 		scope: {
 			model: "=sectionRegister",
 			options: "=",

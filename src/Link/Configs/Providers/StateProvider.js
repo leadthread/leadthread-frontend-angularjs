@@ -3,7 +3,7 @@ export const inject = ["$stateProvider"]
 export const fn = ($stateProvider) => {
 	$stateProvider.state("root", {
 		url: "?{page:int}&{scrollTo}",
-		templateUrl: "states/root/index.html",
+		template: require("../../Controllers/States/Root/index.html"),
 		controller: "RootController",
 		title: "Link",
 		reloadOnSearch: false,

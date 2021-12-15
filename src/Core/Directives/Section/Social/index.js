@@ -15,7 +15,7 @@ export const inject = [
 export const fn = ($q, $device, $timeout, $popup, $http, $notification) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/section/social/index.html",
+		template: require("./index.html"),
 		scope: {
 			model: "=sectionSocial",
 			options: "=",

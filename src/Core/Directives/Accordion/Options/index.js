@@ -1,11 +1,11 @@
 export const key = "optionsDirective"
 
-export const inject = []
+export const inject = null
 
 export const fn = () => {
 	return {
 		restrict: "E",
-		templateUrl: "components/accordion/options/index.html",
+		template: require("./index.html"),
 		scope: {
 			step: "=",
 			option: "=",

@@ -8,7 +8,7 @@ export const inject = ["$rootScope"]
 export const fn = ($rootScope) => {
 	return {
 		restrict: "EA",
-		templateUrl: "components/pdf-viewer/index.html",
+		template: require("./index.html"),
 		scope: {
 			pdf: "=",
 		},

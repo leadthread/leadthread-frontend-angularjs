@@ -7,7 +7,7 @@ export const inject = ["FileUploader", "$notification"]
 export const fn = (FileUploader, $notification) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/form-file/index.html",
+		template: require("./index.html"),
 		scope: {
 			model: "=formFile",
 			type: "@",

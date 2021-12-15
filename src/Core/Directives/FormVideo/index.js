@@ -5,7 +5,7 @@ export const inject = ["$api", "zenVideoEmbedService", "$q"]
 export const fn = ($api, zenVideoEmbedService, $q) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/form-video/index.html",
+		template: require("./index.html"),
 		scope: {
 			model: "=formVideo",
 			sectionId: "@sectionId",

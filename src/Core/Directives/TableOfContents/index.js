@@ -1,11 +1,11 @@
 export const key = "tableOfContents"
 
-export const inject = []
+export const inject = null
 
 export const fn = () => {
 	return {
 		restrict: "EA",
-		templateUrl: "components/table-of-contents/index.html",
+		template: require("./index.html"),
 		scope: {
 			items: "=",
 			item: "=",

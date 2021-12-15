@@ -8,7 +8,7 @@ export const inject = ["$q", "$popup", "$window"]
 export const fn = ($q, $popup, $window) => {
 	return {
 		restrict: "AE",
-		templateUrl: "components/section/testimonial/index.html",
+		template: require("./index.html"),
 		scope: {
 			options: "=",
 		},

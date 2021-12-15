@@ -7,7 +7,7 @@ export const inject = ["$api", "$timeout"]
 export const fn = ($api, $timeout) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/site-page-section-editor/index.html",
+		template: require("./index.html"),
 		scope: {
 			section: "=sitePageSectionEditor",
 			removeSection: "&",

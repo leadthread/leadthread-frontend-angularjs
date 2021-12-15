@@ -5,7 +5,7 @@ export const inject = ["$popup"]
 export const fn = ($popup) => {
 	return {
 		restrict: "E",
-		templateUrl: "components/form-layout/index.html",
+		template: require("./index.html"),
 		scope: {
 			form: "=",
 			options: "=",

@@ -7,7 +7,7 @@ export const inject = ["$api", "$q", "$window"]
 export const fn = ($api, $q, $window) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/model-select/index.html",
+		template: require("./index.html"),
 		scope: {
 			path: "@",
 			models: "=",

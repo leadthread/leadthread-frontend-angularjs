@@ -23,7 +23,7 @@ class ControlBarComponent extends Component {
 	bindings
 	controller
 	controllerAs
-	templateUrl
+	template
 
 	constructor() {
 		super()
@@ -33,7 +33,7 @@ class ControlBarComponent extends Component {
 		}
 		this.controller = ControlBarController
 		this.controllerAs = "$ctrl"
-		this.templateUrl = "components/control-bar/index.html"
+		this.template = require("./index.html")
 	}
 }
 

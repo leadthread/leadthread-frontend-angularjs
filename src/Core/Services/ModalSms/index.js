@@ -9,5 +9,5 @@ ModalSms.prototype.getNamePromise = function () {
 }
 
 export const key = "$modalSms"
-export const inject = []
+export const inject = null
 export const fn = ModalSms

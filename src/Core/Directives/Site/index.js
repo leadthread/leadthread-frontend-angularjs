@@ -8,7 +8,7 @@ export const inject = ["$api", "$q", "$device", "$timeout"]
 export const fn = ($api, $q, $device, $timeout) => {
 	return {
 		restrict: "AE",
-		templateUrl: "components/site/index.html",
+		template: require("./index.html"),
 		scope: {
 			site: "=",
 			canEdit: "=canEdit",

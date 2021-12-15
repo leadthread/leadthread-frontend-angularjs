@@ -5,7 +5,7 @@ export const inject = ["$placeholder", "$sce", "$sanitize"]
 export const fn = ($placeholder, $sce, $sanitize) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/section/text/index.html",
+		template: require("./index.html"),
 		scope: {
 			model: "=sectionText",
 		},

@@ -41,5 +41,5 @@ class HtmlTitleService {
 }
 
 export const key = "$title"
-export const inject = []
+export const inject = null
 export const fn = HtmlTitleService

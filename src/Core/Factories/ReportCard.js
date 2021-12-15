@@ -2,7 +2,7 @@ import _ from "lodash"
 
 export const key = "ReportCard"
 
-export const inject = []
+export const inject = null
 
 export const fn = () => {
 	var ReportCard = function (title) {

@@ -8,7 +8,7 @@ export const inject = ["$localStorage", "$http", "$auth", "$company", "$q"]
 export const fn = ($localStorage, $http, $auth, $company, $q) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/sender/index.html",
+		template: require("./index.html"),
 		scope: {
 			contacts: "=",
 			options: "=",

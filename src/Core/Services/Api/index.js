@@ -256,5 +256,5 @@ class ApiService {
 }
 
 export const key = "$api"
-export const inject = []
+export const inject = null
 export const fn = ApiService

@@ -35,7 +35,7 @@ export const fn = (
 ) => {
 	return {
 		restrict: "EA",
-		templateUrl: "components/navbar/index.html",
+		template: require("./index.html"),
 		scope: {
 			selectedCompany: "=selected",
 			windowWidth: "=",

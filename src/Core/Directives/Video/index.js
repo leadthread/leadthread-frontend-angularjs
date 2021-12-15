@@ -2,12 +2,12 @@ import _ from "lodash"
 
 export const key = "video"
 
-export const inject = []
+export const inject = null
 
 export const fn = () => {
 	return {
 		restrict: "A",
-		templateUrl: "components/video/index.html",
+		// template: require("./index.html"),
 		scope: {
 			videoId: "=",
 			videoType: "=",

@@ -1,5 +1,5 @@
 /* global smartlook */
-export const inject = []
+export const inject = null
 
 export const fn = () => {
 	// if (window.$SMARTLOOK_KEY) {

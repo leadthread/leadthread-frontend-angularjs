@@ -7,7 +7,7 @@ export const inject = ["$api", "$location", "$q", "EventService"]
 export const fn = ($api, $location, $q, EventService) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/section/story/index.html",
+		template: require("./index.html"),
 		scope: {
 			model: "=sectionStory",
 			options: "=",

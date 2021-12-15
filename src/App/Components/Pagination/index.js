@@ -67,7 +67,7 @@ class PaginationComponent extends Component {
 	bindings
 	controller
 	controllerAs
-	templateUrl
+	template
 	transclude
 
 	constructor() {
@@ -80,7 +80,7 @@ class PaginationComponent extends Component {
 		this.transclude = true
 		this.controller = PaginationController
 		this.controllerAs = "$ctrl"
-		this.templateUrl = "components/pagination/index.html"
+		this.template = require("./index.html")
 	}
 }
 

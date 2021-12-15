@@ -107,5 +107,5 @@ class CacheService {
 }
 
 export const key = "$cache"
-export const inject = []
+export const inject = null
 export const fn = CacheService

@@ -11,7 +11,6 @@ const inject = [
 	"$popup",
 	"$api",
 	"$http",
-	"$transitions",
 	"CampaignService",
 	"$notification",
 	"companies",
@@ -25,7 +24,6 @@ const fn = (
 	$popup,
 	$api,
 	$http,
-	$transitions,
 	CampaignService,
 	$notification,
 	companies,
@@ -70,7 +68,7 @@ const fn = (
 				icon: "icon-trophy",
 				enabled: company.module_leaderboard,
 				description:
-					"Use Leaderboard - when you want to run a \"Live\" or \"Real-time\" referral campaign, that can be viewed during a group referral session. A Leaderboard campaign will show the names of all participants in the campaign and display real- time results as they come in. Leaderboard is ideal for both Employee Referrals and Product Referrals, that are conducted in a group setting. \n\nIdeal for: New Hire groups, Team Meetings, Seminars, etc..",
+					'Use Leaderboard - when you want to run a "Live" or "Real-time" referral campaign, that can be viewed during a group referral session. A Leaderboard campaign will show the names of all participants in the campaign and display real- time results as they come in. Leaderboard is ideal for both Employee Referrals and Product Referrals, that are conducted in a group setting. \n\nIdeal for: New Hire groups, Team Meetings, Seminars, etc..',
 			},
 			{
 				name: "MessageThread",

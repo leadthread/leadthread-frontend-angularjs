@@ -1,6 +1,6 @@
 export const key = "List"
 
-export const inject = []
+export const inject = null
 
 export const fn = () => {
 	var List = function () {

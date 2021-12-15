@@ -5,7 +5,7 @@ export default class Component extends SectionComponent {
 	bindings
 	controller
 	controllerAs
-	templateUrl
+	template
 
 	constructor() {
 		super()
@@ -15,6 +15,6 @@ export default class Component extends SectionComponent {
 		}
 		this.controller = Controller
 		this.controllerAs = "$ctrl"
-		this.templateUrl = "components/section/incentive-preview/index.html"
+		this.template = require("./index.html")
 	}
 }

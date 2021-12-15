@@ -6,7 +6,7 @@ export const inject = ["$api", "$http", "$device", "$color", "$cache", "$auth"]
 export const fn = ($api, $http, $device, $color, $cache, $auth) => {
 	return {
 		restrict: "EA",
-		templateUrl: "components/playlist-selector/index.html",
+		template: require("./index.html"),
 		scope: {
 			playlists: "=",
 			model: "=",

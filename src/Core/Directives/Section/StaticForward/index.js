@@ -7,7 +7,7 @@ export const inject = ["$placeholder", "$popup", "EventService"]
 export const fn = ($placeholder, $popup, EventService) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/section/static-forward/index.html",
+		template: require("./index.html"),
 		scope: {
 			model: "=sectionStaticForward",
 			first: "&",

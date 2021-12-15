@@ -5,7 +5,7 @@ export const inject = ["$version", "$interval"]
 export const fn = ($version, $interval) => {
 	return {
 		restrict: "E",
-		templateUrl: "components/versionbar/index.html",
+		template: require("./index.html"),
 		scope: {},
 		link: function ($scope) {
 			function init() {

@@ -7,7 +7,7 @@ export const inject = ["$job"]
 export const fn = ($job) => {
 	return {
 		restrict: "EA",
-		templateUrl: "components/job/index.html",
+		template: require("./index.html"),
 		link: function ($scope) {
 			var init = function () {
 				defineScope()

@@ -260,7 +260,7 @@ PopupService.prototype.openFormModal = function (data, size) {
 	return this.openModal(
 		{
 			controller: "PopupController",
-			templateUrl: "services/popup/index.html",
+			template: require("services/popup/index.html"),
 		},
 		data,
 		size
@@ -271,7 +271,7 @@ PopupService.prototype.openCopyModal = function (data, size) {
 	return this.openModal(
 		{
 			controller: "PopupCopyController",
-			templateUrl: "services/popup/copy/index.html",
+			template: require("services/popup/copy/index.html"),
 		},
 		data,
 		size
@@ -282,7 +282,7 @@ PopupService.prototype.openContactsModal = function (data) {
 	return this.openModal(
 		{
 			controller: "PopupContactsController",
-			templateUrl: "services/popup/contacts/index.html",
+			template: require("services/popup/contacts/index.html"),
 		},
 		data
 	)
@@ -292,7 +292,7 @@ PopupService.prototype.openIncentiveModal = function (data) {
 	return this.openModal(
 		{
 			controller: "PopupIncentiveController",
-			templateUrl: "services/popup/incentive/index.html",
+			template: require("services/popup/incentive/index.html"),
 		},
 		data
 	)
@@ -302,7 +302,7 @@ PopupService.prototype.openPlaylistSchedulesModal = function (data) {
 	return this.openModal(
 		{
 			controller: "PopupPlaylistSchedulesController",
-			templateUrl: "services/popup/schedules/index.html",
+			template: require("services/popup/schedules/index.html"),
 		},
 		data,
 		"sm"
@@ -313,7 +313,7 @@ PopupService.prototype.openSendPlaylistModal = function (data) {
 	return this.openModal(
 		{
 			controller: "PopupSendPlaylistController",
-			templateUrl: "services/popup/send/playlist/index.html",
+			template: require("services/popup/send/playlist/index.html"),
 		},
 		data,
 		"lg"
@@ -324,7 +324,7 @@ PopupService.prototype.openSendCampaignModal = function (data) {
 	return this.openModal(
 		{
 			controller: "PopupSendCampaignController",
-			templateUrl: "services/popup/send/campaign/index.html",
+			template: require("services/popup/send/campaign/index.html"),
 		},
 		data,
 		"lg"
@@ -337,7 +337,7 @@ PopupService.prototype.openModal = function (options, data, size) {
 	var defaults = {
 		controller: "PopupController",
 		animation: false,
-		templateUrl: "services/popup/index.html",
+		template: require("services/popup/index.html"),
 		windowTemplateUrl: "services/popup/window.html",
 		size: size,
 		resolve: {

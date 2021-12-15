@@ -5,7 +5,7 @@ export const inject = ["$api"]
 export const fn = ($api) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/brand-url/index.html",
+		template: require("./index.html"),
 		scope: {
 			company: "=brandUrl",
 		},

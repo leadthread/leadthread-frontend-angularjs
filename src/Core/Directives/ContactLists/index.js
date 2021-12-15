@@ -1,10 +1,10 @@
 export const key = "contactLists"
 
-export const inject = []
+export const inject = null
 
 export const fn = () => {
 	return {
 		restrict: "E",
-		templateUrl: "components/contact-lists/index.html",
+		template: require("./index.html"),
 	}
 }

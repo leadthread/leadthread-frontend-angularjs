@@ -7,7 +7,7 @@ export const inject = ["$api", "$timeout", "EventService"]
 export const fn = ($api, $timeout, EventService) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/section/video/index.html",
+		template: require("./index.html"),
 		scope: {
 			model: "=sectionVideo",
 			options: "=",

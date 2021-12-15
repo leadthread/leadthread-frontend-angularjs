@@ -12,7 +12,7 @@ export const inject = ["EventService"]
 export const fn = (EventService) => {
 	return {
 		restrict: "A",
-		templateUrl: "components/event/index.html",
+		// template: require("./index.html"),
 		scope: {
 			type: "@",
 			link: "=",

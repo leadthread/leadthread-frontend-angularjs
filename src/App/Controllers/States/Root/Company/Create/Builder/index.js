@@ -677,7 +677,7 @@ class BuilderController extends Controller {
 	openCustomPrompt() {
 		let custom = this.$uibModal.open({
 			animation: true,
-			templateUrl: "components/prompt-builder/custom/index.html",
+			template: require("../../../../../../../Core/Controllers/PromptBuilder/Custom/index.html"),
 			controller: "PromptBuilderCustomController",
 			resolve: {
 				items: () => {
@@ -692,7 +692,7 @@ class BuilderController extends Controller {
 	openLibraryPrompt() {
 		let library = this.$uibModal.open({
 			animation: true,
-			templateUrl: "components/prompt-builder/library/index.html",
+			template: require("../../../../../../../Core/Controllers/PromptBuilder/Library/index.html"),
 			controller: "PromptBuilderLibraryController",
 			resolve: {},
 		})

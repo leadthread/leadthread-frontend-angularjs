@@ -22,7 +22,7 @@ export const fn = (
 ) => {
 	return {
 		restrict: "EA",
-		templateUrl: "components/campaign-selector/index.html",
+		template: require("./index.html"),
 		scope: {
 			campaigns: "=",
 			model: "=",

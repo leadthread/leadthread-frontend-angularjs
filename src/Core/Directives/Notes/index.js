@@ -7,7 +7,7 @@ export const inject = ["$api", "$popup", "$notification", "$q"]
 export const fn = ($api, $popup, $notification, $q) => {
 	return {
 		restrict: "EA",
-		templateUrl: "components/notes/index.html",
+		template: require("./index.html"),
 		scope: {
 			user: "=",
 			notableId: "=",

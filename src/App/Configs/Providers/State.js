@@ -5,13 +5,14 @@ export const inject = ["$stateProvider"]
 export const fn = ($stateProvider) => {
 	$stateProvider.state("root", {
 		url: "",
-		templateUrl: "states/root/index.html",
+		// template: "hello",
+		template: require("../../Controllers/States/Root/index.html"),
 		title: "Root",
 	})
 
 	$stateProvider.state("root.company-select", {
 		url: "/company-select",
-		templateUrl: "states/root/company-select/index.html",
+		template: require("../../Controllers/States/Root/CompanySelect/index.html"),
 		controller: "CompanySelectController",
 		roles: ["Admin", "User", "Contact"],
 		title: "Company Selection",
@@ -27,7 +28,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.console", {
 		url: "/console?{companyId:int}",
-		templateUrl: "states/root/console/index.html",
+		template: require("../../Controllers/States/Root/Console/index.html"),
 		controller: "ConsoleController",
 		roles: ["Admin"],
 		title: "Yaptive Admin Console",
@@ -55,13 +56,13 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.auth", {
 		url: "/auth",
-		templateUrl: "states/root/auth/index.html",
+		template: require("../../Controllers/States/Root/Auth/index.html"),
 		controller: "AuthController",
 	})
 
 	$stateProvider.state("root.auth.register", {
 		url: "/register/{linkId}",
-		templateUrl: "states/root/auth/register/index.html",
+		template: require("../../Controllers/States/Root/Auth/Register/index.html"),
 		controller: "AuthRegisterController",
 		resolve: {
 			link: [
@@ -103,34 +104,34 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.auth.code", {
 		url: "/code",
-		templateUrl: "states/root/auth/code/index.html",
+		template: require("../../Controllers/States/Root/Auth/Code/index.html"),
 		controller: "AuthCodeController",
 	})
 
 	$stateProvider.state("root.company.logout", {
 		url: "/logout",
-		templateUrl: "states/root/auth/logout/index.html",
+		template: require("../../Controllers/States/Root/Auth/Logout/index.html"),
 		controller: "LogoutController",
 		title: "Log Out",
 	})
 
 	$stateProvider.state("root.auth.login", {
 		url: "/login",
-		templateUrl: "states/root/auth/login/index.html",
+		template: require("../../Controllers/States/Root/Auth/Login/index.html"),
 		controller: "AuthLoginController",
 		title: "Log In",
 	})
 
 	$stateProvider.state("root.auth.reset", {
 		url: "/reset",
-		templateUrl: "states/root/auth/reset/index.html",
+		template: require("../../Controllers/States/Root/Auth/Reset/index.html"),
 		controller: "AuthResetController",
 		title: "Password Reset",
 	})
 
 	$stateProvider.state("root.auth.reset.token", {
 		url: "/{token}?{email}",
-		templateUrl: "states/root/auth/reset/token/index.html",
+		template: require("../../Controllers/States/Root/Auth/Reset/Token/index.html"),
 		controller: "AuthResetTokenController",
 		title: "Password Reset",
 	})
@@ -139,7 +140,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.company", {
 		url: "/{companyId:int}",
-		templateUrl: "states/root/company/index.html",
+		template: require("../../Controllers/States/Root/Company/index.html"),
 		roles: ["Admin", "User", "Contact"],
 		controller: "CompanyController",
 		resolve: {
@@ -187,7 +188,7 @@ export const fn = ($stateProvider) => {
 	$stateProvider.state("root.company.message", {
 		url: "/message?{contactId:int}",
 		roles: ["Admin", "User"],
-		templateUrl: "states/root/company/message/index.html",
+		template: require("../../Controllers/States/Root/Company/Message/index.html"),
 		controller: "MessageController",
 		title: "Message Center",
 	})
@@ -195,7 +196,7 @@ export const fn = ($stateProvider) => {
 	$stateProvider.state("root.company.dashboard", {
 		url: "/dashboard?{campaignId:int}",
 		roles: ["Admin", "User"],
-		templateUrl: "states/root/company/dashboard/index.html",
+		template: require("../../Controllers/States/Root/Company/Dashboard/index.html"),
 		controller: "DashboardController",
 		title: "Dashboard",
 		reloadOnSearch: true,
@@ -237,7 +238,7 @@ export const fn = ($stateProvider) => {
 	// $stateProvider.state("root.company.leaderboards", {
 	// 	url:"/leaderboards?{campaignId:int}",
 	// 	roles: ["Admin"],
-	// 	templateUrl:"states/root/company/leaderboards/index.html",
+	// 	template: require("../../Controllers/States/Root/Company/Leaderboards/index.html"),
 	// 	controller:"LeaderboardsController",
 	// 	title:"Leaderboards",
 	// 	reloadOnSearch: true,
@@ -251,7 +252,7 @@ export const fn = ($stateProvider) => {
 	$stateProvider.state("root.company.leaderboard", {
 		url: "/leaderboard/{batchId}",
 		roles: ["Admin"],
-		templateUrl: "states/root/company/leaderboard/index.html",
+		template: require("../../Controllers/States/Root/Company/Leaderboard/index.html"),
 		controller: "LeaderboardController",
 		title: "Leaderboard",
 		reloadOnSearch: true,
@@ -292,7 +293,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.company.send", {
 		url: "/send?{type}&{playlistId:int}&{campaignId:int}&{contactId:int}&{userId:int}",
-		templateUrl: "states/root/company/send/index.html",
+		template: require("../../Controllers/States/Root/Company/Send/index.html"),
 		roles: ["Admin", "User"],
 		controller: "SendController",
 		title: "Send Campaign",
@@ -328,7 +329,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.company.playlist", {
 		url: "/playlist?{playlistId:int}",
-		templateUrl: "states/root/company/playlist/index.html",
+		template: require("../../Controllers/States/Root/Company/Playlist/index.html"),
 		roles: ["Admin"],
 		controller: "PlaylistController",
 		title: "Playlist",
@@ -357,7 +358,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.company.campaigns", {
 		url: "/campaign",
-		templateUrl: "states/root/company/create/index.html",
+		template: require("../../Controllers/States/Root/Company/Create/index.html"),
 		roles: ["Admin"],
 		controller: "CreateController",
 		title: "My Campaigns",
@@ -374,7 +375,7 @@ export const fn = ($stateProvider) => {
 	$stateProvider.state("root.company.create", {
 		abstract: true,
 		url: "/campaign",
-		templateUrl: "states/root/company/create/index.html",
+		template: require("../../Controllers/States/Root/Company/Create/index.html"),
 		roles: ["Admin"],
 		controller: "CreateController",
 		title: "My Campaigns",
@@ -390,7 +391,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.company.create.new", {
 		url: "/new/{campaignType}",
-		templateUrl: "states/root/company/create/builder/index.html",
+		template: require("../../Controllers/States/Root/Company/Create/Builder/index.html"),
 		roles: ["Admin"],
 		controller: "BuilderController",
 		title: "New Campaign",
@@ -414,7 +415,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.company.create.edit", {
 		url: "/edit/{campaignType}/{campaignId:int}",
-		templateUrl: "states/root/company/create/builder/index.html",
+		template: require("../../Controllers/States/Root/Company/Create/Builder/index.html"),
 		roles: ["Admin"],
 		controller: "BuilderController",
 		title: "Edit Campaign",
@@ -440,7 +441,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.company.users", {
 		url: "/users",
-		templateUrl: "states/root/company/users/index.html",
+		// template: require("../../Controllers/States/Root/Company/Users/index.html"),
 		roles: ["Admin", "User", "Contact"],
 		controller: "UsersController",
 		resolve: {},
@@ -452,7 +453,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.company.contacts", {
 		url: "/contacts",
-		templateUrl: "states/root/company/contacts/index.html",
+		template: require("../../Controllers/States/Root/Company/Contacts/index.html"),
 		roles: ["Admin", "User"],
 		controller: "ContactsController",
 		title: "My Contacts",
@@ -460,7 +461,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.company.contacts.index", {
 		url: "/index?{userId:int}",
-		templateUrl: "states/root/company/contacts/index/index.html",
+		template: require("../../Controllers/States/Root/Company/Contacts/Index/index.html"),
 		roles: ["Admin", "User"],
 		controller: "ContactsIndexController",
 		title: "My Contacts",
@@ -476,7 +477,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.company.contact", {
 		url: "/contact/{contactId:int}",
-		templateUrl: "states/root/company/contact/index.html",
+		template: require("../../Controllers/States/Root/Company/Contact/index.html"),
 		roles: ["Admin", "User"],
 		controller: "ContactController",
 		title: "My Contacts",
@@ -606,7 +607,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.company.referral", {
 		url: "/referral/{referralId}",
-		templateUrl: "states/root/company/referral/index.html",
+		template: require("../../Controllers/States/Root/Company/Referral/index.html"),
 		roles: ["Admin", "User"],
 		controller: "ReferralController",
 		title: "Referral",
@@ -750,7 +751,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.company.report", {
 		url: "/report",
-		templateUrl: "states/root/company/report/index.html",
+		template: require("../../Controllers/States/Root/Company/Report/index.html"),
 		roles: ["Admin", "User"],
 		controller: "ReportController",
 		reloadOnSearch: true,
@@ -773,7 +774,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.company.report.campaign", {
 		url: "/campaign?" + paramsString,
-		templateUrl: "states/root/company/report/campaign/index.html",
+		template: require("../../Controllers/States/Root/Company/Report/Campaign/index.html"),
 		roles: ["Admin"],
 		controller: "ReportCampaignController",
 		title: "Reports",
@@ -781,7 +782,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.company.report.user", {
 		url: "/user?" + paramsString,
-		templateUrl: "states/root/company/report/user/index.html",
+		template: require("../../Controllers/States/Root/Company/Report/User/index.html"),
 		roles: ["Admin", "User"],
 		controller: "ReportUserController",
 		title: "Reports",
@@ -789,7 +790,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.company.report.recipient", {
 		url: "/recipient?" + paramsString,
-		templateUrl: "states/root/company/report/recipient/index.html",
+		template: require("../../Controllers/States/Root/Company/Report/Recipient/index.html"),
 		roles: ["Admin", "User"],
 		controller: "ReportRecipientController",
 		title: "Reports",
@@ -797,7 +798,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.company.report.contact", {
 		url: "/contact?" + paramsString,
-		templateUrl: "states/root/company/report/contact/index.html",
+		template: require("../../Controllers/States/Root/Company/Report/Contact/"),
 		roles: ["Admin", "User"],
 		controller: "ReportContactController",
 		title: "Reports",
@@ -811,7 +812,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.company.user-settings", {
 		url: "/user/settings",
-		templateUrl: "states/root/company/user-settings/index.html",
+		template: require("../../Controllers/States/Root/Company/UserSettings/index.html"),
 		title: "User Settings",
 		controller: "UserSettingsController",
 	})
@@ -819,7 +820,7 @@ export const fn = ($stateProvider) => {
 	$stateProvider.state("root.company.settings", {
 		url: "/settings",
 		roles: ["Admin"],
-		templateUrl: "states/root/company/settings/index.html",
+		template: require("../../Controllers/States/Root/Company/Settings/index.html"),
 		controller: "SettingsController",
 		title: "Branding",
 		resolve: {
@@ -843,7 +844,7 @@ export const fn = ($stateProvider) => {
 	$stateProvider.state("root.company.manage", {
 		url: "/manage",
 		roles: ["Admin"],
-		templateUrl: "states/root/company/manage/index.html",
+		template: require("../../Controllers/States/Root/Company/Manage/index.html"),
 		controller: "ManageController",
 		title: "User Management",
 		resolve: {
@@ -892,7 +893,7 @@ export const fn = ($stateProvider) => {
 
 	$stateProvider.state("root.style", {
 		url: "/style",
-		templateUrl: "states/root/style/index.html",
+		template: require("../../Controllers/States/Root/Style/index.html"),
 	})
 
 	/*===========================
@@ -902,7 +903,7 @@ export const fn = ($stateProvider) => {
 	var opts404 = {
 		url: "*path",
 		title: "404",
-		templateUrl: "states/root/404/index.html",
+		template: require("../../Controllers/States/Root/404/index.html"),
 	}
 
 	$stateProvider.state("root.company.404", _.cloneDeep(opts404))

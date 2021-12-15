@@ -7,7 +7,7 @@ export const inject = ["$popup"]
 export const fn = ($popup) => {
 	return {
 		restrict: "EA",
-		templateUrl: "components/cta-buttons/index.html",
+		template: require("./index.html"),
 		scope: {
 			buttons: "=ctaButtons",
 			placeholders: "=",

@@ -7,7 +7,7 @@ export const inject = ["$notification", "$api"]
 export const fn = ($notification, $api) => {
 	return {
 		restrict: "EA",
-		templateUrl: "components/accordion/edit-prompt/index.html",
+		template: require("./index.html"),
 		scope: {
 			cue: "=",
 			showbtn: "=",

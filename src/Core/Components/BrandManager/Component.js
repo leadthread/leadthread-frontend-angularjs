@@ -5,7 +5,7 @@ export default class Component extends BaseComponent {
 	bindings
 	controller
 	controllerAs
-	templateUrl
+	template
 
 	constructor() {
 		super()
@@ -16,6 +16,6 @@ export default class Component extends BaseComponent {
 		}
 		this.controller = Controller
 		this.controllerAs = "$ctrl"
-		this.templateUrl = "components/brand-manager/index.html"
+		this.template = require("./index.html")
 	}
 }
