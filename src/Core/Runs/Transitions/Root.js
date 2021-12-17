@@ -54,8 +54,9 @@ export const fn = (
 		var cond4 = !_.includes(name, "root")
 		var cond5 = !_.includes(name, "root.link")
 		var cond6 = !_.includes(name, "root.auth.register")
+		var cond7 = !_.includes(name, "45.33.20.236")
 
-		if (cond1 && cond2 && cond3 && cond4 && cond5 && cond6) {
+		if (cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7) {
 			window.location.href = _.replace(url, host, "app.yaptive.com")
 			return false
 		}
