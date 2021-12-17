@@ -1,9 +1,0 @@
-<div class="models">
-    <span ng-show="!$ctrl.models.length" style="display:inline-block">
-        <span loader></span>
-    </span>
-    <ng-transclude></ng-transclude>
-</div>
-
-<!-- Page controls -->
-<dir-pagination-controls pagination-id="$ctrl.id" ng-show="$ctrl.pagination.total > 1" on-page-change="$ctrl.onPageChange(newPageNumber)"></dir-pagination-controls>
