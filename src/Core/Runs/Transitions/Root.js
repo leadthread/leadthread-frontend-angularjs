@@ -57,8 +57,8 @@ export const fn = (
 		var cond7 = !_.includes(name, "45.33.20.236")
 
 		if (cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7) {
-			window.location.href = _.replace(url, host, "app.yaptive.com")
-			return false
+			// window.location.href = _.replace(url, host, "app.yaptive.com")
+			// return false
 		}
 	})
 }
