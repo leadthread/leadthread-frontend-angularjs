@@ -16,8 +16,8 @@ export const fn = ($transitions, $state, $location) => {
 		var cond6 = !_.includes(host, "localhost")
 
 		if (cond1 && cond2 && cond3 && cond4 && cond5 && cond6) {
-			window.location.href = _.replace(url, host, "app.yaptive.com")
-			return false
+			// window.location.href = _.replace(url, host, "app.yaptive.com")
+			// return false
 		}
 	})
 
