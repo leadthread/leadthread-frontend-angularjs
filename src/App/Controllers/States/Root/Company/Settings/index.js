@@ -5,9 +5,14 @@ class SettingsController extends Controller {
 	static $inject = ["$scope", "company", "brands", "$notification"]
 	constructor($scope, company, brands, $notification) {
 		super()
+
+		this.$scope = $scope
+		this.company = company
+		this.brands = brands
+		this.$notification = $notification
+		this.$onInit()
 	}
 
-	init() {}
 	defineListeners() {
 		this.$scope.$watch("company.name", this.saveCompany)
 	}

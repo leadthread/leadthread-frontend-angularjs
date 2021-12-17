@@ -5,7 +5,7 @@
  * @Last Modified time: 2017-08-04 19:51:53
  */
 ///
-import { Model, ModelFactory, ModelService } from "./Model"
+import { Model } from "./Model"
 
 export class SmsBatch extends Model {
 	count
@@ -17,37 +17,11 @@ export class SmsBatch extends Model {
 		super(_service, _data)
 	}
 
+	static getDefaults() {
+		return {}
+	}
+
 	toString() {
 		return "Batch #" + this.id
-	}
-}
-
-export class SmsBatchFactory extends ModelFactory {
-	static $inject = ["SmsBatchService"]
-	constructor(_service) {
-		super(_service)
-	}
-	create(_data) {
-		return this._service.create(_data)
-	}
-}
-
-export class SmsBatchService extends ModelService {
-	resource = "batches"
-
-	static $inject = ["$api", "$q"]
-	constructor($api, $q) {
-		super($api, $q)
-		this.related.load.campaign = this.loadCampaign
-	}
-
-	create = (_data) => {
-		return new SmsBatch(this, _data)
-	}
-
-	loadCampaign = (m) => {
-		return this.CampaignService.show(m.campaign_id).then(
-			this.assignResult(m, "campaign")
-		)
 	}
 }

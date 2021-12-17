@@ -2,7 +2,7 @@ const key = "LogoutController"
 
 const inject = ["$scope", "$auth"]
 
-const fn = ($scope, $auth) => {
+function fn($scope, $auth) {
 	function init() {
 		$auth.logout()
 	}

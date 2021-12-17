@@ -16,7 +16,7 @@ const inject = [
 	"$state",
 ]
 
-const fn = (
+function fn(
 	$scope,
 	link,
 	campaign,
@@ -28,7 +28,7 @@ const fn = (
 	$device,
 	$stateParams,
 	$state
-) => {
+) {
 	/**
 	 * Start it up
 	 */

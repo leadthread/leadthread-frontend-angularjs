@@ -45,9 +45,20 @@ export default class Controller extends SectionController {
 		ContactService
 	) {
 		super()
+		this.$q = $q
+		this.$device = $device
+		this.$timeout = $timeout
+		this.$popup = $popup
+		this.$http = $http
+		this.$notification = $notification
+		this.$sms = $sms
+		this.$rootScope = $rootScope
+		this.EventService = EventService
+		this.ContactService = ContactService
 		this.options = {}
 		this.model = {}
 		this.lock = "Loading"
+		this.$onInit()
 	}
 
 	run = () => {
@@ -63,7 +74,6 @@ export default class Controller extends SectionController {
 
 		if (!this.options.contact) {
 			return this.contactForm().then((link) => {
-				console.log(link)
 				window.location.href = link.long_url
 			})
 		}

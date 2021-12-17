@@ -1,4 +1,5 @@
 const path = require("path")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
 	mode: "development",
@@ -32,6 +33,29 @@ module.exports = {
 					esModule: false,
 				},
 			},
+			{
+				test: /\.(less)$/,
+				use: [
+					MiniCssExtractPlugin.loader, // creates style nodes from JS strings
+					"css-loader", // translates CSS into CommonJS
+					{
+						loader: "less-loader",
+						options: {
+							lessOptions: {
+								strictMath: false,
+							},
+						},
+					}, // compiles Less to CSS
+				],
+			},
+			{
+				test: /\.css$/,
+				use: [
+					MiniCssExtractPlugin.loader, // creates style nodes from JS strings
+					{ loader: "css-loader" },
+				],
+			},
 		],
 	},
+	plugins: [new MiniCssExtractPlugin()],
 }

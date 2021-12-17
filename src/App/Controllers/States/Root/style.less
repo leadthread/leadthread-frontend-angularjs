@@ -1,0 +1,19 @@
+#root {
+	.root-content {
+		position: relative;
+		min-height: ~"calc(100vh - (@{footer-height}))";
+	}
+
+	.root-view {
+		#inner {
+			padding: @spacing;
+		}
+	}
+}
+
+@import "./404/style.less";
+@import "./Auth/style.less";
+@import "./Company/style.less";
+@import "./CompanySelect/style.less";
+@import "./Console/style.less";
+@import "./Start/style.less";

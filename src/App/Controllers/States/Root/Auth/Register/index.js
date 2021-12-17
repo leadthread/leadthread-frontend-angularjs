@@ -16,7 +16,7 @@ const inject = [
 	"$favicon",
 ]
 
-const fn = (
+function fn(
 	$scope,
 	$auth,
 	$stateParams,
@@ -28,7 +28,7 @@ const fn = (
 	$device,
 	$q,
 	$favicon
-) => {
+) {
 	/**
 	 * Starts controller
 	 */

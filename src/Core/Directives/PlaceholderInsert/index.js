@@ -42,9 +42,9 @@ export const fn = ($textInsert, $popup) => {
 					"What are Placeholders?",
 					"<p><b>Placeholder text</b> is descriptive <b>text</b> displayed inside your campaign. It is often used to handle dynamic information. To use, simply insert one of the placeholder options into the text field that you are creating and Yaptive will input the information into your campaign. It’s a powerful tool for creating a personal experience within your campaign automatically.</p>" +
 						"<p><b>For Example:</b></p>" +
-						'<p>"Hi <span style="color:blue;">[customer first name]</span>, I really appreciate your business and would love for you to share you experience. Your friends and family will also have a great experience at <span style="color:blue;">[company name]</span> with <span style="color:blue;">[sales rep first name]</span>."</p>' +
+						"<p>\"Hi <span style=\"color:blue;\">[customer first name]</span>, I really appreciate your business and would love for you to share you experience. Your friends and family will also have a great experience at <span style=\"color:blue;\">[company name]</span> with <span style=\"color:blue;\">[sales rep first name]</span>.\"</p>" +
 						"<p><b>The above text is displayed as:</b></p>" +
-						'<p>"Hi <span style="color:blue;">Tyler</span>, I really appreciate your business and would love for you to share you experience. Your friends and family will also have a great experience at <span style="color:blue;">Yaptive</span> with <span style="color:blue;">Daniel</span>."</p>'
+						"<p>\"Hi <span style=\"color:blue;\">Tyler</span>, I really appreciate your business and would love for you to share you experience. Your friends and family will also have a great experience at <span style=\"color:blue;\">Yaptive</span> with <span style=\"color:blue;\">Daniel</span>.\"</p>"
 				)
 			}
 

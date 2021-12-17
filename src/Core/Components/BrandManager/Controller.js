@@ -13,6 +13,9 @@ export default class Controller extends ComponentController {
 
 	constructor($popup, BrandFactory, $stateParams) {
 		super()
+		this.$popup = $popup
+		this.BrandFactory = BrandFactory
+		this.$stateParams = $stateParams
 	}
 
 	run = () => {

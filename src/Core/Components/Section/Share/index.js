@@ -1,3 +1,3 @@
 import Component from "./Component"
-export const key = "SectionShare"
-export const instance = new Component()
+export const key = "sectionShare"
+export const fn = new Component()

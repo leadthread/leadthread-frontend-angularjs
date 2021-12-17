@@ -4,7 +4,7 @@ const key = "AuthResetController"
 
 const inject = ["$scope", "$http", "$notification"]
 
-const fn = ($scope, $http, $notification) => {
+function fn($scope, $http, $notification) {
 	function init() {
 		$scope.reset = reset
 	}

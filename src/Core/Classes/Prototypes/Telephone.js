@@ -8,6 +8,7 @@ export class Telephone {
 	number
 
 	constructor(number, country = "US") {
+		this.country = country
 		this.setNumber(number)
 	}
 

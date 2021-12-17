@@ -1,0 +1,47 @@
+#root #auth {
+	min-height: ~"calc(100vh - 60px)";
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background-color: white;
+
+	#loader {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 100;
+		background: rgba(255, 255, 255, 0.75);
+	}
+
+	#logo {
+		margin: (@spacing*2) 0;
+	}
+
+	#auth-box {
+		position: relative;
+		padding: @spacing;
+		text-align: center;
+		max-width: 44rem;
+	}
+
+	[type="submit"] {
+		margin-bottom: 1rem;
+	}
+
+	input {
+		margin-bottom: @spacing;
+	}
+
+	a {
+		line-height: 4rem;
+	}
+}
+
+@import "./Code/style.less";
+@import "./Login/style.less";
+@import "./Logout/style.less";
+@import "./Register/style.less";
+@import "./Reset/style.less";

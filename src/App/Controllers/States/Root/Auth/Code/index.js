@@ -2,7 +2,7 @@ const key = "AuthCodeController"
 
 const inject = ["$scope", "$state"]
 
-const fn = ($scope, $state) => {
+function fn($scope, $state) {
 	function init() {
 		defineScope()
 	}

@@ -12,6 +12,7 @@ export default class Controller extends ComponentController {
 
 	constructor() {
 		super()
+		this.$onInit()
 	}
 
 	run = () => {}

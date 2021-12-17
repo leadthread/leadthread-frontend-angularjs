@@ -3,6 +3,9 @@ import _ from "lodash"
 class HtmlTitleService {
 	static $inject = ["$transitions", "$state", "$window"]
 	constructor($transitions, $state, $window) {
+		this.$transitions = $transitions
+		this.$state = $state
+		this.$window = $window
 		this.$window.document.title = ""
 
 		this.$transitions.onEnter({}, (trans) => {

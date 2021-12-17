@@ -643,12 +643,13 @@
 					<h3>{{preview.title}}</h3>
 				</div> -->
 				<div id="prevBody" class="phone">
-					<div id="site-wrapper">
+					<div id="site-wrapper" ng-if="preview.site">
 						<brand
 							brand="preview.brand"
 							ng-if="showBrand()"
 						></brand>
 						<div
+							
 							site="preview.site"
 							selected-page="preview.page"
 							options="preview.options"

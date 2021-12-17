@@ -9,6 +9,10 @@ class CacheService {
 
 	static $inject = ["$localStorage", "$sessionStorage", "$interval", "$q"]
 	constructor($localStorage, $sessionStorage, $interval, $q) {
+		this.$localStorage = $localStorage
+		this.$sessionStorage = $sessionStorage
+		this.$interval = $interval
+		this.$q = $q
 		this.promises = {}
 		this.$interval(() => {
 			_.forEach([false, true], (x) => {

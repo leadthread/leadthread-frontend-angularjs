@@ -1,5 +1,5 @@
 import _ from "lodash"
-import { SiteClass as Site } from "../../Classes"
+import { Site } from "../../Classes"
 
 export const key = "site"
 
@@ -25,6 +25,7 @@ export const fn = ($api, $q, $device, $timeout) => {
 			function init() {
 				if ($scope.site instanceof Site) {
 					$scope.site.load(true).then(function () {
+						console.log($scope.site)
 						defineScope()
 						defineListeners()
 						$scope.lock = null
@@ -33,6 +34,7 @@ export const fn = ($api, $q, $device, $timeout) => {
 						}, 200)
 					})
 				} else {
+					console.error($scope.site)
 					throw "Not a Site"
 				}
 			}

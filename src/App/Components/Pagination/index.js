@@ -16,6 +16,7 @@ class PaginationController extends Controller {
 
 	constructor($q) {
 		super()
+		this.$q = $q
 		this.loading = null
 		this.id = "pagination-" + Math.round(Math.random() * 1000)
 		this.pagination = {

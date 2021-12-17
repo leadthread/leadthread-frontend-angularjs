@@ -2,7 +2,7 @@ export const key = "AuthLoginController"
 
 export const inject = ["$scope", "$state"]
 
-export const fn = ($scope, $state) => {
+export function fn($scope, $state) {
 	function init() {
 		$scope.credentials = {}
 	}

@@ -10,4 +10,6 @@ export default class Controller extends CoreController {
 		this.options = {}
 		this.model = {}
 	}
+
+	$onInit() {}
 }

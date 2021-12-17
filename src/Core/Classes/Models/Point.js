@@ -5,7 +5,7 @@
  * @Last Modified time: 2017-07-19 13:58:03
  */
 ///
-import { Model, ModelFactory, ModelService } from "./Model"
+import { Model } from "./Model"
 
 export class Point extends Model {
 	type
@@ -16,50 +16,16 @@ export class Point extends Model {
 		super(_service, _data)
 	}
 
+	static getDefaults() {
+		const defaults = {}
+		return defaults
+	}
+
 	toString() {
 		return "Point #" + this.id
 	}
 
 	valueOf() {
 		return super.valueOf()
-	}
-}
-
-export class PointFactory extends ModelFactory {
-	static $inject = ["PointService"]
-	constructor(_service) {
-		super(_service)
-	}
-	create(_data) {
-		return this._service.create(_data)
-	}
-}
-
-export class PointService extends ModelService {
-	resource = "points"
-
-	static $inject = ["$api", "$q"]
-	constructor($api, $q) {
-		super($api, $q)
-	}
-
-	create = (_data) => {
-		return new Point(this, _data)
-	}
-
-	show(id) {
-		return super.show(id)
-	}
-
-	index(params) {
-		return super.index(params)
-	}
-
-	indexFor(parentResource, parentId) {
-		return super.indexFor(parentResource, parentId)
-	}
-
-	destroy(id) {
-		return super.destroy(id)
 	}
 }

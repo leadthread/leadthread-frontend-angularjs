@@ -11,7 +11,13 @@ import { TelephoneClass as Telephone } from "../../Classes"
  **/
 class SmsService {
 	static $inject = ["$q", "$notification", "$popup", "$http", "$device"]
-	constructor($q, $notification, $popup, $http, $device) {}
+	constructor($q, $notification, $popup, $http, $device) {
+		this.$q = $q
+		this.$notification = $notification
+		this.$popup = $popup
+		this.$http = $http
+		this.$device = $device
+	}
 
 	sendInvite(contactIds, message, company_id, campaign_id, user_id = null) {
 		if (!_.isArray(contactIds)) {

@@ -23,10 +23,22 @@ class CompanySelectController extends Controller {
 		$httpParamSerializer
 	) {
 		super()
+
+		this.$scope = $scope
+		this.$q = $q
+		this.$api = $api
+		this.$state = $state
+		this.$auth = $auth
+		this.$cache = $cache
+		this.CompanyService = CompanyService
+		this.$httpParamSerializer = $httpParamSerializer
+
 		this.onSearchChange = _.throttle(this.onSearchChange, 1000, {
 			leading: false,
 			trailing: true,
 		})
+
+		this.$onInit()
 	}
 
 	defineScope() {

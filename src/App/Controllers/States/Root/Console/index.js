@@ -25,6 +25,18 @@ class ConsoleController extends Controller {
 		company
 	) {
 		super()
+
+		this.$scope = $scope
+		this.$state = $state
+		this.$location = $location
+		this.$q = $q
+		this.$popup = $popup
+		this.CompanyService = CompanyService
+		this.CompanyFactory = CompanyFactory
+		this.BrandService = BrandService
+		this.company = company
+
+		this.$onInit()
 	}
 
 	defineScope() {
@@ -46,8 +58,6 @@ class ConsoleController extends Controller {
 			})
 		})
 	}
-
-	init() {}
 
 	create = () => {
 		return this.form()

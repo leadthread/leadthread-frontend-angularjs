@@ -6,7 +6,14 @@ class LeaderboardController extends Controller {
 	static $inject = ["$scope", "$socket", "sms_batch", "contacts", "points"]
 	constructor($scope, $socket, sms_batch, contacts, points) {
 		super()
+		this.$scope = $scope
+		this.$socket = $socket
+		this.sms_batch = sms_batch
+		this.contacts = contacts
+		this.points = points
+
 		this.channel = "sms-batch." + sms_batch.id
+		this.$onInit()
 	}
 
 	defineListeners() {
@@ -94,8 +101,6 @@ class LeaderboardController extends Controller {
 			})
 		}
 
-		console.log(x)
-
 		return x
 	}
 
@@ -106,8 +111,6 @@ class LeaderboardController extends Controller {
 	unsubscribe = (channel) => {
 		this.$socket.unsubscribe(channel)
 	}
-
-	init() {}
 }
 
 const key = "LeaderboardController"

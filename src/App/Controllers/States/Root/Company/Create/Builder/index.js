@@ -1,6 +1,6 @@
 /* eslint-disable no-case-declarations */
 import _ from "lodash"
-import { CampaignForm } from "../../../../../../Classes/Forms"
+import { CampaignForm } from "../../../../../../Services/Forms/CampaignForm"
 import { PreviewSite } from "../../../../../../../Core/Classes/Models/Site"
 import Controller from "../../../../Controller"
 
@@ -40,13 +40,31 @@ class BuilderController extends Controller {
 		$notification,
 		$campaignDb,
 		$uibModal,
-		CampaignServiceService,
+		CampaignService,
 		CampaignTransformerFactory,
 		SiteFactory,
 		company,
 		brands
 	) {
 		super()
+
+		this.$scope = $scope
+		this.$state = $state
+		this.$stateParams = $stateParams
+		this.$auth = $auth
+		this.$placeholder = $placeholder
+		this.$title = $title
+		this.$window = $window
+		this.$popup = $popup
+		this.$q = $q
+		this.$notification = $notification
+		this.$campaignDb = $campaignDb
+		this.$uibModal = $uibModal
+		this.CampaignService = CampaignService
+		this.CampaignTransformerFactory = CampaignTransformerFactory
+		this.SiteFactory = SiteFactory
+		this.company = company
+		this.brands = brands
 
 		this.types = {
 			"referral-thread": "ReferralThread",
@@ -57,6 +75,8 @@ class BuilderController extends Controller {
 			recognition: "Recognition",
 			review: "Review",
 		}
+
+		this.$onInit()
 	}
 
 	$onInit() {
@@ -240,6 +260,7 @@ class BuilderController extends Controller {
 
 	onFormChange = () => {
 		if (this.$scope.cf !== null) {
+			console.log("onFormChange", this.$scope.cf)
 			return this.transformer
 				.toCampaign(this.$scope.cf)
 				.then((campaign) => {
@@ -333,7 +354,7 @@ class BuilderController extends Controller {
 	 */
 	updatePromptPage(order) {
 		this.$scope.preview.site = this.transformer.getCampaignInstance().site
-		// this.$scope.preview.page = this.$scope.preview.site.getMemoryPromptPage("prompt"+order);
+		// this.$scope.preview.page = this.$scope.preview?.site.getMemoryPromptPage("prompt"+order);
 		this.$scope.preview.title = "Memory Prompt " + order
 	}
 
@@ -364,6 +385,7 @@ class BuilderController extends Controller {
 	 * depending on the accordion tab you are on
 	 */
 	updateSite = (campaign) => {
+		console.log("updateSite", campaign)
 		switch (this.$scope.selectedSubGroup) {
 			case "Action Page":
 			case "Action Button":
@@ -398,8 +420,10 @@ class BuilderController extends Controller {
 				)
 		}
 
-		if (this.$scope.preview.site) {
-			this.$scope.preview.page = this.$scope.preview.site.pages[0]
+		if (this.$scope.preview?.site) {
+			this.$scope.preview.page = _.cloneDeep(
+				this.$scope.preview?.site.pages[0]
+			)
 		}
 	}
 
@@ -418,14 +442,14 @@ class BuilderController extends Controller {
 				field.name
 			):
 				this.$scope.preview.page =
-					this.$scope.preview.site.getIntroPage()
+					this.$scope.preview?.site.getIntroPage()
 				this.$scope.preview.title = "Customer Page"
 				break
 			case /^campaignName|messageHeader|landingText|ctaText|defaultType$/.test(
 				field.name
 			):
 				this.$scope.preview.page =
-					this.$scope.preview.site.getActionPagePage()
+					this.$scope.preview?.site?.getActionPagePage()
 				this.$scope.preview.title = "Referral Page"
 				break
 			case /^uPMessage|pRMessage$/.test(field.name):
@@ -479,7 +503,7 @@ class BuilderController extends Controller {
 					previewSiteC.setIncentivePreviewPage(previewPageC)
 				} else {
 					this.$scope.preview.page =
-						this.$scope.preview.site.getIntroPage()
+						this.$scope.preview?.site.getIntroPage()
 					this.$scope.preview.title = "Customer Page"
 				}
 				break
@@ -646,7 +670,7 @@ class BuilderController extends Controller {
 	}
 
 	showBrand = () => {
-		if (this.$scope.preview.site instanceof PreviewSite) {
+		if (this.$scope.preview?.site instanceof PreviewSite) {
 			return false
 		}
 		return true

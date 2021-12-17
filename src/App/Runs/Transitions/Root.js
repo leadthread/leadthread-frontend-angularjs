@@ -13,8 +13,9 @@ export const fn = ($transitions, $state, $location) => {
 		var cond3 = host !== "stage.yaptive.com"
 		var cond4 = !_.includes(name, "root.link")
 		var cond5 = !_.includes(name, "root.auth.register")
+		var cond6 = !_.includes(host, "localhost")
 
-		if (cond1 && cond2 && cond3 && cond4 && cond5) {
+		if (cond1 && cond2 && cond3 && cond4 && cond5 && cond6) {
 			window.location.href = _.replace(url, host, "app.yaptive.com")
 			return false
 		}

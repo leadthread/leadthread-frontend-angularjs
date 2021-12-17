@@ -5,7 +5,7 @@
  * @Last Modified time: 2017-07-19 20:45:55
  */
 ///
-import { Model, ModelFactory, ModelService } from "./Model"
+import { Model } from "./Model"
 
 export class Link extends Model {
 	contact_id
@@ -19,38 +19,12 @@ export class Link extends Model {
 		super(_service, _data)
 	}
 
+	static getDefaults() {
+		const defaults = {}
+		return defaults
+	}
+
 	toString() {
 		return this.long_url
-	}
-}
-
-export class LinkFactory extends ModelFactory {
-	static $inject = ["LinkService"]
-	constructor(_service) {
-		super(_service)
-	}
-	create(_data) {
-		return this._service.create(_data)
-	}
-}
-
-export class LinkService extends ModelService {
-	resource = "links"
-
-	static $inject = ["$api", "$q"]
-	constructor($api, $q) {
-		super($api, $q)
-	}
-
-	create = (_data) => {
-		return new Link(this, _data)
-	}
-
-	show(id) {
-		return super.show(id)
-	}
-
-	destroy(id) {
-		return super.destroy(id)
 	}
 }

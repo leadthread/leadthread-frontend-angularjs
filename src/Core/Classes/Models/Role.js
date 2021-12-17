@@ -5,7 +5,7 @@
  * @Last Modified time: 2017-08-04 19:51:53
  */
 ///
-import { Model, ModelFactory, ModelService } from "./Model"
+import { Model } from "./Model"
 
 export class Role extends Model {
 	name
@@ -14,29 +14,12 @@ export class Role extends Model {
 		super(_service, _data)
 	}
 
+	static getDefaults() {
+		const defaults = {}
+		return defaults
+	}
+
 	toString() {
 		return this.name
-	}
-}
-
-export class RoleFactory extends ModelFactory {
-	static $inject = ["RoleService"]
-	constructor(_service) {
-		super(_service)
-	}
-	create(_data) {
-		return this._service.create(_data)
-	}
-}
-
-export class RoleService extends ModelService {
-	resource = "roles"
-
-	static $inject = ["$api", "$q"]
-	constructor($api, $q) {
-		super($api, $q)
-	}
-	create = (_data) => {
-		return new Role(this, _data)
 	}
 }

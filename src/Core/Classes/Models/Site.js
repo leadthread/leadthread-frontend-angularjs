@@ -7,7 +7,7 @@
 ///
 ///
 import _ from "lodash"
-import { Model, ModelFactory, ModelService } from "./Model"
+import { Model } from "./Model"
 import {
 	ActionPagePage,
 	IncentivePreviewPage,
@@ -20,14 +20,29 @@ import {
 } from "./Page"
 
 export class Site extends Model {
-	pages
-	name
-	type
-	company_id
-
 	constructor(_service, _data) {
 		super(_service, _data)
 		this.pages = this.pages || []
+	}
+
+	static getDefaults() {
+		return {}
+	}
+
+	get pageAction() {
+		return this.getActionPagePage()
+	}
+
+	get pageIntro() {
+		return this.getIntroPage()
+	}
+
+	get pageShare() {
+		return this.getSharePage()
+	}
+
+	get pageThankYou() {
+		return this.getThankYouPage()
 	}
 
 	toString() {
@@ -163,6 +178,20 @@ export class Site extends Model {
 }
 
 export class PreviewSite extends Site {
+	static getDefaults() {
+		return {}
+	}
+
+	get pageSmsPreview() {
+		return this.getSmsPreviewPage()
+	}
+	get pageSocialPreview() {
+		return this.getSocialPreviewPage()
+	}
+	get pageIncentivePreview() {
+		return this.getIncentivePreviewPage()
+	}
+
 	// PreviewSite specific functions go here
 	getSmsPreviewPage() {
 		var p = this.getPage((m) => {
@@ -221,108 +250,3 @@ export class ReachSite extends Site {}
 export class RecognitionSite extends Site {}
 export class ReviewSite extends Site {}
 export class TestimonialThreadSite extends Site {}
-
-export class SiteFactory extends ModelFactory {
-	static $inject = ["SiteService"]
-	constructor(_service) {
-		super(_service)
-	}
-	create(_data) {
-		return this._service.create(_data)
-	}
-}
-
-export class SiteService extends ModelService {
-	resource = "sites"
-
-	static $inject = ["$api", "$q"]
-	constructor($api, $q) {
-		super($api, $q)
-		this.related.load = {
-			pages: this.loadPages,
-		}
-		this.related.save.after.pages = this.savePages
-	}
-
-	create = (_data) => {
-		switch (_data.type) {
-			case "preview":
-				return new PreviewSite(this, _data)
-			case "referral-thread":
-				return new ReferralThreadSite(this, _data)
-			case "leaderboard":
-				return new LeaderboardSite(this, _data)
-			case "testimonial-thread":
-				return new TestimonialThreadSite(this, _data)
-			case "message-thread":
-				return new MessageThreadSite(this, _data)
-			case "reach":
-				return new ReachSite(this, _data)
-			case "recognition":
-				return new RecognitionSite(this, _data)
-			case "review":
-				return new ReviewSite(this, _data)
-			case "action":
-				return new ActionPageSite(this, _data)
-			default:
-				throw "Unknown type for Site: " + _.get(_data, "type", "null")
-		}
-	}
-
-	beforeSave(m) {
-		m.company_id = m.company_id || this.$stateParams.companyId
-		return m
-	}
-
-	loadPages = (m) => {
-		if (m.id) {
-			return this.PageService.indexFor(this.resource, m.id).then(
-				this.assignResult(m, "pages")
-			)
-		} else {
-			return this.$q.when([])
-		}
-	}
-
-	showOrCreate(id, search) {
-		return super.showOrCreate(id, search)
-	}
-
-	show(id) {
-		return super.show(id)
-	}
-
-	index() {
-		return super.index()
-	}
-
-	indexFor(parentResource, parentId) {
-		return super.indexFor(parentResource, parentId)
-	}
-
-	destroy(id) {
-		return super.destroy(id)
-	}
-
-	createPage(m, type, options = {}) {
-		let page = {
-			type: type,
-			order: 0,
-			sections: [],
-			background_color: "#FFFFFF",
-			company_id: m.company_id,
-			name: null,
-			site_id: m.id,
-		}
-
-		return this.PageService.create(_.merge(page, options))
-	}
-
-	savePages = (m, include) => {
-		let p = []
-		_.forEach(m.pages, (page) => {
-			p.push(this.PageService.saveFor(this.resource, m.id, page, include))
-		})
-		return this.$q.all(p)
-	}
-}

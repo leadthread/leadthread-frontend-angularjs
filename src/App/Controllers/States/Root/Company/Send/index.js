@@ -1,8 +1,5 @@
 import _ from "lodash"
-import {
-	CampaignClass as Campaign,
-	PlaylistClass as Playlist,
-} from "../../../../../../Core/Classes"
+import { Campaign, Playlist } from "../../../../../../Core/Classes"
 import Controller from "../../../Controller"
 
 class SendController extends Controller {
@@ -49,6 +46,26 @@ class SendController extends Controller {
 		isAdmin
 	) {
 		super()
+		this.$scope = $scope
+		this.campaigns = campaigns
+		this.playlists = playlists
+		this.users = users
+		this.ContactService = ContactService
+		this.$device = $device
+		this.$notification = $notification
+		this.$location = $location
+		this.$placeholder = $placeholder
+		this.$timeout = $timeout
+		this.$title = $title
+		this.$http = $http
+		this.$sms = $sms
+		this.$stateParams = $stateParams
+		this.$auth = $auth
+		this.$popup = $popup
+		this.$q = $q
+		this.EventService = EventService
+		this.isAdmin = isAdmin
+		this.$onInit()
 	}
 
 	defineScope() {

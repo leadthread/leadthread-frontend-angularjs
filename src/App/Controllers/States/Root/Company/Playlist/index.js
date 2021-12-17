@@ -21,7 +21,7 @@ const inject = [
 	"ContactService",
 ]
 
-const fn = (
+function fn(
 	$scope,
 	$popup,
 	$q,
@@ -38,7 +38,7 @@ const fn = (
 	PlaylistService,
 	PlaylistScheduleService,
 	ContactService
-) => {
+) {
 	var init = function () {
 		defineScope()
 		defineListeners()

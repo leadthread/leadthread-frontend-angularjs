@@ -15,7 +15,7 @@ const inject = [
 	"role",
 ]
 
-const fn = (
+function fn(
 	$scope,
 	$http,
 	company_id,
@@ -28,7 +28,7 @@ const fn = (
 	$state,
 	$device,
 	role
-) => {
+) {
 	function init() {
 		defineScope()
 		defineListeners()

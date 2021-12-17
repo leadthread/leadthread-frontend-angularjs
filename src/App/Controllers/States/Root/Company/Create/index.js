@@ -17,7 +17,7 @@ const inject = [
 	"company",
 ]
 
-const fn = (
+function fn(
 	$scope,
 	$state,
 	$campaignDb,
@@ -28,7 +28,7 @@ const fn = (
 	$notification,
 	companies,
 	company
-) => {
+) {
 	/**
 	 * Start it up
 	 */
@@ -67,8 +67,8 @@ const fn = (
 				key: "leaderboard",
 				icon: "icon-trophy",
 				enabled: company.module_leaderboard,
-				description:
-					'Use Leaderboard - when you want to run a "Live" or "Real-time" referral campaign, that can be viewed during a group referral session. A Leaderboard campaign will show the names of all participants in the campaign and display real- time results as they come in. Leaderboard is ideal for both Employee Referrals and Product Referrals, that are conducted in a group setting. \n\nIdeal for: New Hire groups, Team Meetings, Seminars, etc..',
+				// eslint-disable-next-line quotes
+				description: `Use Leaderboard - when you want to run a "Live" or "Real-time" referral campaign, that can be viewed during a group referral session. A Leaderboard campaign will show the names of all participants in the campaign and display real- time results as they come in. Leaderboard is ideal for both Employee Referrals and Product Referrals, that are conducted in a group setting. \n\nIdeal for: New Hire groups, Team Meetings, Seminars, etc..`,
 			},
 			{
 				name: "MessageThread",

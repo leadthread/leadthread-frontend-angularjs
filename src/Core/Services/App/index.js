@@ -2,7 +2,9 @@ class AppService {
 	_COMPANY_ID
 
 	static $inject = ["$http"]
-	constructor($http) {}
+	constructor($http) {
+		this.$http = $http
+	}
 
 	get COMPANY_ID() {
 		return this._COMPANY_ID

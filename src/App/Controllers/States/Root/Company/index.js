@@ -33,7 +33,7 @@ const inject = [
 	"$messages",
 ]
 
-const fn = (
+function fn(
 	$scope,
 	$state,
 	companies,
@@ -47,7 +47,7 @@ const fn = (
 	$api,
 	$q,
 	$messages
-) => {
+) {
 	var user
 
 	function init() {

@@ -1,3 +1,3 @@
-import Controller from "../../Controller"
+import AppController from "../../Controller"
 
-export default class StateController extends Controller {}
+export default class Controller extends AppController {}

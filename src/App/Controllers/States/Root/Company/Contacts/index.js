@@ -4,7 +4,7 @@ const key = "ContactsController"
 
 const inject = ["$scope"]
 
-const fn = ($scope) => {
+function fn($scope) {
 	function init() {
 		defineScope()
 		defineListeners()

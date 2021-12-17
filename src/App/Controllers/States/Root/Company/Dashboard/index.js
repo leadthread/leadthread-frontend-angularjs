@@ -1,8 +1,8 @@
 import moment from "moment"
 import _ from "lodash"
 import addToHomescreen from "add-to-homescreen"
-import { ChartClass as Chart } from "../../../../../../Core/Classes"
 import Controller from "../../../Controller"
+import Chart from "chart.js"
 
 class DashboardController extends Controller {
 	timeFormat = "YYYY-MM-DD"
@@ -29,9 +29,21 @@ class DashboardController extends Controller {
 		$state
 	) {
 		super()
+
+		this.$scope = $scope
+		this.campaigns = campaigns
+		this.$stateParams = $stateParams
+		this.$http = $http
+		this.$location = $location
+		this.$cache = $cache
+		this.$device = $device
+		this.$state = $state
+
 		this.campaign = $stateParams.campaignId
 			? _.find(this.campaigns, { id: $stateParams.campaignId })
 			: null
+
+		this.$onInit()
 	}
 
 	defineListeners() {
@@ -49,7 +61,6 @@ class DashboardController extends Controller {
 			this.$scope.company.latest_review_scores,
 			"name"
 		)
-		console.log(this.$scope.reviewScores)
 		this.$scope.metrics = [
 			{
 				key: "contact_sent",
@@ -251,8 +262,6 @@ class DashboardController extends Controller {
 				},
 			}
 
-			console.log(chartOptions)
-
 			var myChart = new Chart("chart", chartOptions)
 			return true
 		} else {
@@ -276,7 +285,6 @@ class DashboardController extends Controller {
 			min.add(1, "days")
 		}
 
-		console.log(axis)
 		return axis
 	}
 
@@ -287,7 +295,6 @@ class DashboardController extends Controller {
 	}
 
 	getDataSet(data, timeAxis, metric) {
-		console.log(data, metric)
 		return {
 			label: metric.name,
 			// fillColor: "rgba(220,220,220,0.5)",

@@ -9,7 +9,7 @@ const inject = [
 	"$state",
 ]
 
-const fn = ($scope, $http, $notification, $stateParams, $auth, $state) => {
+function fn($scope, $http, $notification, $stateParams, $auth, $state) {
 	function init() {
 		$scope.$parent.$parent.credentials = {
 			email: $stateParams.email,

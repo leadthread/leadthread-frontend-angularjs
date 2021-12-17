@@ -5,6 +5,12 @@ class LeaderboardsController extends Controller {
 	static $inject = ["$scope", "$q", "SmsBatchService", "campaigns"]
 	constructor($scope, $q, SmsBatchService, campaigns) {
 		super()
+
+		this.$scope = $scope
+		this.$q = $q
+		this.SmsBatchService = SmsBatchService
+		this.campaigns = campaigns
+		this.$onInit()
 	}
 
 	defineListeners() {}
@@ -31,8 +37,6 @@ class LeaderboardsController extends Controller {
 	onChange = (x) => {
 		this.$scope.params = _.merge(this.$scope.params, x)
 	}
-
-	init() {}
 }
 
 const key = "LeaderboardsController"

@@ -13,6 +13,7 @@ export default class Controller extends SectionController {
 
 	constructor() {
 		super()
+		this.$onInit()
 	}
 
 	run = () => {}

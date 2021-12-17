@@ -2,7 +2,7 @@ export const key = "PromptBuilderLibraryController"
 
 export const inject = ["$scope", "Prompt", "$uibModalInstance", "$company"]
 
-export const fn = ($scope, Prompt, $uibModalInstance, $company) => {
+export function fn($scope, Prompt, $uibModalInstance, $company) {
 	function init() {
 		defineScope()
 		defineListeners()

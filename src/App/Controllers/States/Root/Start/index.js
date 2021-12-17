@@ -9,7 +9,7 @@ const inject = [
 	"$http",
 ]
 
-const fn = ($scope, $stateParams, $auth, $notification, $state, $http) => {
+function fn($scope, $stateParams, $auth, $notification, $state, $http) {
 	function init() {
 		if ($stateParams.link_id === undefined) {
 			defineScope()

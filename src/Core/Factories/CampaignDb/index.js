@@ -1,5 +1,5 @@
 import _ from "lodash"
-import { CampaignClass as Campaign } from "../../Classes"
+import { Campaign } from "../../Classes"
 
 export const key = "$campaignDb"
 

@@ -86,7 +86,6 @@ export const fn = (
 			}
 
 			function cacheReferrals() {
-				console.log($scope.referrals)
 				$localStorage.set(cacheKeyReferrals, $scope.referrals)
 				$localStorage.set(cacheKeyReferralsSent, $scope.referrals_sent)
 			}

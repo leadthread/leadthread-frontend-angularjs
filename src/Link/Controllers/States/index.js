@@ -1,1 +1,1 @@
-export * from "./Root"
+export * as RootController from "./Root"

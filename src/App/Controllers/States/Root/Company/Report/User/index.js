@@ -4,7 +4,7 @@ const key = "ReportUserController"
 
 const inject = ["$scope", "company_id"]
 
-const fn = ($scope, company_id) => {
+function fn($scope, company_id) {
 	/**
 	 * Start it up
 	 */

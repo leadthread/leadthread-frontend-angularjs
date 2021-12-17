@@ -2,7 +2,7 @@ const key = "UserSettingsController"
 
 const inject = ["$scope", "$auth", "$api", "$notification"]
 
-const fn = ($scope, $auth, $api, $notification) => {
+function fn($scope, $auth, $api, $notification) {
 	/**
 	 * init function runs on creation
 	 */

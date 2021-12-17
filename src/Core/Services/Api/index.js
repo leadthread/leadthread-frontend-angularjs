@@ -26,7 +26,11 @@ class Request {
 	_action = []
 	_params = {}
 
-	constructor($http, $httpParamSerializer, $httpPreload) {}
+	constructor($http, $httpParamSerializer, $httpPreload) {
+		this.$http = $http
+		this.$httpParamSerializer = $httpParamSerializer
+		this.$httpPreload = $httpPreload
+	}
 
 	set includeDeleted(x) {
 		this._includeDeleted = x
@@ -189,7 +193,11 @@ class ApiService {
 	_request = null
 
 	static $inject = ["$http", "$httpParamSerializer", "$httpPreload"]
-	constructor($http, $httpParamSerializer, $httpPreload) {}
+	constructor($http, $httpParamSerializer, $httpPreload) {
+		this.$http = $http
+		this.$httpParamSerializer = $httpParamSerializer
+		this.$httpPreload = $httpPreload
+	}
 
 	get request() {
 		this._request = this._request

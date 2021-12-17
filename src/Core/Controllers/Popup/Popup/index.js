@@ -13,7 +13,7 @@ export const inject = [
 	"$auth",
 ]
 
-export const fn = (
+export function fn(
 	options,
 	$scope,
 	$timeout,
@@ -22,7 +22,7 @@ export const fn = (
 	$q,
 	$sce,
 	$auth
-) => {
+) {
 	var okTimeout
 
 	function init() {

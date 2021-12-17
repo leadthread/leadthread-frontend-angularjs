@@ -5,7 +5,7 @@
  * @Last Modified time: 2017-07-19 13:57:32
  */
 ///
-import { Model, ModelFactory, ModelService } from "./Model"
+import { Model } from "./Model"
 import _ from "lodash"
 
 export class File extends Model {
@@ -14,6 +14,11 @@ export class File extends Model {
 
 	constructor(_service, _data) {
 		super(_service, _data)
+	}
+
+	static getDefaults() {
+		const defaults = {}
+		return defaults
 	}
 
 	toString() {
@@ -30,34 +35,3 @@ export class File extends Model {
 
 export class Image extends File {}
 export class Document extends File {}
-
-export class FileFactory extends ModelFactory {
-	static $inject = ["FileService"]
-	constructor(_service) {
-		super(_service)
-	}
-	create(_data) {
-		return this._service.create(_data)
-	}
-}
-
-export class FileService extends ModelService {
-	resource = "files"
-
-	static $inject = ["$api", "$q"]
-	constructor($api, $q) {
-		super($api, $q)
-	}
-
-	create = (_data) => {
-		return new File(this, _data)
-	}
-
-	show(id) {
-		return super.show(id)
-	}
-
-	showOrCreate(id, search) {
-		return super.showOrCreate(id, search)
-	}
-}

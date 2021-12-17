@@ -12,14 +12,14 @@ export const inject = [
 	"CampaignService",
 ]
 
-export const fn = (
+export function fn(
 	options,
 	$scope,
 	$uibModalInstance,
 	$q,
 	PlaylistScheduleService,
 	CampaignService
-) => {
+) {
 	function init() {
 		defineScope()
 		defineListeners()

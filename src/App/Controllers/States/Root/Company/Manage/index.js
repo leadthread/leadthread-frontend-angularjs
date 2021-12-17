@@ -17,7 +17,7 @@ const inject = [
 	"UserService",
 ]
 
-const fn = (
+function fn(
 	$scope,
 	users,
 	$auth,
@@ -29,7 +29,7 @@ const fn = (
 	$http,
 	$q,
 	UserService
-) => {
+) {
 	/**
 	 * Start it up
 	 */

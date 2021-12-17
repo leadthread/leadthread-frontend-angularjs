@@ -21,7 +21,7 @@ const inject = [
 	"titleCaseFilter",
 	"users",
 ]
-const fn = (
+function fn(
 	$cache,
 	$http,
 	$location,
@@ -33,7 +33,7 @@ const fn = (
 	company_id,
 	titleCaseFilter,
 	users
-) => {
+) {
 	/**
 	 * Start it up
 	 */

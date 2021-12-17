@@ -1,3 +1,3 @@
 import Component from "./Component"
-export const key = "Incentive"
-export const instance = new Component()
+export const key = "incentive"
+export const fn = new Component()

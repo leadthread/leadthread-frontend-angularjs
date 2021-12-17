@@ -5,7 +5,7 @@
  * @Last Modified time: 2017-07-19 13:58:03
  */
 ///
-import { Model, ModelFactory, ModelService } from "./Model"
+import { Model } from "./Model"
 import _ from "lodash"
 
 export class Contact extends Model {
@@ -21,6 +21,11 @@ export class Contact extends Model {
 		super(_service, _data)
 	}
 
+	static getDefaults() {
+		const defaults = {}
+		return defaults
+	}
+
 	toString() {
 		return this.first_name + " " + this.last_name
 	}
@@ -34,44 +39,5 @@ export class Contact extends Model {
 		_.pull(properties, "sent")
 		_.pull(properties, "selected")
 		return properties
-	}
-}
-
-export class ContactFactory extends ModelFactory {
-	static $inject = ["ContactService"]
-	constructor(_service) {
-		super(_service)
-	}
-	create(_data) {
-		return this._service.create(_data)
-	}
-}
-
-export class ContactService extends ModelService {
-	resource = "contacts"
-
-	static $inject = ["$api", "$q"]
-	constructor($api, $q) {
-		super($api, $q)
-	}
-
-	create = (_data) => {
-		return new Contact(this, _data)
-	}
-
-	show(id) {
-		return super.show(id)
-	}
-
-	index(params) {
-		return super.index(params)
-	}
-
-	indexFor(parentResource, parentId) {
-		return super.indexFor(parentResource, parentId)
-	}
-
-	destroy(id) {
-		return super.destroy(id)
 	}
 }

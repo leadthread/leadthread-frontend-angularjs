@@ -4,7 +4,7 @@ export const key = "PopupContactsController"
 
 export const inject = ["options", "$scope", "$uibModalInstance"]
 
-export const fn = (options, $scope, $uibModalInstance) => {
+export function fn(options, $scope, $uibModalInstance) {
 	function init() {
 		defineScope()
 		defineListeners()

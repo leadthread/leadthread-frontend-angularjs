@@ -19,7 +19,7 @@ const inject = [
 	"$title",
 ]
 
-const fn = (
+function fn(
 	$scope,
 	contact,
 	users,
@@ -34,7 +34,7 @@ const fn = (
 	user,
 	company_id,
 	$title
-) => {
+) {
 	function init() {
 		defineScope()
 		defineListeners()

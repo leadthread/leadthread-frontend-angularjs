@@ -1,1 +1,1 @@
-export * as StateProvider from "./StateProvider"
+export * as ProviderState from "./State"

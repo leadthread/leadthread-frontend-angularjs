@@ -11,14 +11,14 @@ export class Person {
 
 	constructor(...args) {
 		this.sent = false
-		if (arguments.length > 1) {
-			this.first_name = arguments[0]
-			this.last_name = arguments[1]
-			this.email = arguments[2]
-			this.phone = arguments[3]
-			this.company = arguments[4]
-		} else if (_.isObject(arguments[0])) {
-			this.set(arguments[0])
+		if (args.length > 1) {
+			this.first_name = args[0]
+			this.last_name = args[1]
+			this.email = args[2]
+			this.phone = args[3]
+			this.company = args[4]
+		} else if (_.isObject(args[0])) {
+			this.set(args[0])
 		} else {
 			throw "Could not create a Person instance"
 		}

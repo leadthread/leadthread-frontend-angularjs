@@ -1,7 +1,7 @@
 import _ from "lodash"
 import Controller from "../Controller"
 
-import { CampaignClass as Campaign } from "../../../../Core/Classes"
+import { Campaign } from "../../../../Core/Classes"
 
 export default class RootController extends Controller {
 	//Dependencies
@@ -25,6 +25,9 @@ export default class RootController extends Controller {
 		"company",
 		"link",
 		"story",
+		"target",
+		"referral",
+		"EventService",
 	]
 
 	constructor(
@@ -46,15 +49,41 @@ export default class RootController extends Controller {
 		owner,
 		company,
 		link,
-		story
+		story,
+		target,
+		referral,
+		EventService
 	) {
 		super()
+		this.$scope = $scope
+		this.$favicon = $favicon
+		this.$http = $http
+		this.$q = $q
+		this.$api = $api
+		this.$stateParams = $stateParams
+		this.$company = $company
+		this.$placeholder = $placeholder
+		this.$sms = $sms
+		this.$location = $location
+		this.$title = $title
+		this.CampaignFactory = CampaignFactory
+		this.ActionPageFactory = ActionPageFactory
+		this.ReferralFactory = ReferralFactory
+		this.contact = contact
+		this.owner = owner
+		this.company = company
+		this.link = link
+		this.story = story
+		this.target = target
+		this.referral = referral
+		this.EventService = EventService
 		this.story = story || {
 			type: null,
 			video: null,
 			image: null,
 			caption: null,
 		}
+		this.$onInit()
 	}
 
 	init() {

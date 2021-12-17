@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /*
  * @Author: Tyler Arbon
  * @Date:   2017-06-21 10:57:39
@@ -6,7 +7,7 @@
  */
 ///
 import _ from "lodash"
-import { Model, ModelFactory, ModelService } from "./Model"
+import { Model } from "./Model"
 import {
 	ButtonSection,
 	IncentivePreviewSection,
@@ -16,17 +17,14 @@ import {
 } from "./Section"
 
 export class Page extends Model {
-	order
-	sections
-	type
-	background_color
-	company_id
-	name
-	site_id
-
 	constructor(_service, _data) {
 		super(_service, _data)
 		this.sections = this.sections || []
+	}
+
+	static getDefaults() {
+		const defaults = {}
+		return defaults
 	}
 
 	toString() {
@@ -62,6 +60,8 @@ export class Page extends Model {
 		} else {
 			this.sections.push(section)
 		}
+
+		this.sections = [...this.sections]
 
 		return section
 	}
@@ -109,6 +109,11 @@ export class Page extends Model {
 }
 
 export class IntroPage extends Page {
+	static getDefaults() {
+		const defaults = {}
+		return defaults
+	}
+
 	getMediaSection() {
 		var p = this.getSection((p) => {
 			return p instanceof MediaSection
@@ -153,9 +158,9 @@ export class IntroPage extends Page {
 		return p
 			? p
 			: this.createSection({
-				type: "text",
-				name: "intro_body",
-				company_id: this.company_id,
+					type: "text",
+					name: "intro_body",
+					company_id: this.company_id,
 			  })
 	}
 
@@ -175,9 +180,9 @@ export class IntroPage extends Page {
 		return p
 			? p
 			: this.createSection({
-				type: "text",
-				name: "intro_footer",
-				company_id: this.company_id,
+					type: "text",
+					name: "intro_footer",
+					company_id: this.company_id,
 			  })
 	}
 
@@ -197,9 +202,9 @@ export class IntroPage extends Page {
 		return p
 			? p
 			: this.createSection({
-				type: "testimonial",
-				name: "intro_testimonial",
-				company_id: this.company_id,
+					type: "testimonial",
+					name: "intro_testimonial",
+					company_id: this.company_id,
 			  })
 	}
 
@@ -215,6 +220,11 @@ export class IntroPage extends Page {
 }
 
 export class ThankYouPage extends Page {
+	static getDefaults() {
+		const defaults = {}
+		return defaults
+	}
+
 	getHeaderSection() {
 		var p = this.getSection(function (p) {
 			return p.type === "text" && p.name === "thanks_header"
@@ -241,9 +251,9 @@ export class ThankYouPage extends Page {
 		return p
 			? p
 			: this.createSection({
-				type: "text",
-				name: "thanks_body",
-				company_id: this.company_id,
+					type: "text",
+					name: "thanks_body",
+					company_id: this.company_id,
 			  })
 	}
 
@@ -257,6 +267,11 @@ export class ThankYouPage extends Page {
 }
 
 export class PreviewPage extends Page {
+	static getDefaults() {
+		const defaults = {}
+		return defaults
+	}
+
 	getSocialPreviewSection() {
 		let p = this.getSection((p) => {
 			return (
@@ -267,9 +282,9 @@ export class PreviewPage extends Page {
 		return p
 			? p
 			: this.createSection({
-				type: "socialpreview",
-				name: "socialpreview",
-				company_id: this.company_id,
+					type: "socialpreview",
+					name: "socialpreview",
+					company_id: this.company_id,
 			  })
 	}
 
@@ -292,9 +307,9 @@ export class PreviewPage extends Page {
 		return p
 			? p
 			: this.createSection({
-				type: "smspreview",
-				name: "smspreview",
-				company_id: this.company_id,
+					type: "smspreview",
+					name: "smspreview",
+					company_id: this.company_id,
 			  })
 	}
 
@@ -317,9 +332,9 @@ export class PreviewPage extends Page {
 		return p
 			? p
 			: this.createSection({
-				type: "incentivepreview",
-				name: "incentivepreview",
-				company_id: this.company_id,
+					type: "incentivepreview",
+					name: "incentivepreview",
+					company_id: this.company_id,
 			  })
 	}
 
@@ -342,6 +357,11 @@ export class SmsPreviewPage extends PreviewPage {}
 export class IncentivePreviewPage extends PreviewPage {}
 
 export class MemoryPromptPage extends Page {
+	static getDefaults() {
+		const defaults = {}
+		return defaults
+	}
+
 	getImageSection() {
 		var p = this.getSection((p) => {
 			return p.type === "image" && p.name === this.name + "_img"
@@ -393,6 +413,11 @@ export class MemoryPromptPage extends Page {
 }
 
 export class SharePage extends Page {
+	static getDefaults() {
+		const defaults = {}
+		return defaults
+	}
+
 	getShareSection() {
 		var p = this.getSection((p) => {
 			return p.type === "share"
@@ -413,6 +438,11 @@ export class SharePage extends Page {
 }
 
 export class ActionPagePage extends Page {
+	static getDefaults() {
+		const defaults = {}
+		return defaults
+	}
+
 	getStorySection() {
 		let p = this.getSection((p) => {
 			return p.type === "story"
@@ -430,9 +460,9 @@ export class ActionPagePage extends Page {
 		return p
 			? p
 			: this.createSection({
-				type: "text",
-				name: "action_body",
-				company_id: this.company_id,
+					type: "text",
+					name: "action_body",
+					company_id: this.company_id,
 			  })
 	}
 	getFooterSection() {
@@ -443,9 +473,9 @@ export class ActionPagePage extends Page {
 		return p
 			? p
 			: this.createSection({
-				type: "text",
-				name: "action_footer",
-				company_id: this.company_id,
+					type: "text",
+					name: "action_footer",
+					company_id: this.company_id,
 			  })
 	}
 
@@ -469,104 +499,5 @@ export class ActionPagePage extends Page {
 				return p.type === "text" && p.name === "action_footer"
 			})
 		}
-	}
-}
-
-export class PageFactory extends ModelFactory {
-	static $inject = ["PageService"]
-	constructor(_service) {
-		super(_service)
-	}
-	create(_data) {
-		return this._service.create(_data)
-	}
-}
-
-export class PageService extends ModelService {
-	resource = "pages"
-
-	static $inject = ["$api", "$q"]
-	constructor($api, $q) {
-		super($api, $q)
-		this.related.load.sections = this.loadSections
-		this.related.save.after.sections = this.saveSections
-	}
-
-	create = (_data) => {
-		switch (_data.type) {
-			case "action":
-				return new ActionPagePage(this, _data)
-			case "intro":
-				return new IntroPage(this, _data)
-			case "share":
-				return new SharePage(this, _data)
-			case "smspreview":
-				return new SmsPreviewPage(this, _data)
-			case "incentivepreview":
-				return new IncentivePreviewPage(this, _data)
-			case "socialpreview":
-				return new SocialPreviewPage(this, _data)
-			case "thank":
-				return new ThankYouPage(this, _data)
-			default:
-				throw "Unknown type for Page: " + _.get(_data, "type", "null")
-		}
-	}
-
-	show(id) {
-		return super.show(id)
-	}
-
-	index() {
-		return super.index()
-	}
-
-	indexFor(parentResource, parentId) {
-		return super.indexFor(parentResource, parentId)
-	}
-
-	destroy(id) {
-		return super.destroy(id)
-	}
-
-	loadSections = (m) => {
-		return this.SectionService.indexFor(this.resource, m.id).then(
-			this.assignResult(m, "sections")
-		)
-	}
-
-	deleteSections(m, find) {
-		let sections = m.getSections(find)
-		let promises = []
-
-		if (sections) {
-			promises = _.map(sections, (section) => {
-				return section.destroy()
-			})
-		}
-
-		return this.$q.all(promises).then(() => {
-			_.remove(m.sections, find)
-			return true
-		})
-	}
-
-	createSection(_data) {
-		return this.SectionFactory.create(_data)
-	}
-
-	saveSections = (m, include) => {
-		let p = []
-		_.forEach(m.sections, (sections) => {
-			p.push(
-				this.SectionService.saveFor(
-					this.resource,
-					m.id,
-					sections,
-					include
-				)
-			)
-		})
-		return this.$q.all(p)
 	}
 }

@@ -1,5 +1,5 @@
 import _ from "lodash"
-import { ReferralClass as Referral } from "../../Classes"
+import { Referral } from "../../../Classes/Models"
 
 import SectionController from "../Controller"
 
@@ -37,6 +37,17 @@ export default class Controller extends SectionController {
 		EventService
 	) {
 		super()
+		this.$rootScope = $rootScope
+		this.$timeout = $timeout
+		this.$placeholder = $placeholder
+		this.$q = $q
+		this.$http = $http
+		this.$popup = $popup
+		this.$sms = $sms
+		this.$notification = $notification
+		this.$cache = $cache
+		this.EventService = EventService
+		this.$onInit()
 	}
 
 	run = () => {

@@ -15,7 +15,7 @@ const inject = [
 	"$title",
 ]
 
-const fn = (
+function fn(
 	$scope,
 	$http,
 	$company,
@@ -25,7 +25,7 @@ const fn = (
 	$notification,
 	$messages,
 	$title
-) => {
+) {
 	/**
 	 * Start it up
 	 */

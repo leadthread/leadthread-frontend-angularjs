@@ -10,6 +10,7 @@ import * as Constants from "./Constants"
 import * as Controllers from "./Controllers"
 import * as Directives from "./Directives"
 import * as Factories from "./Factories"
+import * as Filters from "./Filters"
 import * as Runs from "./Runs"
 import * as Services from "./Services"
 
@@ -35,6 +36,7 @@ if (Controllers) {
 	for (const i in Controllers) {
 		const { key, inject, fn } = Controllers[i]
 		const injectable = inject ? [...inject, fn] : fn
+		if (key === "RootController") console.log(key, inject, fn)
 		module.controller(key, injectable)
 	}
 }
@@ -52,6 +54,14 @@ if (Factories) {
 		const { key, inject, fn } = Factories[i]
 		const injectable = inject ? [...inject, fn] : fn
 		module.factory(key, injectable)
+	}
+}
+
+if (Filters) {
+	for (const i in Filters) {
+		const { key, inject, fn } = Filters[i]
+		const injectable = inject ? [...inject, fn] : fn
+		module.filter(key, injectable)
 	}
 }
 
